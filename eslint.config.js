@@ -41,7 +41,6 @@ export default [
         "warn",
         { allowConstantExport: true },
       ],
-      "prettier/prettier": "error",
     },
   },
 ];

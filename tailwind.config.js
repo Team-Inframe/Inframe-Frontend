@@ -2,7 +2,18 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      height: {
+        "real-screen": "calc(var(--vh) * 100)",
+      },
+      minHeight: {
+        "real-screen": "calc(var(--vh) * 100)",
+      },
+      colors: {
+        foreground: "hsl(var(--foreground))",
+        background: "hsl(var(--background))",
+      },
+    },
   },
   plugins: [],
 };

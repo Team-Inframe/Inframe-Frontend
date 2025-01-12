@@ -1,4 +1,4 @@
-import { MainPage } from "@/pages/Main";
+import { MainPage } from "@/pages/Main/page";
 import { createBrowserRouter } from "react-router-dom";
 
 const routes = [

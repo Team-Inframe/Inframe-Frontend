@@ -1,5 +1,5 @@
 {
-  "name": "weathy-frontend",
+  "name": "inframe-frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -19,7 +19,10 @@
     "format": "prettier --write --cache ."
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.64.0",
+    "@tanstack/react-query-devtools": "^5.64.0",
     "axios": "^1.7.9",
+    "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.1.1"

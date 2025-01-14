@@ -15,6 +15,16 @@ export default {
       colors: {
         foreground: "hsl(var(--foreground))",
         background: "hsl(var(--background))",
+
+        syscolor: {
+          SystemPurple1: "#8761D2",
+          SystemPurple2: "#B37DDF",
+          SystemLightpurple1: "#CBBCFD",
+          SystemLightpurple2: "#CADEF7",
+          SystemWhite: "#FFFFFF",
+          SystemBlack: "#000000",
+          SystemGray: "#999999",
+        },
       },
       fontFamily: {
         pretendard: ["pretendard"],

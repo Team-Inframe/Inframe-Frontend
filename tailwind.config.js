@@ -16,6 +16,9 @@ export default {
         foreground: "hsl(var(--foreground))",
         background: "hsl(var(--background))",
       },
+      fontFamily: {
+        pretendard: ["pretendard"],
+      },
     },
   },
   plugins: [],

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Footer = () => {
   const navigate = useNavigate();
   return (
-    <footer className="absolute bottom-0 w-screen max-w-[490px] h-24  bg-white flex justify-around items-center">
+    <footer className="fixed bottom-0 w-screen max-w-[490px] h-24  bg-white flex justify-around items-center">
       <IconButton
         iconSrc="/icons/homebutton.png"
         altText="HOME"
@@ -16,7 +16,7 @@ const Footer = () => {
         iconSrc="/icons/framemakebutton.png"
         altText="프레임 만들기"
         label="프레임 만들기"
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/home")}
       />
       <IconButton
         iconSrc="/icons/cabinetbutton.png"

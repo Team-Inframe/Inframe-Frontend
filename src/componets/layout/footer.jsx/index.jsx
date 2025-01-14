@@ -1,11 +1,10 @@
-import React from "react";
 import IconButton from "@/componets/common/IconButton";
 import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const navigate = useNavigate();
   return (
-    <footer className="absolute bottom-0 left-0 w-full h-24 bg-white flex justify-around items-center">
+    <footer className="absolute bottom-0 left-0 flex h-24 w-full items-center justify-around bg-white">
       <IconButton
         iconSrc="/icons/homebutton.png"
         altText="HOME"

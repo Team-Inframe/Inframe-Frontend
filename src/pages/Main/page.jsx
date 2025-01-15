@@ -1,4 +1,3 @@
-import React from "react";
 import Footer from "@/componets/layout/Footer/index.jsx";
 
 export const MainPage = () => {

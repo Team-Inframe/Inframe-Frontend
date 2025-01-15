@@ -1,4 +1,4 @@
-import IconButton from "@/componets/common/IconButton";
+import IconButton from "@/components/common/IconButton";
 import { useNavigate } from "react-router-dom";
 
 const Footer = () => {

@@ -12,7 +12,7 @@
     "src/**/*.d.ts",
     "src/**/*.js",
     "src/**/*.jsx",
-    "src/componets/layout/Footer"
+    "src/components/layout/Footer"
   ],
   "exclude": ["node_modules", "**/node_modules", "dist"]
 }

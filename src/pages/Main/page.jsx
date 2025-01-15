@@ -11,7 +11,7 @@ export const MainPage = () => {
         <div className="Headline_B flex text-black">김H팀님</div>
         <div className="Headline_L text-black">프레임을 선택해보세요!</div>
       </div>
-      <div className="h-80 w-80 items-center rounded-2xl border-black pt-10 shadow-lg">
+      <div className="pt-13 h-80 w-80 items-center rounded-2xl border-black shadow-lg">
         <div className=""></div>
       </div>
       <div className="flex w-full flex-col text-left">
@@ -23,23 +23,27 @@ export const MainPage = () => {
         </div>
         <div className="grid grid-cols-2 items-center justify-center gap-11 px-16 pt-6">
           <HotFrame
-            label="지브리st 프레임"
+            label1="지브리st 프레임"
             onClick={() => navigate("/hotframe")}
+            label2={220}
           />
           <HotFrame
-            label="지브리st 프레임"
+            label1="지브리st 프레임"
             onClick={() => navigate("/hotframe")}
+            label2={220}
           />
           <HotFrame
-            label="지브리st 프레임"
+            label1="지브리st 프레임"
             onClick={() => navigate("/hotframe")}
+            label2={220}
           />
           <HotFrame
-            label="지브리st 프레임"
+            label1="지브리st 프레임"
             onClick={() => navigate("/hotframe")}
+            label2={220}
           />
         </div>
-        <div className="h-24 w-screen max-w-[490px]"></div>
+        <div className="h-28 w-screen max-w-[490px]"></div>
       </div>
       <Footer />
     </div>

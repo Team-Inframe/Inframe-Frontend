@@ -1,4 +1,4 @@
-export const HotFrame = ({ onClick, label }) => {
+export const HotFrame = ({ onClick, label1, label2 }) => {
   return (
     <div className="flex-col">
       <button
@@ -8,9 +8,15 @@ export const HotFrame = ({ onClick, label }) => {
         <img src="/icons/frame.png" />
       </button>
       <div>
-        <span className="Caption_normal_M flex flex-col justify-start pt-3 text-black">
-          {label}
-        </span>
+        <div className="flex flex-row justify-between">
+          <span className="Caption_normal_M flex flex-col justify-start pt-3 text-black">
+            {label1}
+          </span>
+          <button className="flex flex-row pt-3">
+            <img src="/icons/download.png" />
+            <span className="Caption_normal_M">{label2}</span>
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import Footer from "@/components/layout/Footer";
-import { HotFrame } from "@/components/pages/Main/HotFrame";
+import { HotFrame } from "@/components/pages/HotFrame";
 import { useNavigate } from "react-router-dom";
 
 export const HotFramePage = () => {
@@ -10,10 +10,22 @@ export const HotFramePage = () => {
         <div className="Headline_B">핫한 프레임</div>
       </div>
       <div className="grid grid-cols-2 items-center justify-center gap-11 px-16 pt-12">
-        <HotFrame label="지브리st 프레임" onClick={() => navigate("/")} />
-        <HotFrame label="지브리st 프레임" onClick={() => navigate("/")} />
-        <HotFrame label="지브리st 프레임" onClick={() => navigate("/")} />
-        <HotFrame label="지브리st 프레임" onClick={() => navigate("/")} />
+        <HotFrame
+          label="지브리st 프레임"
+          onClick={() => navigate("/savehotframe")}
+        />
+        <HotFrame
+          label="지브리st 프레임"
+          onClick={() => navigate("/savehotframe")}
+        />
+        <HotFrame
+          label="지브리st 프레임"
+          onClick={() => navigate("/savehotframe")}
+        />
+        <HotFrame
+          label="지브리st 프레임"
+          onClick={() => navigate("/savehotframe")}
+        />
       </div>
       <Footer />
     </div>

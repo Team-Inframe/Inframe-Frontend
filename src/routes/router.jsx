@@ -1,5 +1,6 @@
 import { HotFramePage } from "@/pages/HotFramePage/page";
 import { MainPage } from "@/pages/Main/page";
+import { SaveHotFrame } from "@/pages/SaveHotFrame/page";
 import { createBrowserRouter } from "react-router-dom";
 
 const routes = [
@@ -10,6 +11,10 @@ const routes = [
   {
     path: "/hotframe",
     children: [{ index: true, element: <HotFramePage /> }],
+  },
+  {
+    path: "/savehotframe",
+    children: [{ index: true, element: <SaveHotFrame /> }],
   },
 ];
 

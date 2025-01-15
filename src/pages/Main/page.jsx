@@ -1,13 +1,13 @@
 import Footer from "@/components/layout/Footer/index.jsx";
 import { useNavigate } from "react-router-dom";
 import { RecommendCard } from "@/components/pages/Main/RecommendCard";
-import { HotFrame } from "@/components/pages/Main/HotFrame";
+import { HotFrame } from "@/components/pages/HotFrame";
 
 export const MainPage = () => {
   const navigate = useNavigate();
   return (
-    <div className="absolute flex h-screen w-screen max-w-[490px] flex-col items-center justify-center overflow-y-auto">
-      <div className="absolute top-12 w-full flex-col justify-start pl-9 text-left">
+    <div className="flex h-full w-screen max-w-[490px] flex-col items-center justify-center overflow-y-auto">
+      <div className="top-12 w-full flex-col justify-start pl-9 pt-10 text-left">
         <div className="Headline_B flex text-black">김H팀님</div>
         <div className="Headline_L text-black">프레임을 선택해보세요!</div>
       </div>
@@ -22,11 +22,24 @@ export const MainPage = () => {
           </div>
         </div>
         <div className="grid grid-cols-2 items-center justify-center gap-11 px-16 pt-6">
-          <HotFrame label="지브리st 프레임" onClick={() => navigate("/")} />
-          <HotFrame label="지브리st 프레임" onClick={() => navigate("/")} />
-          <HotFrame label="지브리st 프레임" onClick={() => navigate("/")} />
-          <HotFrame label="지브리st 프레임" onClick={() => navigate("/")} />
+          <HotFrame
+            label="지브리st 프레임"
+            onClick={() => navigate("/hotframe")}
+          />
+          <HotFrame
+            label="지브리st 프레임"
+            onClick={() => navigate("/hotframe")}
+          />
+          <HotFrame
+            label="지브리st 프레임"
+            onClick={() => navigate("/hotframe")}
+          />
+          <HotFrame
+            label="지브리st 프레임"
+            onClick={() => navigate("/hotframe")}
+          />
         </div>
+        <div className="h-24 w-screen max-w-[490px]"></div>
       </div>
       <Footer />
     </div>

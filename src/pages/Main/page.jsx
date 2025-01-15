@@ -19,6 +19,9 @@ export const MainPage = () => {
         <div className="text-l font-semibold ">지금 제일 핫한 프레임</div>
         <div className=" grid grid-cols-2 gap-4">
           <HotFrame label="지브리st 프레임" onClick={() => navigate("/")} />
+          <HotFrame label="지브리st 프레임" onClick={() => navigate("/")} />
+          <HotFrame label="지브리st 프레임" onClick={() => navigate("/")} />
+          <HotFrame label="지브리st 프레임" onClick={() => navigate("/")} />
         </div>
       </div>
       <Footer />

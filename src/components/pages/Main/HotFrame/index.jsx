@@ -1,11 +1,11 @@
 export const HotFrame = ({ onClick, label }) => {
   return (
-    <div className="flex-col ">
+    <div className="flex-col">
       <button
-        className="bg-white w-44 h-48 shadow-lg border-black"
+        className="h-48 w-40 border-black bg-white shadow-lg"
         onClick={onClick}
       ></button>
-      <span className="text-black text-l flex flex-col justify-start">
+      <span className="Caption_normal_M flex flex-col justify-start text-black">
         {label}
       </span>
     </div>

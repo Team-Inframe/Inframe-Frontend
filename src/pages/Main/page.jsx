@@ -1,4 +1,4 @@
-import Footer from "@/componets/layout/Footer";
+import Footer from "@/components/layout/Footer";
 
 export const MainPage = () => {
   return (

@@ -8,6 +8,11 @@
     },
     "types": ["vite/client"]
   },
-  "include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.jsx"],
+  "include": [
+    "src/**/*.d.ts",
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/componets/layout/Footer"
+  ],
   "exclude": ["node_modules", "**/node_modules", "dist"]
 }

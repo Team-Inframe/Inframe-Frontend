@@ -1,10 +1,9 @@
-import React from "react";
-import Footer from "@/componets/layout/footer.jsx";
+import Footer from "@/components/layout/Footer";
 
 export const MainPage = () => {
   return (
     <div className="flex items-center justify-center">
-      <div className="flex text-3xl">INFRAME</div>
+      <div className="Headline_B bg-syscolor-SystemPurple1">INFRAME</div>
       <Footer />
     </div>
   );

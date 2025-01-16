@@ -20,7 +20,7 @@ export const MainPage = () => {
             지금 제일 핫한 프레임
           </div>
         </div>
-        <div className="grid grid-cols-2 items-center justify-center gap-11 px-16 pt-8">
+        <div className="grid grid-cols-2 items-center justify-center gap-11 px-9 pt-8">
           <HotFrame
             label1="지브리st 프레임"
             frameimage={"/icons/frame.png"}

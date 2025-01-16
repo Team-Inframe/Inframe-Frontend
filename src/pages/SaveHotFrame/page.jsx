@@ -1,6 +1,6 @@
 import Footer from "@/components/layout/Footer";
 import "/icons/frame.png";
-import Header from "@/components/layout/Header";
+import Header2 from "@/components/layout/Header2";
 import { DownloadButton } from "@/components/common/DownloudButton";
 import { useNavigate } from "react-router-dom";
 
@@ -8,15 +8,15 @@ export const SaveHotFrame = () => {
   const navigate = useNavigate();
   return (
     <div className="flex flex-col">
-      <div className="pl-5 pt-8">
-        <Header title="지브리st.프레임" />
+      <div className="">
+        <Header2 title="지브리st.프레임" />
       </div>
       <div>
-        <div className="flex flex-col pt-36">
+        <div className="flex flex-col pt-12">
           <div className="flex items-center justify-center">
             <img src="/icons/frame.png" className="w-3/5" />
           </div>
-          <div className="flex items-center justify-center pl-64">
+          <div className="flex items-center justify-center pl-52">
             <DownloadButton onClick={() => navigate("")} label={34} />
           </div>
         </div>

@@ -39,34 +39,34 @@
 
 @layer components {
   .Headline_B {
-    @apply font-pretendard font-bold text-[20px] tracking-[-0.41px] leading-[30px];
+    @apply font-pretendard text-[20px] font-bold leading-[30px] tracking-[-0.41px];
   }
 
   .Headline_L {
-    @apply font-pretendard font-light text-[20px] tracking-[-0.41px] leading-[30px];
+    @apply font-pretendard text-[20px] font-light leading-[30px] tracking-[-0.41px];
   }
 
   .Body_normal_M {
-    @apply font-pretendard font-medium text-[16px] tracking-[-0.41px] leading-[30px];
+    @apply font-pretendard text-[16px] font-medium leading-[30px] tracking-[-0.41px];
   }
 
   .Body_reading_M {
-    @apply font-pretendard font-medium text-[14px] tracking-[-0.41px] leading-[16px];
+    @apply font-pretendard text-[14px] font-medium leading-[16px] tracking-[-0.41px];
   }
 
   .Label_M {
-    @apply font-pretendard font-medium text-[12px] tracking-[-0.41px] leading-[22px];
+    @apply font-pretendard text-[12px] font-medium leading-[22px] tracking-[-0.41px];
   }
 
   .Label_L {
-    @apply font-pretendard font-light text-[12px] tracking-[-0.41px] leading-[22px];
+    @apply font-pretendard text-[12px] font-light leading-[22px] tracking-[-0.41px];
   }
 
   .Caption_normal_M {
-    @apply font-pretendard font-medium text-[10px] tracking-[-0.41px] leading-[14px];
+    @apply font-pretendard text-[10px] font-medium leading-[14px] tracking-[-0.41px];
   }
 
   .Caption_reading_L {
-    @apply font-pretendard font-light text-[8px] tracking-[-0.41px] leading-[22px];
+    @apply font-pretendard text-[8px] font-light leading-[22px] tracking-[-0.41px];
   }
 }

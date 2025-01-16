@@ -11,17 +11,17 @@ export const MainPage = () => {
         <div className="Headline_B flex text-black">김H팀님</div>
         <div className="Headline_L text-black">프레임을 선택해보세요!</div>
       </div>
-      <div className="pt-13 h-80 w-80 items-center rounded-2xl border-black shadow-lg">
-        <div className=""></div>
+      <div className="items-center pt-8">
+        <div className="h-80 w-80 rounded-2xl border-black shadow-lg"></div>
       </div>
       <div className="flex w-full flex-col text-left">
-        <div className="items-start justify-start pl-9 pt-6 text-left">
+        <div className="items-start justify-start pl-9 pt-8 text-left">
           <div className="Label_L text-black">많은 사람이 이용했어요!</div>
           <div className="caption_normal_M text-black">
             지금 제일 핫한 프레임
           </div>
         </div>
-        <div className="grid grid-cols-2 items-center justify-center gap-11 px-16 pt-6">
+        <div className="grid grid-cols-2 items-center justify-center gap-11 px-16 pt-8">
           <HotFrame
             label1="지브리st 프레임"
             onClick={() => navigate("/hotframe")}
@@ -42,6 +42,22 @@ export const MainPage = () => {
             onClick={() => navigate("/hotframe")}
             label2={220}
           />
+        </div>
+        <div className="flex justify-center p-10">
+          <button
+            className="Label_M h-10 w-96 flex-row space-x-2 rounded-lg border-2 text-center"
+            onClick={() => navigate("/hotframe")}
+          >
+            핫한 프레임 더보기{" "}
+            <img
+              src="/icons/MoveButton.png"
+              style={{
+                display: "inline-block",
+                marginLeft: "8px",
+                verticalAlign: "middle",
+              }}
+            />
+          </button>
         </div>
         <div className="h-28 w-screen max-w-[490px]"></div>
       </div>

@@ -1,5 +1,6 @@
 import { MainPage } from "@/pages/Main/page";
 import SelectFrame from "@/pages/SelectFrame/page";
+import MakeFrame from "@/pages/MakeBG/page";
 import { createBrowserRouter } from "react-router-dom";
 
 const routes = [
@@ -10,6 +11,10 @@ const routes = [
   {
     path: "/selectframe",
     children: [{ index: true, element: <SelectFrame /> }],
+  },
+  {
+    path: "/selectframe/makeframe",
+    children: [{ index: true, element: <MakeFrame /> }],
   },
 ];
 

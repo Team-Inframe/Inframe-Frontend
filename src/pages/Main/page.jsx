@@ -1,6 +1,5 @@
 import Footer from "@/components/layout/Footer/index.jsx";
 import { useNavigate } from "react-router-dom";
-import { RecommendCard } from "@/components/pages/Main/RecommendCard";
 import { HotFrame } from "@/components/pages/HotFrame";
 
 export const MainPage = () => {

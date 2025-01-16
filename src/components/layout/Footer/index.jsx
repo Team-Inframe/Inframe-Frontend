@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Footer = () => {
   const navigate = useNavigate();
   return (
-    <footer className="fixed bottom-0 w-screen max-w-[490px] h-24  bg-white flex justify-around items-center">
+    <footer className="fixed bottom-0 flex h-24 w-screen max-w-[490px] items-center justify-around bg-white">
       <IconButton
         iconSrc="/icons/homebutton.png"
         altText="HOME"

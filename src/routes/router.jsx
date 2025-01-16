@@ -4,15 +4,21 @@ import { SaveHotFrame } from "@/pages/SaveHotFrame/page";
 import { GalleryPage } from "@/pages/Storage/Gallery/page";
 import RoutePath from "./routePath";
 import { MainPage } from "@/pages/Main/page";
+import SelectFrame from "@/pages/SelectFrame/page";
 import { MyFramePage } from "@/pages/Storage/MyFrame/page";
 import { StoragePage } from "@/pages/Storage/page";
 import { SavedFramePage } from "@/pages/Storage/SavedFrame/page";
+import MakeFrame from "@/pages/MakeBG/page";
 import { createBrowserRouter } from "react-router-dom";
 
 const routes = [
   {
     path: "/",
     children: [{ index: true, element: <MainPage /> }],
+  },
+  {
+    path: "/selectframe",
+    children: [{ index: true, element: <SelectFrame /> }],
   },
   {
     path: "/hotframe",
@@ -30,6 +36,10 @@ const routes = [
       { path: RoutePath.SavedFrame, element: <SavedFramePage /> },
       { path: RoutePath.Gallery, element: <GalleryPage /> },
     ],
+  },
+  {
+    path: "/selectframe/makeframe",
+    children: [{ index: true, element: <MakeFrame /> }],
   },
 ];
 

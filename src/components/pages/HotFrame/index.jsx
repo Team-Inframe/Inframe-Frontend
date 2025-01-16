@@ -1,11 +1,11 @@
-export const HotFrame = ({ onClick, label1, label2 }) => {
+export const HotFrame = ({ onClick, label1, frameimage, label2 }) => {
   return (
     <div className="flex-col">
       <button
         className="h-48 w-40 border-black bg-white shadow-lg"
         onClick={onClick}
       >
-        <img src="/icons/frame.png" />
+        <img src={frameimage} alt="frameimage" className="h-48 w-40" />
       </button>
       <div>
         <div className="flex flex-row justify-between">

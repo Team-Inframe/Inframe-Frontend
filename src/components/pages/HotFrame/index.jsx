@@ -1,3 +1,5 @@
+import Downloadbutton from "/src/assets/svgs/download.svg";
+
 export const HotFrame = ({ onClick, label1, label2 }) => {
   return (
     <div className="flex-col">
@@ -5,7 +7,7 @@ export const HotFrame = ({ onClick, label1, label2 }) => {
         className="h-48 w-40 border-black bg-white shadow-lg"
         onClick={onClick}
       >
-        <img src="/icons/frame.png" />
+        <img src="src/assets/images/frame1.png" />
       </button>
       <div>
         <div className="flex flex-row justify-between">
@@ -13,7 +15,7 @@ export const HotFrame = ({ onClick, label1, label2 }) => {
             {label1}
           </span>
           <button className="flex flex-row pt-3">
-            <img src="/icons/download.png" />
+            <img className="" src={Downloadbutton} />
             <span className="Caption_normal_M">{label2}</span>
           </button>
         </div>

@@ -1,5 +1,4 @@
 import { HotFramePage } from "@/pages/HotFramePage/page";
-
 import { SaveHotFrame } from "@/pages/SaveHotFrame/page";
 import { GalleryPage } from "@/pages/Storage/Gallery/page";
 import RoutePath from "./routePath";
@@ -21,6 +20,10 @@ const routes = [
     children: [{ index: true, element: <SelectFrame /> }],
   },
   {
+    path: "/selectframe/makebg",
+    children: [{ index: true, element: <MakeFrame /> }],
+  },
+  {
     path: "/hotframe",
     children: [{ index: true, element: <HotFramePage /> }],
   },
@@ -36,10 +39,6 @@ const routes = [
       { path: RoutePath.SavedFrame, element: <SavedFramePage /> },
       { path: RoutePath.Gallery, element: <GalleryPage /> },
     ],
-  },
-  {
-    path: "/selectframe/makeframe",
-    children: [{ index: true, element: <MakeFrame /> }],
   },
 ];
 

@@ -4,17 +4,23 @@ import { useState } from "react";
 import BasicBG from "@/components/pages/MakeBG/BasicBG";
 import AIBG from "@/components/pages/MakeBG/AIBG";
 import PicBG from "@/components/pages/MakeBG/PicBG";
+import SelectedFrame from "@/components/pages/MakeBG/SelectedFrame";
+import CompleteButton from "@/components/common/CompleteButton";
 
 const MakeFrame = () => {
   const List = ["기본 색상 변경", "AI 배경 생성", "사진으로 배경 생성"];
+  const [colorChanger, setColorChanger] = useState("BGColor5");
   const [MakePage, setMakePage] = useState(List[0]);
 
   return (
     <div>
       <Header title="프레임 만들기" />
+      <div>
+        <CompleteButton />
+      </div>
       <div className="flex items-center justify-center">
-        <div className="Headline_B bg-syscolor-SystemPurple1">
-          선택된 프레임
+        <div className="">
+          <SelectedFrame bgsrc={colorChanger} />
         </div>
       </div>
 
@@ -37,7 +43,7 @@ const MakeFrame = () => {
       </div>
       <div>
         {MakePage == List[0] ? (
-          <BasicBG />
+          <BasicBG colorChanger={setColorChanger} />
         ) : MakePage == List[1] ? (
           <AIBG />
         ) : (

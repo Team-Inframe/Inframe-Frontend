@@ -1,4 +1,4 @@
-import MoveButton from "/src/assets/svgs/MoveButton.svg";
+import Downloadbutton from "/src/assets/svgs/download.svg";
 
 export const HotFrame = ({ onClick, label1, label2 }) => {
   return (
@@ -15,7 +15,7 @@ export const HotFrame = ({ onClick, label1, label2 }) => {
             {label1}
           </span>
           <button className="flex flex-row pt-3">
-            <img src={MoveButton} />
+            <img className="" src={Downloadbutton} />
             <span className="Caption_normal_M">{label2}</span>
           </button>
         </div>

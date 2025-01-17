@@ -20,6 +20,10 @@ const routes = [
     children: [{ index: true, element: <SelectFrame /> }],
   },
   {
+    path: "/selectframe/makebg",
+    children: [{ index: true, element: <MakeFrame /> }],
+  },
+  {
     path: "/hotframe",
     children: [{ index: true, element: <HotFramePage /> }],
   },
@@ -35,10 +39,6 @@ const routes = [
       { path: RoutePath.SavedFrame, element: <SavedFramePage /> },
       { path: RoutePath.Gallery, element: <GalleryPage /> },
     ],
-  },
-  {
-    path: "/selectframe/makebg",
-    children: [{ index: true, element: <MakeFrame /> }],
   },
 ];
 

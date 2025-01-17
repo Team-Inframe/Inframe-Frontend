@@ -10,7 +10,7 @@ import CompleteButton from "@/components/common/CompleteButton";
 const MakeFrame = () => {
   const List = ["기본 색상 변경", "AI 배경 생성", "사진으로 배경 생성"];
   const [colorChanger, setColorChanger] = useState("BGColor5");
-  const [MakePage, setMakePage] = useState(List[0]);
+  const [SelectedComp, setSelectComp] = useState(List[0]);
 
   return (
     <div>
@@ -18,6 +18,7 @@ const MakeFrame = () => {
       <div>
         <CompleteButton />
       </div>
+
       <div className="flex items-center justify-center">
         <div className="">
           <SelectedFrame bgsrc={colorChanger} />
@@ -27,24 +28,24 @@ const MakeFrame = () => {
       <div className="">
         <TextButton
           text={List[0]}
-          onClick={() => setMakePage(List[0])}
-          colorsrc={MakePage == List[0]}
+          onClick={() => setSelectComp(List[0])}
+          colorsrc={SelectedComp == List[0]}
         />
         <TextButton
           text={List[1]}
-          onClick={() => setMakePage(List[1])}
-          colorsrc={MakePage == List[1]}
+          onClick={() => setSelectComp(List[1])}
+          colorsrc={SelectedComp == List[1]}
         />
         <TextButton
           text={List[2]}
-          onClick={() => setMakePage(List[2])}
-          colorsrc={MakePage == List[2]}
+          onClick={() => setSelectComp(List[2])}
+          colorsrc={SelectedComp == List[2]}
         />
       </div>
       <div>
-        {MakePage == List[0] ? (
+        {SelectedComp == List[0] ? (
           <BasicBG colorChanger={setColorChanger} />
-        ) : MakePage == List[1] ? (
+        ) : SelectedComp == List[1] ? (
           <AIBG />
         ) : (
           <PicBG />

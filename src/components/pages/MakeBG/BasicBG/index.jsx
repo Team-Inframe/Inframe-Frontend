@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const BasicBG = ({ colorChanger }) => {
   return (
     <div className="bottom-0 bg-slate-500">

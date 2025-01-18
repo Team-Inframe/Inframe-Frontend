@@ -1,4 +1,4 @@
-import Downloadbutton from "/src/assets/svgs/download.svg";
+import Downloadbutton from "/src/assets/svgs/Download.svg";
 
 export const HotFrame = ({ onClick, label1, label2 }) => {
   return (

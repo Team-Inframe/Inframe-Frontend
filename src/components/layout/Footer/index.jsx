@@ -1,6 +1,6 @@
 import IconButton from "@/components/common/IconButton";
 import { useNavigate } from "react-router-dom";
-import homebutton from "/src/assets/svgs/HomeButton.svg";
+import homebutton from "@/assets/svgs/HomeButton.svg";
 import framemakebutton from "/src/assets/svgs/FrameMakeButton.svg";
 import cabinetbutton from "/src/assets/svgs/CabinetButton.svg";
 

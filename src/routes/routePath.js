@@ -1,3 +1,8 @@
+import { bookmarkCustomFrame } from "@/api";
+import FrameBackgroundCreateTestPage from "@/test/FrameBackgroundCreateTestPage";
+import MyBookmarkCustomFrameTestPage from "@/test/MyBookmarkCustomFrameTestPage";
+import MyCustomFramesPageTest from "@/test/MyCustomFramesPageTest";
+
 const RoutePath = {
   /* 메인 페이지 */
   Main: "/",
@@ -9,6 +14,22 @@ const RoutePath = {
   MyFrame: "/storages/my-frames",
   SavedFrame: "/storages/saved-frames",
   Gallery: "/storages/galleries",
+
+  /* 테스트 페이지 */
+  Test: "/test",
+  UsersTest: "/test/users-test",
+  StickerTest: "/test/stickers-test",
+  FrameBackgroundCreateTest: "/test/frame-background-create-test",
+  FrameCreateTest: "/test/frame-create-test",
+  FrameViewTest: "/test/frame-view-test",
+  PhotoCreateTest: "/test/photo-create-test",
+  PhotoListTest: "/test/photo-list-test",
+  CustomFrameCreateTest: "/test/custom-frame-create-test",
+  CustomFrameReadTest: "/test/custom-frame-read-test",
+  CustomFrameListTest: "/test/custom-frame-list-test",
+  MyCustomFramesPageTest: "/test/my-custom-frame-test",
+  BookmarkCustomFrameTest: "/test/custom-frame-bookmark-test",
+  MyBookmarkCustomFrameTest: "/test/my-bookmark-custom-frame-test",
 };
 
 export default RoutePath;

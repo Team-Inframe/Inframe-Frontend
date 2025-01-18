@@ -10,6 +10,7 @@ import { SavedFramePage } from "@/pages/Storage/SavedFrame/page";
 import MakeFrame from "@/pages/MakeBG/page";
 import { createBrowserRouter } from "react-router-dom";
 import MakeSticker from "@/pages/MakeSticker/page";
+import SaveFrame from "@/pages/SaveFrame/page";
 
 const routes = [
   {
@@ -27,6 +28,10 @@ const routes = [
   {
     path: "/selectframe/makebg/makesticker",
     children: [{ index: true, element: <MakeSticker /> }],
+  },
+  {
+    path: "/selectframe/makebg/makesticker/saveframe",
+    children: [{ index: true, element: <SaveFrame /> }],
   },
   {
     path: "/hotframe",

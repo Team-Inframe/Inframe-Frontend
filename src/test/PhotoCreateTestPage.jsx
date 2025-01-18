@@ -20,13 +20,8 @@ const PhotoCreateTestPage = () => {
       return;
     }
 
-    // FormData 객체를 생성하여 데이터 설정
-    const formData = new FormData();
-    formData.append("user_id", userId); // 유저 ID
-    formData.append("photo_img", photoImg); // 업로드할 사진 파일
-
     try {
-      const response = await createPhoto(formData); // API 호출
+      const response = await createPhoto(userId, photoImg); // API 호출
       if (response.status === 201) {
         setResult(JSON.stringify(response, null, 2)); // 성공적인 응답 처리
       } else {

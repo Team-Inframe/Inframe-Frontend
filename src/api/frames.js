@@ -3,8 +3,11 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:8000/api/v1";
 
-export const createFrameBackground = async (data) => {
+export const createFrameBackground = async (prompt) => {
   try {
+    const data = {
+      prompt: prompt,
+    };
     const response = await axios.post(`${BASE_URL}/frames/images/`, data, {
       headers: {
         "Content-Type": "application/json", // JSON 형식으로 요청을 보냄
@@ -16,8 +19,12 @@ export const createFrameBackground = async (data) => {
   }
 };
 
-export const createFrame = async (formData) => {
+export const createFrame = async (frameImg, cameraWidth, cameraHeight) => {
   try {
+    const formData = new FormData();
+    formData.append("frame_img", frameImg);
+    formData.append("camera_width", cameraWidth);
+    formData.append("camera_height", cameraHeight);
     const response = await axios.post(`${BASE_URL}/frames/`, formData, {
       headers: {
         "Content-Type": "multipart/form-data", // 파일 업로드 시 필요한 헤더
@@ -29,9 +36,9 @@ export const createFrame = async (formData) => {
   }
 };
 
-export const viewFrame = async (frame_id) => {
+export const viewFrame = async (frameId) => {
   try {
-    const response = await axios.get(`${BASE_URL}/frames/${frame_id}`, {
+    const response = await axios.get(`${BASE_URL}/frames/${frameId}`, {
       headers: {
         "Content-Type": "application/json", // JSON 형식으로 요청을 보냄
       },

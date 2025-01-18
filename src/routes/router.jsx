@@ -16,6 +16,13 @@ import FrameCreateTestPage from "@/test/FrameCreateTestPage";
 import FrameViewTestPage from "@/test/FrameViewTestPage";
 import PhotoCreateTestPage from "@/test/PhotoCreateTestPage";
 import PhotosListTestPage from "@/test/PhotoListTestPage";
+import CustomFrameCreateTestPage from "@/test/CustomFrameCreateTestPage";
+import CustomFrameReadTestPage from "@/test/CustomFrameReadTestPage";
+import CustomFramesListTestPage from "@/test/CustomFrameListTestPage";
+import MyCustomFramesPageTest from "@/test/MyCustomFramesPageTest";
+import BookmarkCustomFrameTestPage from "@/test/BookmarkCustomFrameTestPage";
+import MyBookmarkCustomFrameTestPage from "@/test/MyBookmarkCustomFrameTestPage";
+import TestPages from "@/test/TestPages";
 
 const routes = [
   {
@@ -78,6 +85,34 @@ const routes = [
   {
     path: RoutePath.PhotoListTest,
     children: [{ index: true, element: <PhotosListTestPage /> }],
+  },
+  {
+    path: RoutePath.CustomFrameCreateTest,
+    children: [{ index: true, element: <CustomFrameCreateTestPage /> }],
+  },
+  {
+    path: RoutePath.CustomFrameReadTest,
+    children: [{ index: true, element: <CustomFrameReadTestPage /> }],
+  },
+  {
+    path: RoutePath.CustomFrameListTest,
+    children: [{ index: true, element: <CustomFramesListTestPage /> }],
+  },
+  {
+    path: RoutePath.MyCustomFramesPageTest,
+    children: [{ index: true, element: <MyCustomFramesPageTest /> }],
+  },
+  {
+    path: RoutePath.BookmarkCustomFrameTest,
+    children: [{ index: true, element: <BookmarkCustomFrameTestPage /> }],
+  },
+  {
+    path: RoutePath.MyBookmarkCustomFrameTest,
+    children: [{ index: true, element: <MyBookmarkCustomFrameTestPage /> }],
+  },
+  {
+    path: RoutePath.Test,
+    children: [{ index: true, element: <TestPages /> }],
   },
 ];
 

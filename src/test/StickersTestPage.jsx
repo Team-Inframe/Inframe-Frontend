@@ -13,9 +13,14 @@ const StickersTestPage = () => {
   const handleStickerCreate = async () => {
     const formData = new FormData();
     formData.append("user_id", userId);
-    formData.append("prompt", prompt);
+
+    if (prompt) {
+      // 스티커 생성 프롬포트
+      formData.append("prompt", prompt);
+    }
 
     if (uploadedImage) {
+      // 이미지 배경 제거
       formData.append("uploaded_image", uploadedImage);
     }
 

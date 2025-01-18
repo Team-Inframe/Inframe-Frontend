@@ -17,17 +17,11 @@ const FrameCreateTestPage = () => {
       return;
     }
 
-    // 요청 데이터 (form-data 형식)
-    const formData = new FormData();
-    formData.append("frame_img", frameImg);
-    formData.append("camera_width", cameraWidth);
-    formData.append("camera_height", cameraHeight);
-
     setIsLoading(true); // 로딩 시작
     setResult(""); // 이전 결과를 지움
 
     try {
-      const response = await createFrame(formData); // 프레임 생성 API 호출
+      const response = await createFrame(frameImg, cameraWidth, cameraHeight); // 프레임 생성 API 호출
       if (response.status === 201) {
         setResult(JSON.stringify(response, null, 2)); // 응답이 존재하면 결과 출력
       } else {

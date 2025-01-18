@@ -15,16 +15,11 @@ const FrameBackgroundCreateTestPage = () => {
       return;
     }
 
-    // 요청 데이터
-    const requestData = {
-      prompt: prompt,
-    };
-
     setIsLoading(true); // 로딩 시작
     setResult(""); // 이전 결과를 지움
 
     try {
-      const response = await createFrameBackground(requestData); // API 호출
+      const response = await createFrameBackground(prompt); // API 호출
       if (response.status === 201) {
         setResult(JSON.stringify(response, null, 2));
       } else {

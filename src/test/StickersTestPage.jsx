@@ -13,15 +13,18 @@ const StickersTestPage = () => {
   const handleStickerCreate = async () => {
     const formData = new FormData();
     formData.append("user_id", userId);
-    formData.append("prompt", prompt); // 스티커 프롬포트
-    formData.append("uploaded_image", uploadedImage); // 스티커 배경 제거
+    formData.append("prompt", prompt);
+
+    if (uploadedImage) {
+      formData.append("uploaded_image", uploadedImage);
+    }
 
     try {
       const response = await createSticker(formData); // API 호출
       if (response.status === 201) {
-        setResult(JSON.stringify(response.data, null, 2)); // 성공적인 응답 처리
+        setResult(JSON.stringify(response, null, 2)); // 성공적인 응답 처리
       } else {
-        setResult("Error: " + response.data.message);
+        setResult("Error: " + response.message);
       }
     } catch (error) {
       setResult("Error: " + error.message); // 오류 처리

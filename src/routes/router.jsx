@@ -11,6 +11,9 @@ import MakeFrame from "@/pages/MakeBG/page";
 import { createBrowserRouter } from "react-router-dom";
 import UsersTestPage from "@/test/UsersTestPage";
 import StickersTestPage from "@/test/StickersTestPage";
+import FrameBackgroundCreateTestPage from "@/test/FrameBackgroundCreateTestPage";
+import FrameCreateTestPage from "@/test/FrameCreateTestPage";
+import FrameViewTestPage from "@/test/FrameViewTestPage";
 
 const routes = [
   {
@@ -51,8 +54,20 @@ const routes = [
     children: [{ index: true, element: <UsersTestPage /> }],
   },
   {
-    path: RoutePath.StickerTest, // 스티커 생성 경로 추가
+    path: RoutePath.StickerTest,
     children: [{ index: true, element: <StickersTestPage /> }],
+  },
+  {
+    path: RoutePath.FrameBackgroundCreateTest,
+    children: [{ index: true, element: <FrameBackgroundCreateTestPage /> }],
+  },
+  {
+    path: RoutePath.FrameCreateTest,
+    children: [{ index: true, element: <FrameCreateTestPage /> }],
+  },
+  {
+    path: RoutePath.FrameViewTest,
+    children: [{ index: true, element: <FrameViewTestPage /> }],
   },
 ];
 

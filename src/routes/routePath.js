@@ -1,3 +1,5 @@
+import FrameBackgroundCreateTestPage from "@/test/FrameBackgroundCreateTestPage";
+
 const RoutePath = {
   /* 메인 페이지 */
   Main: "/",
@@ -13,6 +15,9 @@ const RoutePath = {
   /* 테스트 페이지 */
   UsersTest: "/test/users-test",
   StickerTest: "/test/stickers-test",
+  FrameBackgroundCreateTest: "/test/frame-background-create-test",
+  FrameCreateTest: "/test/frame-create-test",
+  FrameViewTest: "/test/frame-view-test",
 };
 
 export default RoutePath;

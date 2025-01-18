@@ -9,8 +9,8 @@ import { StoragePage } from "@/pages/Storage/page";
 import { SavedFramePage } from "@/pages/Storage/SavedFrame/page";
 import MakeFrame from "@/pages/MakeBG/page";
 import { createBrowserRouter } from "react-router-dom";
-import { Children } from "react";
 import UsersTestPage from "@/test/UsersTestPage";
+import StickersTestPage from "@/test/StickersTestPage";
 
 const routes = [
   {
@@ -49,6 +49,10 @@ const routes = [
   {
     path: RoutePath.UsersTest,
     children: [{ index: true, element: <UsersTestPage /> }],
+  },
+  {
+    path: RoutePath.StickerTest, // 스티커 생성 경로 추가
+    children: [{ index: true, element: <StickersTestPage /> }],
   },
 ];
 

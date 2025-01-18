@@ -12,6 +12,7 @@ const RoutePath = {
 
   /* 테스트 페이지 */
   UsersTest: "/test/users-test",
+  StickerTest: "/test/stickers-test",
 };
 
 export default RoutePath;

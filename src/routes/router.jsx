@@ -9,6 +9,8 @@ import { StoragePage } from "@/pages/Storage/page";
 import { SavedFramePage } from "@/pages/Storage/SavedFrame/page";
 import MakeFrame from "@/pages/MakeBG/page";
 import { createBrowserRouter } from "react-router-dom";
+import { Children } from "react";
+import UsersTestPage from "@/test/UsersTestPage";
 
 const routes = [
   {
@@ -39,6 +41,14 @@ const routes = [
       { path: RoutePath.SavedFrame, element: <SavedFramePage /> },
       { path: RoutePath.Gallery, element: <GalleryPage /> },
     ],
+  },
+  {
+    path: "/selectframe/makeframe",
+    children: [{ index: true, element: <MakeFrame /> }],
+  },
+  {
+    path: RoutePath.UsersTest,
+    children: [{ index: true, element: <UsersTestPage /> }],
   },
 ];
 

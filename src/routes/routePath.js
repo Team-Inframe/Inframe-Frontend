@@ -9,6 +9,9 @@ const RoutePath = {
   MyFrame: "/storages/my-frames",
   SavedFrame: "/storages/saved-frames",
   Gallery: "/storages/galleries",
+
+  /* 테스트 페이지 */
+  UsersTest: "/test/users-test",
 };
 
 export default RoutePath;

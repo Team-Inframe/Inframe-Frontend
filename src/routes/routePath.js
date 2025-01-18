@@ -18,6 +18,8 @@ const RoutePath = {
   FrameBackgroundCreateTest: "/test/frame-background-create-test",
   FrameCreateTest: "/test/frame-create-test",
   FrameViewTest: "/test/frame-view-test",
+  PhotoCreateTest: "/test/photo-create-test",
+  PhotoListTest: "/test/photo-list-test",
 };
 
 export default RoutePath;

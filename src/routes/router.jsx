@@ -14,6 +14,8 @@ import StickersTestPage from "@/test/StickersTestPage";
 import FrameBackgroundCreateTestPage from "@/test/FrameBackgroundCreateTestPage";
 import FrameCreateTestPage from "@/test/FrameCreateTestPage";
 import FrameViewTestPage from "@/test/FrameViewTestPage";
+import PhotoCreateTestPage from "@/test/PhotoCreateTestPage";
+import PhotosListTestPage from "@/test/PhotoListTestPage";
 
 const routes = [
   {
@@ -68,6 +70,14 @@ const routes = [
   {
     path: RoutePath.FrameViewTest,
     children: [{ index: true, element: <FrameViewTestPage /> }],
+  },
+  {
+    path: RoutePath.PhotoCreateTest,
+    children: [{ index: true, element: <PhotoCreateTestPage /> }],
+  },
+  {
+    path: RoutePath.PhotoListTest,
+    children: [{ index: true, element: <PhotosListTestPage /> }],
   },
 ];
 

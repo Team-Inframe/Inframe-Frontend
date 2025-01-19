@@ -18,13 +18,13 @@ const Footer = () => {
         iconSrc={framemakebutton}
         altText="프레임 만들기"
         label="프레임 만들기"
-        onClick={() => navigate("/home")}
+        onClick={() => navigate("/selectframe")}
       />
       <IconButton
         iconSrc={cabinetbutton}
         altText="보관함"
         label="보관함"
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/storages")}
       />
     </footer>
   );

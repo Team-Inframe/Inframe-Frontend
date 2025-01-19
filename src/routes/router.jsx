@@ -7,8 +7,10 @@ import SelectFrame from "@/pages/SelectFrame/page";
 import { MyFramePage } from "@/pages/Storage/MyFrame/page";
 import { StoragePage } from "@/pages/Storage/page";
 import { SavedFramePage } from "@/pages/Storage/SavedFrame/page";
-import MakeFrame from "@/pages/MakeBG/page";
+import MakeBG from "@/pages/MakeBG/page";
 import { createBrowserRouter } from "react-router-dom";
+import MakeSticker from "@/pages/MakeSticker/page";
+import SaveFrame from "@/pages/SaveFrame/page";
 import UsersTestPage from "@/test/UsersTestPage";
 import StickersTestPage from "@/test/StickersTestPage";
 import FrameBackgroundCreateTestPage from "@/test/FrameBackgroundCreateTestPage";
@@ -35,7 +37,15 @@ const routes = [
   },
   {
     path: "/selectframe/makebg",
-    children: [{ index: true, element: <MakeFrame /> }],
+    children: [{ index: true, element: <MakeBG /> }],
+  },
+  {
+    path: "/selectframe/makebg/makesticker",
+    children: [{ index: true, element: <MakeSticker /> }],
+  },
+  {
+    path: "/selectframe/makebg/makesticker/saveframe",
+    children: [{ index: true, element: <SaveFrame /> }],
   },
   {
     path: "/hotframe",
@@ -53,10 +63,6 @@ const routes = [
       { path: RoutePath.SavedFrame, element: <SavedFramePage /> },
       { path: RoutePath.Gallery, element: <GalleryPage /> },
     ],
-  },
-  {
-    path: "/selectframe/makeframe",
-    children: [{ index: true, element: <MakeFrame /> }],
   },
   {
     path: RoutePath.UsersTest,

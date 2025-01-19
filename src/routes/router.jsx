@@ -7,7 +7,7 @@ import SelectFrame from "@/pages/SelectFrame/page";
 import { MyFramePage } from "@/pages/Storage/MyFrame/page";
 import { StoragePage } from "@/pages/Storage/page";
 import { SavedFramePage } from "@/pages/Storage/SavedFrame/page";
-import MakeFrame from "@/pages/MakeBG/page";
+import MakeBG from "@/pages/MakeBG/page";
 import { createBrowserRouter } from "react-router-dom";
 import MakeSticker from "@/pages/MakeSticker/page";
 import SaveFrame from "@/pages/SaveFrame/page";
@@ -23,7 +23,7 @@ const routes = [
   },
   {
     path: "/selectframe/makebg",
-    children: [{ index: true, element: <MakeFrame /> }],
+    children: [{ index: true, element: <MakeBG /> }],
   },
   {
     path: "/selectframe/makebg/makesticker",

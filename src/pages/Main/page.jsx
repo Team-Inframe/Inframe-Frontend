@@ -1,6 +1,7 @@
 import Footer from "@/components/layout/Footer/index.jsx";
 import { useNavigate } from "react-router-dom";
 import { HotFrame } from "@/components/pages/HotFrame";
+import MoveButtom from "/src/assets/svgs/MoveButton.svg";
 
 export const MainPage = () => {
   const navigate = useNavigate();
@@ -53,7 +54,7 @@ export const MainPage = () => {
           >
             핫한 프레임 더보기{" "}
             <img
-              src="/icons/MoveButton.png"
+              src={MoveButtom}
               style={{
                 display: "inline-block",
                 marginLeft: "8px",

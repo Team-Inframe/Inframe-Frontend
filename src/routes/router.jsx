@@ -10,6 +10,7 @@ import { StoragePage } from "@/pages/Storage/page";
 import { SavedFramePage } from "@/pages/Storage/SavedFrame/page";
 import MakeFrame from "@/pages/MakeBG/page";
 import { createBrowserRouter } from "react-router-dom";
+import CameraFrameApp from "@/pages/CameraFrame/page";
 
 const routes = [
   {
@@ -40,6 +41,10 @@ const routes = [
   {
     path: "/selectframe/makeframe",
     children: [{ index: true, element: <MakeFrame /> }],
+  },
+  {
+    path: "/cameraframe",
+    children: [{ index: true, element: <CameraFrameApp /> }],
   },
 ];
 

@@ -3,12 +3,15 @@ import { SaveHotFrame } from "@/pages/SaveHotFrame/page";
 import { GalleryPage } from "@/pages/Storage/Gallery/page";
 import RoutePath from "./routePath";
 import { MainPage } from "@/pages/Main/page";
+import LoginPage from "@/pages/LoginPage/page";
+import { createBrowserRouter } from "react-router-dom";
+import { Children } from "react";
+import { element } from "prop-types";
 import SelectFrame from "@/pages/SelectFrame/page";
 import { MyFramePage } from "@/pages/Storage/MyFrame/page";
 import { StoragePage } from "@/pages/Storage/page";
 import { SavedFramePage } from "@/pages/Storage/SavedFrame/page";
 import MakeBG from "@/pages/MakeBG/page";
-import { createBrowserRouter } from "react-router-dom";
 import MakeSticker from "@/pages/MakeSticker/page";
 import SaveFrame from "@/pages/SaveFrame/page";
 import UsersTestPage from "@/test/UsersTestPage";
@@ -30,6 +33,10 @@ const routes = [
   {
     path: "/",
     children: [{ index: true, element: <MainPage /> }],
+  },
+  {
+    path: "/login",
+    children: [{ index: true, element: <LoginPage /> }],
   },
   {
     path: "/selectframe",

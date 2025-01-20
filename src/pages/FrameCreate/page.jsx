@@ -1,13 +1,12 @@
-import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import TextButton from "@/components/common/Button/TextButton";
 import { useState } from "react";
 import { frameData } from "@/libraries/constants/FrameData";
-import FoundationFrame from "@/components/pages/SelectFrame/FoundationFrame";
+import FoundationFrame from "@/components/pages/FrameCreate/FoundationFrame/FoundationFrame";
 import { useNavigate } from "react-router-dom";
 import RoutePath from "@/routes/routePath";
 
-const FrameSelectPage = () => {
+const FrameCreatePage = () => {
   const navigate = useNavigate();
   const [frameType, setFrameType] = useState("세로프레임");
 
@@ -16,8 +15,8 @@ const FrameSelectPage = () => {
   };
 
   return (
-    <div className="pt-[45px]">
-      <Header title="프레임 선택" isCompletedPage={false} />
+    <div className="pt-[70px]">
+      <span className="Headline_B px-[24px]">프레임 선택</span>
       <div className="mb-[40px] flex gap-[24px] px-[24px] pt-[21px]">
         {Object.keys(frameData).map((type) => (
           <TextButton
@@ -46,4 +45,4 @@ const FrameSelectPage = () => {
     </div>
   );
 };
-export default FrameSelectPage;
+export default FrameCreatePage;

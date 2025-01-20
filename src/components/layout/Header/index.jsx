@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import leftarrow from "/src/assets/svgs/LeftArrow.svg";
 
-const Header = ({ title, isCompletedPage }) => {
+const Header = ({ title, onClick }) => {
   const navigate = useNavigate();
   return (
     <header>
@@ -10,9 +10,9 @@ const Header = ({ title, isCompletedPage }) => {
       </button>
       <div className="flex justify-between px-[24px]">
         <span className="Headline_B">{title}</span>
-        {isCompletedPage && (
-          <button className="Label_L text-syscolor-SystemGray">완료</button>
-        )}
+        <button className="Label_L text-syscolor-SystemGray" onClick={onClick}>
+          완료
+        </button>
       </div>
     </header>
   );

@@ -21,10 +21,10 @@ import MyCustomFramesPageTest from "@/test/MyCustomFramesPageTest";
 import BookmarkCustomFrameTestPage from "@/test/BookmarkCustomFrameTestPage";
 import MyBookmarkCustomFrameTestPage from "@/test/MyBookmarkCustomFrameTestPage";
 import TestPages from "@/test/TestPages";
-import FrameSelectPage from "@/pages/FrameCreate/Select/page";
 import FrameBackgroundPage from "@/pages/FrameCreate/Background/page";
 import FrameStickerPage from "@/pages/FrameCreate/Sticker/page";
 import FrameDownloadPage from "@/pages/FrameCreate/Download/page";
+import FrameCreatePage from "@/pages/FrameCreate/page";
 
 const routes = [
   {
@@ -42,7 +42,7 @@ const routes = [
   {
     path: RoutePath.Frame,
     children: [
-      { index: true, element: <FrameSelectPage /> },
+      { index: true, element: <FrameCreatePage /> },
       { path: RoutePath.FrameBackground, element: <FrameBackgroundPage /> },
       { path: RoutePath.FrameSticker, element: <FrameStickerPage /> },
       { path: RoutePath.FrameDownload, element: <FrameDownloadPage /> },

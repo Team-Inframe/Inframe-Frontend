@@ -1,15 +1,15 @@
 import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
-import { DownloadButton } from "@/components/common/DownloadButton";
-import { useNavigate } from "react-router-dom";
+import { DownloadButton } from "@/components/common/Button/DownloadButton";
 import MoveButton from "/src/assets/svgs/MoveButton.svg";
+import { useNavigate } from "react-router-dom";
 
 export const SaveHotFrame = () => {
   const navigate = useNavigate();
+
   return (
     <div className="flex flex-col">
       <div className="pl-5 pt-8">
-        <Header title="지브리st.프레임" />
+        <span className="Headline_B px-[24px]">지브리st.프레임</span>
       </div>
       <div>
         <div className="flex flex-col pt-36">

@@ -12,11 +12,11 @@ export const FrameDetailPage = () => {
         <span className="Headline_B px-[24px]">지브리st.프레임</span>
       </div>
       <div>
-        <div className="flex flex-col pt-36">
+        <div className="flex flex-col pt-12">
           <div className="flex items-center justify-center">
             <img src="src/assets/images/frame1.png" className="w-3/5" />
           </div>
-          <div className="flex items-center justify-center pl-64">
+          <div className="flex items-center justify-center pl-52">
             <DownloadButton onClick={() => navigate("")} label={34} />
           </div>
         </div>

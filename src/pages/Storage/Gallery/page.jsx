@@ -1,6 +1,7 @@
 import { StorageImages } from "@/components/pages/Storage/StorageImages";
 import { StorageLayout } from "@/components/pages/Storage/StorageLayout";
 import frame1 from "@/assets/images/frame1.png";
+import Footer from "@/components/layout/Footer";
 
 const dummyData = [
   {
@@ -49,6 +50,8 @@ export const GalleryPage = () => {
           ))}
         </div>
       </StorageLayout>
+      <div className="h-28 w-screen max-w-[490px]"></div>
+      <Footer />
     </>
   );
 };

@@ -2,6 +2,7 @@ import Footer from "@/components/layout/Footer/index.jsx";
 import { useNavigate } from "react-router-dom";
 import { HotFrame } from "@/components/pages/HotFrame";
 import MoveButtom from "/src/assets/svgs/MoveButton.svg";
+import frame1 from "@/assets/images/frame1.png";
 
 export const MainPage = () => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ export const MainPage = () => {
         <div className="Headline_L text-black">프레임을 선택해보세요!</div>
       </div>
       <div className="items-center pt-8">
-        <div className="h-80 w-80 rounded-2xl border-black shadow-lg"></div>
+        <img src="/icons/bannerimage.png" />
       </div>
       <div className="flex w-full flex-col text-left">
         <div className="items-start justify-start pt-8 text-left">
@@ -25,21 +26,25 @@ export const MainPage = () => {
           <HotFrame
             label1="지브리st 프레임"
             onClick={() => navigate("/frame/1")}
+            frameImg={frame1}
             label2={220}
           />
           <HotFrame
             label1="지브리st 프레임"
             onClick={() => navigate("/frame/1")}
+            frameImg={frame1}
             label2={220}
           />
           <HotFrame
             label1="지브리st 프레임"
             onClick={() => navigate("/frame/1")}
+            frameImg={frame1}
             label2={220}
           />
           <HotFrame
             label1="지브리st 프레임"
             onClick={() => navigate("/frame/1")}
+            frameImg={frame1}
             label2={220}
           />
         </div>

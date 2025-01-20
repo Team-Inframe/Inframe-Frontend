@@ -5,7 +5,7 @@ import { MainPage } from "@/pages/Main/page";
 import { MyFramePage } from "@/pages/Storage/MyFrame/page";
 import { StoragePage } from "@/pages/Storage/page";
 import { SavedFramePage } from "@/pages/Storage/SavedFrame/page";
-import { createBrowserRouter } from "react-router-dom";
+import CameraFrameApp from "@/pages/CameraFrame/page";
 import UsersTestPage from "@/test/UsersTestPage";
 import StickersTestPage from "@/test/StickersTestPage";
 import FrameBackgroundCreateTestPage from "@/test/FrameBackgroundCreateTestPage";
@@ -25,11 +25,17 @@ import FrameStickerPage from "@/pages/FrameCreate/Sticker/page";
 import FrameDownloadPage from "@/pages/FrameCreate/Download/page";
 import FrameCreatePage from "@/pages/FrameCreate/page";
 import { FrameDetailPage } from "@/pages/FrameDetail/page";
+import LoginPage from "@/pages/LoginPage/page";
+import { createBrowserRouter } from "react-router-dom";
 
 const routes = [
   {
     path: "/",
     children: [{ index: true, element: <MainPage /> }],
+  },
+  {
+    path: "/login",
+    children: [{ index: true, element: <LoginPage /> }],
   },
   {
     path: RoutePath.HotFrame,
@@ -112,6 +118,10 @@ const routes = [
   {
     path: RoutePath.Test,
     children: [{ index: true, element: <TestPages /> }],
+  },
+  {
+    path: "/cameraframe",
+    children: [{ index: true, element: <CameraFrameApp /> }],
   },
 ];
 

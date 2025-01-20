@@ -38,6 +38,18 @@ export default {
           SystemGray: "#999999",
           SystemLightGray: "#E6E6E6",
         },
+        BGColor: {
+          BGColor1: "#FFFFFF",
+          BGColor2: "#FFC8C8",
+          BGColor3: "#F6CBFF",
+          BGColor4: "#C7FFB9",
+          BGColor5: "#CEF8FF",
+          BGColor6: "#000000",
+          BGColor7: "#7E7E7E",
+          BGColor8: "#BEC7FF",
+          BGColor9: "#FFE9AB",
+          BGColor10: "#A5F1DC",
+        },
       },
       fontFamily: {
         pretendard: ["pretendard"],

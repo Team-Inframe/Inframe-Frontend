@@ -2,39 +2,38 @@ import Footer from "@/components/layout/Footer";
 import { DownloadButton } from "@/components/common/Button/DownloadButton";
 import MoveButton from "/src/assets/svgs/MoveButton.svg";
 import { useNavigate } from "react-router-dom";
+import frame1 from "@/assets/images/frame1.png";
+import leftArrow from "@/assets/svgs/LeftArrow.svg";
 
 export const FrameDetailPage = () => {
   const navigate = useNavigate();
 
   return (
     <div className="flex flex-col">
-      <div className="pl-5 pt-8">
+      <div className="pt-[70px]">
+        <img src={leftArrow} alt="뒤로가기" className="mb-[8px] px-[10px]" />
         <span className="Headline_B px-[24px]">지브리st.프레임</span>
       </div>
-      <div>
-        <div className="flex flex-col pt-12">
-          <div className="flex items-center justify-center">
-            <img src="src/assets/images/frame1.png" className="w-3/5" />
-          </div>
-          <div className="flex items-center justify-center pl-52">
-            <DownloadButton onClick={() => navigate("")} label={34} />
-          </div>
+      <div className="mt-[100px] flex flex-col">
+        <div className="flex items-center justify-center">
+          <img src={frame1} className="w-3/5" />
         </div>
-        <div className="flex justify-around px-24 pt-12">
-          <button
-            className="Label_M flex flex-row text-syscolor-SystemGray"
-            onClick={() => navigate("")}
-          >
+        <div className="flex items-center justify-center pl-52">
+          <DownloadButton onClick={() => navigate("")} label={34} />
+        </div>
+      </div>
+      <div className="flex items-center justify-center gap-[20px] px-24 pt-12">
+        <div className="flex" onClick={() => navigate("")}>
+          <span className="Label_M pt-[2px] text-syscolor-SystemGray">
             촬영하러 가기
-            <img src={MoveButton} />
-          </button>
-          <button
-            className="Label_M flex flex-row text-syscolor-SystemGray"
-            onClick={() => navigate("")}
-          >
+          </span>
+          <img src={MoveButton} />
+        </div>
+        <div className="flex" onClick={() => navigate("")}>
+          <span className="Label_M pt-[2px] text-syscolor-SystemGray">
             저장하기
-            <img src={MoveButton} />
-          </button>
+          </span>
+          <img src={MoveButton} />
         </div>
       </div>
       <Footer />

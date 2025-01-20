@@ -1,6 +1,6 @@
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import { StorageMenu } from "@/components/pages/Storage/StorageMenu";
+import Footer from "@/components/layout/Footer";
 
 export const StoragePage = () => {
   return (

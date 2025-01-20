@@ -8,7 +8,7 @@ const Header = ({ title }) => {
       <button className="bg-cyan-200" onClick={() => navigate(-1)}>
         <img src={leftarrow} alt="뒤로가기" />
       </button>
-      <div className="Headline_B bg-gray-700">{title}</div>
+      <div className="Headline_B flex items-center pl-12 pt-3">{title}</div>
     </header>
   );
 };

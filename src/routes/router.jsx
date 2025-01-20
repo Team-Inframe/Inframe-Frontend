@@ -12,6 +12,10 @@ import { MyFramePage } from "@/pages/Storage/MyFrame/page";
 import { StoragePage } from "@/pages/Storage/page";
 import { SavedFramePage } from "@/pages/Storage/SavedFrame/page";
 import MakeBG from "@/pages/MakeBG/page";
+
+import CameraFrameApp from "@/pages/CameraFrame/page";
+
+
 import MakeSticker from "@/pages/MakeSticker/page";
 import SaveFrame from "@/pages/SaveFrame/page";
 import UsersTestPage from "@/test/UsersTestPage";
@@ -126,6 +130,10 @@ const routes = [
   {
     path: RoutePath.Test,
     children: [{ index: true, element: <TestPages /> }],
+  },
+  {
+    path: "/cameraframe",
+    children: [{ index: true, element: <CameraFrameApp /> }],
   },
 ];
 

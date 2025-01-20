@@ -12,7 +12,7 @@ export const MainPage = () => {
         <div className="Headline_L text-black">프레임을 선택해보세요!</div>
       </div>
       <div className="items-center pt-8">
-        <div className="h-80 w-80 rounded-2xl border-black shadow-lg"></div>
+        <img src="/icons/bannerimage.png" />
       </div>
       <div className="flex w-full flex-col text-left">
         <div className="items-start justify-start pl-9 pt-8 text-left">
@@ -21,24 +21,28 @@ export const MainPage = () => {
             지금 제일 핫한 프레임
           </div>
         </div>
-        <div className="grid grid-cols-2 items-center justify-center gap-11 px-16 pt-8">
+        <div className="grid grid-cols-2 items-center justify-center gap-11 px-9 pt-8">
           <HotFrame
             label1="지브리st 프레임"
+            frameimage={"/icons/frame.png"}
             onClick={() => navigate("/hotframe")}
             label2={220}
           />
           <HotFrame
             label1="지브리st 프레임"
+            frameimage={"/icons/frame2.png"}
             onClick={() => navigate("/hotframe")}
             label2={220}
           />
           <HotFrame
             label1="지브리st 프레임"
+            frameimage={"/icons/frame3.png"}
             onClick={() => navigate("/hotframe")}
             label2={220}
           />
           <HotFrame
             label1="지브리st 프레임"
+            frameimage={"/icons/frame4.png"}
             onClick={() => navigate("/hotframe")}
             label2={220}
           />

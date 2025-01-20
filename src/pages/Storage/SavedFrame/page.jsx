@@ -1,5 +1,6 @@
 import { StorageLayout } from "@/components/pages/Storage/StorageLayout";
 import { EmptyStorage } from "@/components/pages/Storage/EmptyStorage";
+import Footer from "@/components/layout/Footer";
 
 export const SavedFramePage = () => {
   return (
@@ -9,6 +10,8 @@ export const SavedFramePage = () => {
           <EmptyStorage />
         </div>
       </StorageLayout>
+      <div className="h-28 w-screen max-w-[490px]"></div>
+      <Footer />
     </>
   );
 };

@@ -1,5 +1,4 @@
 import { HotFramePage } from "@/pages/HotFramePage/page";
-import { SaveHotFrame } from "@/pages/SaveHotFrame/page";
 import { GalleryPage } from "@/pages/Storage/Gallery/page";
 import RoutePath from "./routePath";
 import { MainPage } from "@/pages/Main/page";
@@ -25,6 +24,7 @@ import FrameBackgroundPage from "@/pages/FrameCreate/Background/page";
 import FrameStickerPage from "@/pages/FrameCreate/Sticker/page";
 import FrameDownloadPage from "@/pages/FrameCreate/Download/page";
 import FrameCreatePage from "@/pages/FrameCreate/page";
+import { FrameDetailPage } from "@/pages/FrameDetail/page";
 
 const routes = [
   {
@@ -32,12 +32,12 @@ const routes = [
     children: [{ index: true, element: <MainPage /> }],
   },
   {
-    path: "/hotframe",
+    path: RoutePath.HotFrame,
     children: [{ index: true, element: <HotFramePage /> }],
   },
   {
-    path: "/savehotframe",
-    children: [{ index: true, element: <SaveHotFrame /> }],
+    path: RoutePath.GetFrame,
+    children: [{ index: true, element: <FrameDetailPage /> }],
   },
   {
     path: RoutePath.Frame,

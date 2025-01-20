@@ -6,8 +6,8 @@
 const RoutePath = {
   /* 메인 페이지 */
   Main: "/",
-  HotFramePage: "/hotframe",
-  SaveHotFrame: "/savehotframe",
+  HotFrame: "/hot-frames",
+  GetFrame: "/frame/:id",
 
   /* 프레임 선택 페이지 */
   Frame: "/frames",

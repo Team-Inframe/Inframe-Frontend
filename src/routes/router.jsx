@@ -3,14 +3,10 @@ import { SaveHotFrame } from "@/pages/SaveHotFrame/page";
 import { GalleryPage } from "@/pages/Storage/Gallery/page";
 import RoutePath from "./routePath";
 import { MainPage } from "@/pages/Main/page";
-import SelectFrame from "@/pages/SelectFrame/page";
 import { MyFramePage } from "@/pages/Storage/MyFrame/page";
 import { StoragePage } from "@/pages/Storage/page";
 import { SavedFramePage } from "@/pages/Storage/SavedFrame/page";
-import MakeBG from "@/pages/MakeBG/page";
 import { createBrowserRouter } from "react-router-dom";
-import MakeSticker from "@/pages/MakeSticker/page";
-import SaveFrame from "@/pages/SaveFrame/page";
 import UsersTestPage from "@/test/UsersTestPage";
 import StickersTestPage from "@/test/StickersTestPage";
 import FrameBackgroundCreateTestPage from "@/test/FrameBackgroundCreateTestPage";
@@ -25,27 +21,15 @@ import MyCustomFramesPageTest from "@/test/MyCustomFramesPageTest";
 import BookmarkCustomFrameTestPage from "@/test/BookmarkCustomFrameTestPage";
 import MyBookmarkCustomFrameTestPage from "@/test/MyBookmarkCustomFrameTestPage";
 import TestPages from "@/test/TestPages";
+import FrameSelectPage from "@/pages/FrameCreate/Select/page";
+import FrameBackgroundPage from "@/pages/FrameCreate/Background/page";
+import FrameStickerPage from "@/pages/FrameCreate/Sticker/page";
+import FrameDownloadPage from "@/pages/FrameCreate/Download/page";
 
 const routes = [
   {
     path: "/",
     children: [{ index: true, element: <MainPage /> }],
-  },
-  {
-    path: "/selectframe",
-    children: [{ index: true, element: <SelectFrame /> }],
-  },
-  {
-    path: "/selectframe/makebg",
-    children: [{ index: true, element: <MakeBG /> }],
-  },
-  {
-    path: "/selectframe/makebg/makesticker",
-    children: [{ index: true, element: <MakeSticker /> }],
-  },
-  {
-    path: "/selectframe/makebg/makesticker/saveframe",
-    children: [{ index: true, element: <SaveFrame /> }],
   },
   {
     path: "/hotframe",
@@ -54,6 +38,15 @@ const routes = [
   {
     path: "/savehotframe",
     children: [{ index: true, element: <SaveHotFrame /> }],
+  },
+  {
+    path: RoutePath.Frame,
+    children: [
+      { index: true, element: <FrameSelectPage /> },
+      { path: RoutePath.FrameBackground, element: <FrameBackgroundPage /> },
+      { path: RoutePath.FrameSticker, element: <FrameStickerPage /> },
+      { path: RoutePath.FrameDownload, element: <FrameDownloadPage /> },
+    ],
   },
   {
     path: RoutePath.Storage,

@@ -1,7 +1,7 @@
 import Header from "@/components/layout/Header";
 import TextButton from "@/components/common/Button/TextButton";
 import { useState } from "react";
-import BasicBG from "@/components/pages/FrameCreate/BasicBG/BasicBG";
+import BasicBG from "@/components/pages/FrameCreate/BasicBG";
 import {
   BasicFrame1,
   BasicFrame2,

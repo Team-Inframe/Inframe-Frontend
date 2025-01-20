@@ -1,6 +1,6 @@
 import { BasicFrame1 } from "@/components/common/BasicFrame";
 import Header from "@/components/layout/Header";
-import ShareToggle from "@/components/pages/SaveFrame/ShareToggle";
+import ShareToggle from "@/components/pages/FrameCreate/ShareToggle";
 import { useNavigate } from "react-router-dom";
 import pencil from "@/assets/svgs/Pencil.svg";
 

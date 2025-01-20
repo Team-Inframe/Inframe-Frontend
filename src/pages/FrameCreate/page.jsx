@@ -2,7 +2,7 @@ import Footer from "@/components/layout/Footer";
 import TextButton from "@/components/common/Button/TextButton";
 import { useState } from "react";
 import { frameData } from "@/libraries/constants/FrameData";
-import FoundationFrame from "@/components/pages/FrameCreate/FoundationFrame/FoundationFrame";
+import FoundationFrame from "@/components/pages/FrameCreate/FoundationFrame";
 import { useNavigate } from "react-router-dom";
 import RoutePath from "@/routes/routePath";
 

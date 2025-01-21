@@ -2,12 +2,13 @@ import Footer from "@/components/layout/Footer/index.jsx";
 import { useNavigate } from "react-router-dom";
 import { HotFrame } from "@/components/pages/HotFrame";
 import MoveButtom from "/src/assets/svgs/MoveButton.svg";
+import frame1 from "@/assets/images/frame1.png";
 
 export const MainPage = () => {
   const navigate = useNavigate();
   return (
-    <div className="flex h-full w-screen max-w-[490px] flex-col items-center justify-center overflow-y-auto">
-      <div className="top-12 w-full flex-col justify-start pl-9 pt-10 text-left">
+    <div className="flex min-h-real-screen flex-col items-center justify-center overflow-y-auto px-[24px] pt-[70px]">
+      <div className="w-full flex-col justify-start text-left">
         <div className="Headline_B flex text-black">김H팀님</div>
         <div className="Headline_L text-black">프레임을 선택해보세요!</div>
       </div>
@@ -15,53 +16,46 @@ export const MainPage = () => {
         <img src="/icons/bannerimage.png" />
       </div>
       <div className="flex w-full flex-col text-left">
-        <div className="items-start justify-start pl-9 pt-8 text-left">
+        <div className="items-start justify-start pt-8 text-left">
           <div className="Label_L text-black">많은 사람이 이용했어요!</div>
           <div className="caption_normal_M text-black">
             지금 제일 핫한 프레임
           </div>
         </div>
-        <div className="grid grid-cols-2 items-center justify-center gap-11 px-9 pt-8">
+        <div className="grid grid-cols-2 items-center justify-center gap-[20px] px-[15px] pt-8">
           <HotFrame
             label1="지브리st 프레임"
-            frameimage={"/icons/frame.png"}
-            onClick={() => navigate("/hotframe")}
+            onClick={() => navigate("/frame/1")}
+            frameImg={frame1}
             label2={220}
           />
           <HotFrame
             label1="지브리st 프레임"
-            frameimage={"/icons/frame2.png"}
-            onClick={() => navigate("/hotframe")}
+            onClick={() => navigate("/frame/1")}
+            frameImg={frame1}
             label2={220}
           />
           <HotFrame
             label1="지브리st 프레임"
-            frameimage={"/icons/frame3.png"}
-            onClick={() => navigate("/hotframe")}
+            onClick={() => navigate("/frame/1")}
+            frameImg={frame1}
             label2={220}
           />
           <HotFrame
             label1="지브리st 프레임"
-            frameimage={"/icons/frame4.png"}
-            onClick={() => navigate("/hotframe")}
+            onClick={() => navigate("/frame/1")}
+            frameImg={frame1}
             label2={220}
           />
         </div>
-        <div className="flex justify-center p-10">
-          <button
-            className="Label_M h-10 w-96 flex-row space-x-2 rounded-lg border-2 text-center"
-            onClick={() => navigate("/hotframe")}
+        <div className="flex justify-center pt-[40px]">
+          <div
+            className="flex items-center justify-between gap-[9px] rounded-lg border-2 py-[6px] pl-[40px] pr-[30px]"
+            onClick={() => navigate("/hot-frames")}
           >
-            핫한 프레임 더보기{" "}
-            <img
-              src={MoveButtom}
-              style={{
-                display: "inline-block",
-                marginLeft: "8px",
-                verticalAlign: "middle",
-              }}
-            />
-          </button>
+            <span className="Label_M">핫한 프레임 더보기</span>
+            <img src={MoveButtom} />
+          </div>
         </div>
         <div className="h-28 w-screen max-w-[490px]"></div>
       </div>

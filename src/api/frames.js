@@ -1,21 +1,21 @@
-// @ts-nocheck
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8000/api/v1";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
+// ai 배경 생성 api
 export const createFrameBackground = async (prompt) => {
   try {
     const data = {
       prompt: prompt,
     };
-    const response = await axios.post(`${BASE_URL}/frames/images/`, data, {
+    const response = await axios.post(`${BASE_URL}/frames/images`, data, {
       headers: {
-        "Content-Type": "application/json", // JSON 형식으로 요청을 보냄
+        "Content-Type": "application/json",
       },
     });
-    return response.data;
+    return response;
   } catch (error) {
-    return error.response.data;
+    return error.response;
   }
 };
 

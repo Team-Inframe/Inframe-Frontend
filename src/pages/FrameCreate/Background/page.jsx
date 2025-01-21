@@ -11,6 +11,7 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 import PictureUploader from "@/components/pages/FrameCreate/PictureUploader";
 import AiUploadeder from "@/components/pages/FrameCreate/AiUploader";
+import { createFrameBackground } from "@/api";
 
 const FrameBackgroundPage = () => {
   const navigate = useNavigate();
@@ -18,8 +19,27 @@ const FrameBackgroundPage = () => {
   const selectedFrame = location.state?.selectedFrame;
 
   const List = ["기본 색상", "AI 배경", "사진 배경"];
+  const [prompt, setPrompt] = useState("");
   const [bgsrc, setBgsrc] = useState("#DADADA");
   const [SelectedComp, setSelectComp] = useState(List[0]);
+  // const [loading, setLoading] = useState(false);
+
+  const handlePromptChange = (e) => {
+    setPrompt(e.target.value);
+  };
+
+  const handleAIBackgroundImage = async () => {
+    // setLoading(true);
+    try {
+      const response = await createFrameBackground(prompt);
+      setBgsrc(response.data.frame_ai_url);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      // setLoading(false);
+    }
+  };
 
   const handleConfirmClick = () => {
     navigate("/frames/sticker");
@@ -79,12 +99,21 @@ const FrameBackgroundPage = () => {
             {SelectedComp == List[0] ? (
               <BasicBG colorChanger={handleColorChange} />
             ) : SelectedComp == List[1] ? (
-              <AiUploadeder />
+              <AiUploadeder
+                onClick={handleAIBackgroundImage}
+                prompt={prompt}
+                onPromptChange={handlePromptChange}
+              />
             ) : (
               <PictureUploader uploadedImage={handleImageUpload} />
             )}
           </div>
         </div>
+        {/* {loading && (
+          <div className="flex justify-center items-center absolute top-0 left-0 right-0 bottom-0 bg-gray-600 bg-opacity-50 z-50">
+            <img src={} alt="Loading..." />
+          </div>
+        )} */}
       </div>
     </div>
   );

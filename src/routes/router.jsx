@@ -1,23 +1,11 @@
 import { HotFramePage } from "@/pages/HotFramePage/page";
-import { SaveHotFrame } from "@/pages/SaveHotFrame/page";
 import { GalleryPage } from "@/pages/Storage/Gallery/page";
 import RoutePath from "./routePath";
 import { MainPage } from "@/pages/Main/page";
-import LoginPage from "@/pages/LoginPage/page";
-import { createBrowserRouter } from "react-router-dom";
-import { Children } from "react";
-import { element } from "prop-types";
-import SelectFrame from "@/pages/SelectFrame/page";
 import { MyFramePage } from "@/pages/Storage/MyFrame/page";
 import { StoragePage } from "@/pages/Storage/page";
 import { SavedFramePage } from "@/pages/Storage/SavedFrame/page";
-import MakeBG from "@/pages/MakeBG/page";
-
 import CameraFrameApp from "@/pages/CameraFrame/page";
-
-
-import MakeSticker from "@/pages/MakeSticker/page";
-import SaveFrame from "@/pages/SaveFrame/page";
 import UsersTestPage from "@/test/UsersTestPage";
 import StickersTestPage from "@/test/StickersTestPage";
 import FrameBackgroundCreateTestPage from "@/test/FrameBackgroundCreateTestPage";
@@ -32,6 +20,13 @@ import MyCustomFramesPageTest from "@/test/MyCustomFramesPageTest";
 import BookmarkCustomFrameTestPage from "@/test/BookmarkCustomFrameTestPage";
 import MyBookmarkCustomFrameTestPage from "@/test/MyBookmarkCustomFrameTestPage";
 import TestPages from "@/test/TestPages";
+import FrameBackgroundPage from "@/pages/FrameCreate/Background/page";
+import FrameStickerPage from "@/pages/FrameCreate/Sticker/page";
+import FrameDownloadPage from "@/pages/FrameCreate/Download/page";
+import FrameCreatePage from "@/pages/FrameCreate/page";
+import { FrameDetailPage } from "@/pages/FrameDetail/page";
+import LoginPage from "@/pages/LoginPage/page";
+import { createBrowserRouter } from "react-router-dom";
 
 const routes = [
   {
@@ -43,28 +38,21 @@ const routes = [
     children: [{ index: true, element: <LoginPage /> }],
   },
   {
-    path: "/selectframe",
-    children: [{ index: true, element: <SelectFrame /> }],
-  },
-  {
-    path: "/selectframe/makebg",
-    children: [{ index: true, element: <MakeBG /> }],
-  },
-  {
-    path: "/selectframe/makebg/makesticker",
-    children: [{ index: true, element: <MakeSticker /> }],
-  },
-  {
-    path: "/selectframe/makebg/makesticker/saveframe",
-    children: [{ index: true, element: <SaveFrame /> }],
-  },
-  {
-    path: "/hotframe",
+    path: RoutePath.HotFrame,
     children: [{ index: true, element: <HotFramePage /> }],
   },
   {
-    path: "/savehotframe",
-    children: [{ index: true, element: <SaveHotFrame /> }],
+    path: RoutePath.GetFrame,
+    children: [{ index: true, element: <FrameDetailPage /> }],
+  },
+  {
+    path: RoutePath.Frame,
+    children: [
+      { index: true, element: <FrameCreatePage /> },
+      { path: RoutePath.FrameBackground, element: <FrameBackgroundPage /> },
+      { path: RoutePath.FrameSticker, element: <FrameStickerPage /> },
+      { path: RoutePath.FrameDownload, element: <FrameDownloadPage /> },
+    ],
   },
   {
     path: RoutePath.Storage,

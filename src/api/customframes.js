@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // @ts-ignore
-const BASE_URL = `${import.meta.env.VITE_BASE_URL}/api/v1`;
+const BASE_URL = `${import.meta.env.VITE_BASE_URL}`;
 
 export const createCustomFrame = async (
   userId,

@@ -8,8 +8,6 @@ import { SavedFramePage } from "@/pages/Storage/SavedFrame/page";
 import CameraFrameApp from "@/pages/CameraFrame/page";
 import UsersTestPage from "@/test/UsersTestPage";
 import StickersTestPage from "@/test/StickersTestPage";
-import FrameBackgroundCreateTestPage from "@/test/FrameBackgroundCreateTestPage";
-import FrameCreateTestPage from "@/test/FrameCreateTestPage";
 import FrameViewTestPage from "@/test/FrameViewTestPage";
 import PhotoCreateTestPage from "@/test/PhotoCreateTestPage";
 import PhotosListTestPage from "@/test/PhotoListTestPage";
@@ -70,14 +68,6 @@ const routes = [
   {
     path: RoutePath.StickerTest,
     children: [{ index: true, element: <StickersTestPage /> }],
-  },
-  {
-    path: RoutePath.FrameBackgroundCreateTest,
-    children: [{ index: true, element: <FrameBackgroundCreateTestPage /> }],
-  },
-  {
-    path: RoutePath.FrameCreateTest,
-    children: [{ index: true, element: <FrameCreateTestPage /> }],
   },
   {
     path: RoutePath.FrameViewTest,

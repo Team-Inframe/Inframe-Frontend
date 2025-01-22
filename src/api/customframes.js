@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8000/api/v1";
+const BASE_URL = `${import.meta.env.VITE_BASE_URL}`;
 
 export const createCustomFrame = async (
   userId,
@@ -56,7 +56,7 @@ export const getCustomFrameList = async (sort) => {
     const response = await axios.get(`${BASE_URL}/custom-frames/list`, {
       params: { sort }, // 쿼리 파라미터로 정렬 방식 전달
     });
-    return response;
+    return response.data;
   } catch (error) {
     return error.response;
   }

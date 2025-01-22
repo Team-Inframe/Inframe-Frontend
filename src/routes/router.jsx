@@ -1,10 +1,10 @@
 import { HotFramePage } from "@/pages/HotFramePage/page";
-import { GalleryPage } from "@/pages/Storage/Gallery/page";
+// import { GalleryPage } from "@/pages/Storage/Gallery/page";
 import RoutePath from "./routePath";
 import { MainPage } from "@/pages/Main/page";
-import { MyFramePage } from "@/pages/Storage/MyFrame/page";
-import { StoragePage } from "@/pages/Storage/page";
-import { SavedFramePage } from "@/pages/Storage/SavedFrame/page";
+// import { MyFramePage } from "@/pages/Storage/MyFrame/page";
+// import { StoragePage } from "@/pages/Storage/page";
+// import { SavedFramePage } from "@/pages/Storage/SavedFrame/page";
 import CameraFrameApp from "@/pages/CameraFrame/page";
 import UsersTestPage from "@/test/UsersTestPage";
 import StickersTestPage from "@/test/StickersTestPage";
@@ -53,13 +53,13 @@ const routes = [
     ],
   },
   {
-    path: RoutePath.Storage,
-    children: [
-      { index: true, element: <StoragePage /> },
-      { path: RoutePath.MyFrame, element: <MyFramePage /> },
-      { path: RoutePath.SavedFrame, element: <SavedFramePage /> },
-      { path: RoutePath.Gallery, element: <GalleryPage /> },
-    ],
+    // path: RoutePath.Storage,
+    // children: [
+    //   { index: true, element: <StoragePage /> },
+    //   { path: RoutePath.MyFrame, element: <MyFramePage /> },
+    //   { path: RoutePath.SavedFrame, element: <SavedFramePage /> },
+    //   { path: RoutePath.Gallery, element: <GalleryPage /> },
+    // ],
   },
   {
     path: RoutePath.UsersTest,
@@ -110,7 +110,7 @@ const routes = [
     children: [{ index: true, element: <TestPages /> }],
   },
   {
-    path: "/cameraframe",
+    path: RoutePath.Storage,
     children: [{ index: true, element: <CameraFrameApp /> }],
   },
 ];

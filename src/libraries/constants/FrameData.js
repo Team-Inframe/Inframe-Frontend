@@ -5,11 +5,11 @@ import widthframe2 from "@/assets/images/basicframepic/widthframe2.png";
 
 export const frameData = {
   세로프레임: [
-    { id: 1, src: heightframe1 },
-    { id: 2, src: heightframe2 },
+    { id: 1, src: heightframe1, cameraWidth: 152, cameraHeight: 89 },
+    { id: 2, src: heightframe2, cameraWidth: 144, cameraHeight: 157 },
   ],
   가로프레임: [
-    { id: 3, src: widthframe1 },
-    { id: 4, src: widthframe2 },
+    { id: 3, src: widthframe1, cameraWidth: 133, cameraHeight: 102 },
+    { id: 4, src: widthframe2, cameraWidth: 124, cameraHeight: 106 },
   ],
 };

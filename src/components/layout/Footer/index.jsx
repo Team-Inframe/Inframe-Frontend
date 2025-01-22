@@ -1,8 +1,9 @@
-import IconButton from "@/components/common/IconButton";
+import IconButton from "@/components/common/Button/IconButton";
 import { useNavigate } from "react-router-dom";
 import homebutton from "@/assets/svgs/HomeButton.svg";
 import framemakebutton from "/src/assets/svgs/FrameMakeButton.svg";
 import cabinetbutton from "/src/assets/svgs/CabinetButton.svg";
+import RoutePath from "@/routes/routePath";
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -12,19 +13,19 @@ const Footer = () => {
         iconSrc={homebutton}
         altText="HOME"
         label="홈"
-        onClick={() => navigate("/")}
+        onClick={() => navigate(RoutePath.Main)}
       />
       <IconButton
         iconSrc={framemakebutton}
         altText="프레임 만들기"
         label="프레임 만들기"
-        onClick={() => navigate("/home")}
+        onClick={() => navigate(RoutePath.Frame)}
       />
       <IconButton
         iconSrc={cabinetbutton}
         altText="보관함"
         label="보관함"
-        onClick={() => navigate("/")}
+        onClick={() => navigate(RoutePath.Storage)}
       />
     </footer>
   );

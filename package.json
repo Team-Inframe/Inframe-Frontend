@@ -16,12 +16,16 @@
     "lint:fix": "eslint --fix './src/**/*.{js,jsx}'",
     "preview": "vite preview",
     "prepare": "husky install",
-    "format": "prettier --write --cache ."
+    "format": "prettier --write --cache .",
+    "pwa": "pwa-assets-generator --preset minimal public/icons/logo.svg"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.64.0",
     "@tanstack/react-query-devtools": "^5.64.0",
+    "@vite-pwa/assets-generator": "^0.2.6",
     "axios": "^1.7.9",
+    "file-saver": "^2.0.5",
+    "html2canvas": "^1.4.1",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -30,8 +34,6 @@
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "@svgr/webpack": "^8.1.0",
-    "@types/react": "^18.3.18",
-    "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.17.0",

@@ -1,6 +1,7 @@
 export const BasicFrame1 = ({ bgsrc }) => {
   const isColor = bgsrc && bgsrc.startsWith("BG");
-  const isImage = bgsrc && bgsrc.startsWith("blob:");
+  const isImage =
+    (bgsrc && bgsrc.startsWith("blob:")) || bgsrc.startsWith("http");
 
   return (
     <div
@@ -24,7 +25,8 @@ export const BasicFrame1 = ({ bgsrc }) => {
 
 export const BasicFrame2 = ({ bgsrc }) => {
   const isColor = bgsrc && bgsrc.startsWith("BG");
-  const isImage = bgsrc && bgsrc.startsWith("blob:");
+  const isImage =
+    (bgsrc && bgsrc.startsWith("blob:")) || bgsrc.startsWith("http");
 
   return (
     <div
@@ -68,7 +70,8 @@ export const BasicFrame2 = ({ bgsrc }) => {
 
 export const BasicFrame3 = ({ bgsrc }) => {
   const isColor = bgsrc && bgsrc.startsWith("BG");
-  const isImage = bgsrc && bgsrc.startsWith("blob:");
+  const isImage =
+    (bgsrc && bgsrc.startsWith("blob:")) || bgsrc.startsWith("http");
 
   return (
     <div
@@ -96,7 +99,8 @@ export const BasicFrame3 = ({ bgsrc }) => {
 
 export const BasicFrame4 = ({ bgsrc }) => {
   const isColor = bgsrc && bgsrc.startsWith("BG");
-  const isImage = bgsrc && bgsrc.startsWith("blob:");
+  const isImage =
+    (bgsrc && bgsrc.startsWith("blob:")) || bgsrc.startsWith("http");
 
   return (
     <div

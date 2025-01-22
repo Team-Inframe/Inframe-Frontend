@@ -1,6 +1,6 @@
 import Header from "@/components/layout/Header";
 import TextButton from "@/components/common/Button/TextButton";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import BasicBG from "@/components/pages/FrameCreate/BasicBG";
 import {
   BasicFrame1,
@@ -11,18 +11,72 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 import PictureUploader from "@/components/pages/FrameCreate/PictureUploader";
 import AiUploadeder from "@/components/pages/FrameCreate/AiUploader";
+import html2canvas from "html2canvas";
+import { postFrame, postFrameBackground } from "@/api/frames";
+import RoutePath from "@/routes/routePath";
 
 const FrameBackgroundPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const selectedFrame = location.state?.selectedFrame;
 
+  const frameRef = useRef(null);
+
   const List = ["기본 색상", "AI 배경", "사진 배경"];
+  const [prompt, setPrompt] = useState("");
   const [bgsrc, setBgsrc] = useState("#DADADA");
   const [SelectedComp, setSelectComp] = useState(List[0]);
+  // const [isLoading, setIsLoading] = useState(false);
 
-  const handleConfirmClick = () => {
-    navigate("/frames/sticker");
+  const handlePromptChange = (e) => {
+    setPrompt(e.target.value);
+  };
+
+  const handleAIBackgroundImage = async () => {
+    // setIsLoading(true);
+    try {
+      const response = await postFrameBackground(prompt);
+      const aiFrameUrl = response.data.frame_ai_url;
+      setBgsrc(aiFrameUrl);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      // setIsLoading(false);
+    }
+  };
+
+  const handleConfirmClick = async () => {
+    if (!frameRef.current) return;
+
+    try {
+      const frame = frameRef.current;
+      const canvas = await html2canvas(frame, {
+        scale: 2,
+        backgroundColor: null,
+        useCORS: true,
+        allowTaint: true,
+      });
+
+      canvas.toBlob(async (blob) => {
+        if (blob !== null) {
+          const cameraWidth = localStorage.getItem("cameraWidth");
+          const cameraHeight = localStorage.getItem("cameraHeight");
+
+          const response = await postFrame(blob, cameraWidth, cameraHeight);
+          console.log("API Response:", response);
+          const frameUrl = response.data.frame_url;
+
+          localStorage.removeItem("cameraWidth");
+          localStorage.removeItem("cameraHeight");
+
+          localStorage.setItem("frameUrl", frameUrl);
+
+          navigate(RoutePath.FrameSticker);
+        }
+      });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const handleColorChange = (newColor) => {
@@ -54,7 +108,7 @@ const FrameBackgroundPage = () => {
 
       <div className="flex h-full flex-col justify-between">
         <div className="flex flex-1 items-center justify-center">
-          {renderFrame()}
+          <div ref={frameRef}>{renderFrame()}</div>
         </div>
 
         <div className="mt-[40px] flex h-[150px] w-full flex-col gap-[30px]">
@@ -79,12 +133,21 @@ const FrameBackgroundPage = () => {
             {SelectedComp == List[0] ? (
               <BasicBG colorChanger={handleColorChange} />
             ) : SelectedComp == List[1] ? (
-              <AiUploadeder />
+              <AiUploadeder
+                onClick={handleAIBackgroundImage}
+                prompt={prompt}
+                onPromptChange={handlePromptChange}
+              />
             ) : (
               <PictureUploader uploadedImage={handleImageUpload} />
             )}
           </div>
         </div>
+        {/* {loading && (
+          <div className="flex justify-center items-center absolute top-0 left-0 right-0 bottom-0 bg-gray-600 bg-opacity-50 z-50">
+            <img src={frame1} alt="Loading..." />
+          </div>
+        )} */}
       </div>
     </div>
   );

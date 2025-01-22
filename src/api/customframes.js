@@ -68,7 +68,7 @@ export const getMyCustomFrames = async (userId) => {
     const response = await axios.get(`${BASE_URL}/custom-frames/myframes`, {
       params: { user_id: userId }, // 쿼리 파라미터로 user_id 전달
     });
-    return response;
+    return response.data;
   } catch (error) {
     return error.response;
   }
@@ -99,6 +99,7 @@ export const getMyBookmarkCustomFrame = async (userId) => {
     const response = await axios.get(
       `${BASE_URL}/custom-frames/users/${userId}`
     );
+    //console.log(response);
     return response.data;
   } catch (error) {
     return error.response;

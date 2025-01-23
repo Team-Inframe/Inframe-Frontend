@@ -32,8 +32,10 @@ const FrameCreatePage = () => {
       </div>
 
       <div
-        className={`flex items-center justify-between ${
-          frameType === "세로프레임" ? "px-[67px]" : "px-[26px]"
+        className={`flex items-center justify-center ${
+          frameType === "세로프레임"
+            ? "gap-[70px] px-[67px]"
+            : "gap-[30px] px-[26px]"
         }`}
       >
         {frameData[frameType].map((frame) => (

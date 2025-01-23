@@ -79,7 +79,7 @@ export const bookmarkCustomFrame = async (userId, customFrameId) => {
     formData.append("user_id", userId);
     formData.append("custom_frame_id", customFrameId);
     const response = await axios.post(
-      `${BASE_URL}/custom-frames/bookmark/`,
+      `${BASE_URL}/custom-frames/bookmark`,
       formData,
       {
         headers: {
@@ -87,7 +87,7 @@ export const bookmarkCustomFrame = async (userId, customFrameId) => {
         },
       }
     );
-    return response;
+    return response.data;
   } catch (error) {
     return error.response;
   }

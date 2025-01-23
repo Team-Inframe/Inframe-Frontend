@@ -1,9 +1,11 @@
-import Downloadbutton from "/src/assets/svgs/download.svg";
+export const DownloadButton = ({ label, onClick, isBookmarked }) => {
+  const BookmarkIcon = isBookmarked
+    ? "/src/assets/svgs/filledbookmark.svg"
+    : "/src/assets/svgs/bookmark.svg";
 
-export const DownloadButton = ({ label, onClick }) => {
   return (
     <button className="flex flex-row pt-3" onClick={onClick}>
-      <img src={Downloadbutton} />
+      <img src={BookmarkIcon} />
       <span className="Caption_normal_M">{label}</span>
     </button>
   );

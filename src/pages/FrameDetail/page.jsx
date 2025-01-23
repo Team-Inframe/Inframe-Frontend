@@ -14,7 +14,7 @@ export const FrameDetailPage = () => {
   const [frameData, setFrameData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [isSaving, setIsSaving] = useState(false);
+  //const [isSaving, setIsSaving] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   const fetchFrameData = async () => {
@@ -33,7 +33,7 @@ export const FrameDetailPage = () => {
 
   const handleSaveBookmark = async () => {
     try {
-      setIsSaving(true);
+      //setIsSaving(true);
       const userId = 1;
       const response = await bookmarkCustomFrame(userId, customFrameId);
 
@@ -48,7 +48,7 @@ export const FrameDetailPage = () => {
     } catch (error) {
       console.log(error);
     } finally {
-      setIsSaving(false);
+      //setIsSaving(false);
     }
   };
 

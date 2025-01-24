@@ -6,6 +6,6 @@ export default defineConfig({
   base: "/",
   plugins: [react()],
   resolve: {
-    alias: [{ find: "@", replacement: "/src" }],
+    alias: [{ find: "@", replacement: "./src" }],
   },
 });

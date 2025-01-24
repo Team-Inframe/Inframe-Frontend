@@ -16,7 +16,7 @@ export const BasicCameraFrame1 = ({ bgsrc, isCapturing, currentFrame }) => {
 
   return (
     <div
-      className={`max-h-real-screen flex w-[250px] flex-col gap-[2px] border-2 px-[12px] py-[18px] shadow-lg ${
+      className={`flex w-[200px] flex-col gap-[5px] border-2 px-[19px] py-[21px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{
@@ -64,7 +64,7 @@ export const BasicCameraFrame2 = ({ bgsrc, isCapturing, currentFrame }) => {
 
   return (
     <div
-      className={`flex h-[400px] w-[320px] flex-col gap-[4px] border-2 px-[10px] py-[26px] shadow-lg ${
+      className={`w-real-screen flex h-[550px] flex-col gap-[4px] border-2 px-[10px] py-[26px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{
@@ -189,7 +189,7 @@ export const BasicCameraFrame3 = ({ bgsrc, isCapturing, currentFrame }) => {
 
   return (
     <div
-      className={`max-h-real-screen w-real-screen flex flex-col gap-[5px] border-2 px-[23px] py-[19px] shadow-lg ${
+      className={`max-h-real-screen w-real-screen flex flex-col gap-[5px] border-2 px-[23px] py-[17px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{
@@ -260,7 +260,7 @@ export const BasicCameraFrame4 = ({ bgsrc, isCapturing, currentFrame }) => {
 
   return (
     <div
-      className={`max-h-real-screen w-real-screen flex flex-col gap-[10px] border-2 px-[23px] py-[12px] shadow-lg ${
+      className={`max-h-real-screen w-real-screen flex flex-col gap-[10px] border-2 px-[23px] py-[17px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{

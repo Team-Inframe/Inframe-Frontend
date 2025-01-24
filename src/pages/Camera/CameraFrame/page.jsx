@@ -5,10 +5,16 @@ import {
   BasicCameraFrame3,
   BasicCameraFrame4,
 } from "@/components/common/BasicCameraFrame";
+import CameraButton from "@/assets/svgs/CameraButton.svg";
+import Timer from "@/assets/svgs/Timer.svg";
+import Electronic from "@/assets/svgs/Electronic.svg";
+import LeftArrow from "@/assets/svgs/LeftArrow.svg";
+import Gallery from "@/assets/svgs/Gallery.svg";
+
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-export default function CameraFrameApp() {
+export default function CameraPage() {
   const [frames, setFrames] = useState([]);
   const [currentFrame, setCurrentFrame] = useState(5);
   const [isCapturing, setIsCapturing] = useState(false);
@@ -20,7 +26,7 @@ export default function CameraFrameApp() {
   useEffect(() => {
     const getCustomFrameDetail = async () => {
       try {
-        const response = await getCustomFrame(25);
+        const response = await getCustomFrame(customFrameId);
         setCustomFrame(response.data);
       } catch (error) {
         console.error(error);
@@ -98,20 +104,39 @@ export default function CameraFrameApp() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col justify-center">
+    <div className="flex h-real-screen flex-col justify-between bg-white pb-[60px] pt-[40px]">
+      <div className="mb-3 flex flex-col">
+        <div className="flex-col">
+          <button onClick={() => navigate(-1)}>
+            <img
+              src={LeftArrow}
+              alt="뒤로가기"
+              className="mb-[10px] px-[10px]"
+            />
+          </button>
+          <div className="Label_L px-[24px]">
+            카메라 버튼을 누르면 차례대로 사진이 촬영돼요!
+          </div>
+          <div className="flex items-center gap-[5px] px-[24px]">
+            <img src={Timer} />
+            <span className="Label_M mt-1">타이머는 3초에요!</span>
+          </div>
+        </div>
+      </div>
+
       <div className="flex items-center justify-center">
         {renderBasicFrame()}
       </div>
 
-      <button
-        onClick={startCaptureSequence}
-        disabled={isCapturing}
-        className={`rounded-md px-4 py-2 text-white shadow-md ${
-          isCapturing ? "bg-gray-500" : "bg-blue-500 hover:bg-blue-600"
-        }`}
-      >
-        {isCapturing ? "촬영 중..." : "촬영하기"}
-      </button>
+      <div className="mt-3 flex items-center justify-between px-[24px]">
+        <img src={Electronic} className="px-1" />
+        <img
+          src={CameraButton}
+          onClick={startCaptureSequence}
+          disabled={isCapturing}
+        />
+        <img src={Gallery} />
+      </div>
     </div>
   );
 }

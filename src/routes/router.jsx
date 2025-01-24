@@ -24,7 +24,7 @@ import FrameCreatePage from "@/pages/FrameCreate/page";
 import { FrameDetailPage } from "@/pages/FrameDetail/page";
 import LoginPage from "@/pages/LoginPage/page";
 import { createBrowserRouter } from "react-router-dom";
-import CameraFrameApp from "@/pages/Camera/CameraFrame/page";
+import CameraPage from "@/pages/Camera/CameraFrame/page";
 
 const routes = [
   {
@@ -63,7 +63,7 @@ const routes = [
   },
   {
     path: RoutePath.Camera,
-    children: [{ index: true, element: <CameraFrameApp /> }],
+    children: [{ index: true, element: <CameraPage /> }],
   },
   {
     path: RoutePath.UsersTest,

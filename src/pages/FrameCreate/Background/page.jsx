@@ -58,17 +58,14 @@ const FrameBackgroundPage = () => {
       });
 
       canvas.toBlob(async (blob) => {
-        if (blob !== null) {
-          const cameraWidth = localStorage.getItem("cameraWidth");
-          const cameraHeight = localStorage.getItem("cameraHeight");
+        const basicFrameId = localStorage.getItem("basicFrameId");
 
-          const response = await postFrame(blob, cameraWidth, cameraHeight);
+        if (blob !== null) {
+          const response = await postFrame(blob, bgsrc, basicFrameId);
           console.log("API Response:", response);
           const frameUrl = response.data.frame_url;
 
-          localStorage.removeItem("cameraWidth");
-          localStorage.removeItem("cameraHeight");
-
+          localStorage.removeItem("basicFrameId", basicFrameId);
           localStorage.setItem("frameUrl", frameUrl);
 
           navigate(RoutePath.FrameSticker);

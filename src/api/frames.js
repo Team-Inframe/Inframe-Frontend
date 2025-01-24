@@ -19,12 +19,12 @@ export const postFrameBackground = async (prompt) => {
   }
 };
 
-export const postFrame = async (frameImg, cameraWidth, cameraHeight) => {
+export const postFrame = async (frameImg, frameBg, basicFrameId) => {
   try {
     const formData = new FormData();
-    formData.append("frame_img", frameImg);
-    formData.append("camera_width", cameraWidth);
-    formData.append("camera_height", cameraHeight);
+    formData.append("frame_url", frameImg);
+    formData.append("frame_bg", frameBg);
+    formData.append("basic_frame_id", basicFrameId);
     const response = await axios.post(`${BASE_URL}/frames/`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",

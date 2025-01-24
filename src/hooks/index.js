@@ -1,1 +1,1 @@
-// 커스텀 훅
+export { default as useCameraFrames } from "./useCameraFrames";

@@ -11,8 +11,7 @@ const FrameCreatePage = () => {
   const [frameType, setFrameType] = useState("세로프레임");
 
   const handleFrameClick = (frame) => {
-    localStorage.setItem("cameraWidth", frame.cameraWidth);
-    localStorage.setItem("cameraHeight", frame.cameraHeight);
+    localStorage.setItem("basicFrameId", frame.id);
 
     navigate(RoutePath.FrameBackground, { state: { selectedFrame: frame } });
   };

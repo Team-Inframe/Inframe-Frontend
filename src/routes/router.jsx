@@ -23,14 +23,10 @@ import FrameDownloadPage from "@/pages/FrameCreate/Download/page";
 import FrameCreatePage from "@/pages/FrameCreate/page";
 import { FrameDetailPage } from "@/pages/FrameDetail/page";
 import LoginPage from "@/pages/LoginPage/page";
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import CameraPage from "@/pages/Camera/CameraFrame/page";
 
 const routes = [
-  {
-    path: "/",
-    element: <Navigate to={RoutePath.Login} replace />,
-  },
   {
     path: RoutePath.Main,
     children: [{ index: true, element: <MainPage /> }],

@@ -5,7 +5,7 @@
 
 const RoutePath = {
   /* 로그인 페이지 */
-  Login: "/login",
+  Login: "/",
   Signup: "/signup",
 
   /* 메인 페이지 */

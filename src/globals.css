@@ -3,10 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-
   @font-face {
     font-family: "pretendard";
     src: url(./public/Fonts/Pretendard-Bold.otf);

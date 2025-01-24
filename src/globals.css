@@ -38,6 +38,14 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  input,
+  textarea {
+    pointer-events: auto;
+    user-select: auto;
+    -ms-user-select: auto;
+    -webkit-user-select: auto;
+  }
 }
 
 @layer components {
@@ -72,17 +80,4 @@
   .Caption_reading_L {
     @apply font-pretendard text-[12px] font-light leading-[22px] tracking-[-0.41px];
   }
-}
-
-input[type="range"] {
-  pointer-events: none;
-}
-
-input[type="range"]::-webkit-slider-thumb {
-  height: 0.875rem;
-  width: 0.875rem;
-  border-radius: 50%;
-  background-color: #f1efef;
-  -webkit-appearance: none;
-  pointer-events: auto;
 }

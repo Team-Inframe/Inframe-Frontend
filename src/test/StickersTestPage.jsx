@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { useState } from "react";
-import { createSticker } from "@/api"; // API 호출 함수
+import { postSticker } from "@/api"; // API 호출 함수
 
 const StickersTestPage = () => {
   // 상태 변수 설정
@@ -25,7 +25,7 @@ const StickersTestPage = () => {
     }
 
     try {
-      const response = await createSticker(formData); // API 호출
+      const response = await postSticker(formData); // API 호출
       if (response.status === 201) {
         setResult(JSON.stringify(response, null, 2)); // 성공적인 응답 처리
       } else {

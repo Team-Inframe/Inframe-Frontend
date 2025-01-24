@@ -93,6 +93,7 @@ export const bookmarkCustomFrame = async (userId, customFrameId) => {
   }
 };
 
+//엔드포인트 유저아이디 파라미터로 수정하기
 export const getMyBookmarkCustomFrame = async (userId) => {
   try {
     const response = await axios.get(

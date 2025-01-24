@@ -8,7 +8,7 @@ import RoutePath from "@/routes/routePath";
 const Footer = () => {
   const navigate = useNavigate();
   return (
-    <footer className="fixed bottom-0 flex h-24 w-screen max-w-[490px] items-center justify-around bg-white">
+    <footer className="fixed bottom-0 flex h-24 w-screen max-w-[450px] items-center justify-around bg-white">
       <IconButton
         iconSrc={homebutton}
         altText="HOME"

@@ -17,7 +17,7 @@ export default function AppContainer({ children }) {
   }, []);
 
   return (
-    <div className="mx-auto max-w-[490px] min-h-real-screen bg-[#FFFFFF]">
+    <div className="mx-auto min-h-real-screen max-w-[450px] bg-[#FFFFFF]">
       <ReactQuerySetting>{children}</ReactQuerySetting>
     </div>
   );

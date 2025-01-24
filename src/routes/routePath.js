@@ -4,8 +4,12 @@
 // import MyCustomFramesPageTest from "@/test/MyCustomFramesPageTest";
 
 const RoutePath = {
+  /* 로그인 페이지 */
+  Login: "/",
+  Signup: "/signup",
+
   /* 메인 페이지 */
-  Main: "/",
+  Main: "/home",
   HotFrame: "/hot-frames",
   GetFrame: "/frame/:id",
 

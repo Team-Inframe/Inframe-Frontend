@@ -3,7 +3,8 @@ import { SaveHotFrame } from "@/pages/SaveHotFrame/page";
 import { GalleryPage } from "@/pages/Storage/Gallery/page";
 import RoutePath from "./routePath";
 import { MainPage } from "@/pages/Main/page";
-import LoginPage from "@/pages/LoginPage/page";
+import LoginPage from "@/pages/Auth/Login/page";
+import SignupPage from "@/pages/Auth/Signup/page";
 import { createBrowserRouter } from "react-router-dom";
 import { Children } from "react";
 import { element } from "prop-types";
@@ -14,7 +15,6 @@ import { SavedFramePage } from "@/pages/Storage/SavedFrame/page";
 import MakeBG from "@/pages/MakeBG/page";
 
 import CameraFrameApp from "@/pages/CameraFrame/page";
-
 
 import MakeSticker from "@/pages/MakeSticker/page";
 import SaveFrame from "@/pages/SaveFrame/page";
@@ -39,8 +39,12 @@ const routes = [
     children: [{ index: true, element: <MainPage /> }],
   },
   {
-    path: "/login",
+    path: RoutePath.Login,
     children: [{ index: true, element: <LoginPage /> }],
+  },
+  {
+    path: RoutePath.Signup,
+    children: [{ index: true, element: <SignupPage /> }],
   },
   {
     path: "/selectframe",

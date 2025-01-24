@@ -42,6 +42,7 @@ export default function useCameraFrames(initialFramesCount = 4) {
   }, []);
 
   const captureFrame = (index) => {
+    console.log("capture");
     if (
       videoRefs.current[index]?.current &&
       canvasRefs.current[index]?.current

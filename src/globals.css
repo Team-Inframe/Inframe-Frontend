@@ -70,3 +70,11 @@
     @apply font-pretendard text-[12px] font-light leading-[22px] tracking-[-0.41px];
   }
 }
+
+input,
+textarea {
+  -moz-user-select: auto;
+  -webkit-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
+}

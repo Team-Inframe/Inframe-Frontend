@@ -56,7 +56,7 @@ export const getCustomFrameList = async (sort) => {
     const response = await axios.get(`${BASE_URL}/custom-frames/list`, {
       params: { sort }, // 쿼리 파라미터로 정렬 방식 전달
     });
-    return response;
+    return response.data;
   } catch (error) {
     return error.response;
   }
@@ -67,7 +67,7 @@ export const getMyCustomFrames = async (userId) => {
     const response = await axios.get(`${BASE_URL}/custom-frames/myframes`, {
       params: { user_id: userId }, // 쿼리 파라미터로 user_id 전달
     });
-    return response;
+    return response.data;
   } catch (error) {
     return error.response;
   }
@@ -79,7 +79,7 @@ export const bookmarkCustomFrame = async (userId, customFrameId) => {
     formData.append("user_id", userId);
     formData.append("custom_frame_id", customFrameId);
     const response = await axios.post(
-      `${BASE_URL}/custom-frames/bookmark/`,
+      `${BASE_URL}/custom-frames/bookmark`,
       formData,
       {
         headers: {
@@ -98,6 +98,7 @@ export const getMyBookmarkCustomFrame = async (userId) => {
     const response = await axios.get(
       `${BASE_URL}/custom-frames/users/${userId}`
     );
+    //console.log(response);
     return response.data;
   } catch (error) {
     return error.response;

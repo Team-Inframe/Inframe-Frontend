@@ -6,15 +6,15 @@ export const StorageImages = ({ date, frames }) => {
       <div className="mt-[10px] grid grid-cols-3 gap-[30px]">
         {frames.map((frame) => (
           <div
-            key={frame.customFrameId}
+            key={frame.custom_frame_id}
             className="flex w-full cursor-pointer flex-col"
           >
             <img
-              src={frame.customFrameUrl}
-              alt={frame.customFrameTitle}
+              src={frame.custom_frame_url}
+              alt={frame.custom_frame_title}
               className="mb-[8px]"
             />
-            <span className="Label_B">{frame.customFrameTitle}</span>
+            <span className="Label_B">{frame.custom_frame_title}</span>
           </div>
         ))}
       </div>

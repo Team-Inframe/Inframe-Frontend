@@ -16,7 +16,9 @@ export const MyFramePage = () => {
         const response = await getMyCustomFrames(
           localStorage.getItem("userId")
         );
+
         setSavedMyFrame(response.data);
+        console.log(savedMyFrame);
         //return response;
       } catch (error) {
         console.error(error);
@@ -25,7 +27,7 @@ export const MyFramePage = () => {
     };
     getMyFrames();
   }, []);
-
+  const response = getMyCustomFrames(1);
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -34,7 +36,7 @@ export const MyFramePage = () => {
     <div>
       <StorageLayout title="내가 만든 프레임">
         <div className="flex flex-col gap-[21px]">
-          {savedMyFrame.map((group) => (
+          {response.map((group) => (
             <StorageImages
               key={group.date}
               date={group.date}

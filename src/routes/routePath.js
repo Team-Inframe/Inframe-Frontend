@@ -1,8 +1,3 @@
-// import { bookmarkCustomFrame } from "@/api";
-// import FrameBackgroundCreateTestPage from "@/test/FrameBackgroundCreateTestPage";
-// import MyBookmarkCustomFrameTestPage from "@/test/MyBookmarkCustomFrameTestPage";
-// import MyCustomFramesPageTest from "@/test/MyCustomFramesPageTest";
-
 const RoutePath = {
   /* 로그인 페이지 */
   Login: "/",

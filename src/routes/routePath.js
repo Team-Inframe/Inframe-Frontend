@@ -21,6 +21,9 @@ const RoutePath = {
   SavedFrame: "/storages/saved-frames",
   Gallery: "/storages/galleries",
 
+  /* 사진 촬영 페이지 */
+  Camera: "/camera/:id",
+
   /* 테스트 페이지 */
   Test: "/test",
   UsersTest: "/test/users-test",

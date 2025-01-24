@@ -1,11 +1,11 @@
 import Footer from "@/components/layout/Footer";
 import { DownloadButton } from "@/components/common/Button/DownloadButton";
 import MoveButton from "/src/assets/svgs/MoveButton.svg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import frame1 from "@/assets/images/frame1.png";
 import leftArrow from "@/assets/svgs/LeftArrow.svg";
-
 export const FrameDetailPage = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
 
   return (
@@ -23,7 +23,7 @@ export const FrameDetailPage = () => {
         </div>
       </div>
       <div className="flex items-center justify-center gap-[20px] px-24 pt-12">
-        <div className="flex" onClick={() => navigate("")}>
+        <div className="flex" onClick={() => navigate(`/camera/${id}`)}>
           <span className="Label_M pt-[2px] text-syscolor-SystemGray">
             촬영하러 가기
           </span>

@@ -3,23 +3,30 @@
 @tailwind utilities;
 
 @layer base {
+  * {
+    @apply border-border;
+  }
+
   @font-face {
     font-family: "pretendard";
     src: url(./public/Fonts/Pretendard-Bold.otf);
     font-weight: 700;
     font-style: bold;
+    font-display: swap;
   }
   @font-face {
     font-family: "pretendard";
     src: url(./public/Fonts/Pretendard-Medium.otf);
     font-weight: 500;
     font-style: medium;
+    font-display: swap;
   }
   @font-face {
     font-family: "pretendard";
     src: url(public/Fonts/Pretendard-Light.otf);
     font-weight: 300;
     font-style: light;
+    font-display: swap;
   }
 
   html {
@@ -71,10 +78,15 @@
   }
 }
 
-input,
-textarea {
-  -moz-user-select: auto;
-  -webkit-user-select: auto;
-  -ms-user-select: auto;
-  user-select: auto;
+input[type="range"] {
+  pointer-events: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  height: 0.875rem;
+  width: 0.875rem;
+  border-radius: 50%;
+  background-color: #f1efef;
+  -webkit-appearance: none;
+  pointer-events: auto;
 }

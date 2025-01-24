@@ -1,10 +1,4 @@
-import { HotFramePage } from "@/pages/HotFramePage/page";
-import { GalleryPage } from "@/pages/Storage/Gallery/page";
 import RoutePath from "./routePath";
-import { MainPage } from "@/pages/Main/page";
-import { MyFramePage } from "@/pages/Storage/MyFrame/page";
-import { StoragePage } from "@/pages/Storage/page";
-import { SavedFramePage } from "@/pages/Storage/SavedFrame/page";
 import UsersTestPage from "@/test/UsersTestPage";
 import StickersTestPage from "@/test/StickersTestPage";
 import FrameViewTestPage from "@/test/FrameViewTestPage";
@@ -25,6 +19,12 @@ import { FrameDetailPage } from "@/pages/FrameDetail/page";
 import LoginPage from "@/pages/LoginPage/page";
 import { createBrowserRouter } from "react-router-dom";
 import CameraPage from "@/pages/Camera/CameraFrame/page";
+import { HotFramePage } from "@/pages/HotFramePage/page";
+import MainPage from "@/pages/Main/page";
+import { StoragePage } from "@/pages/Storage/page";
+import { MyFramePage } from "@/pages/Storage/MyFrame/page";
+import { SavedFramePage } from "@/pages/Storage/SavedFrame/page";
+import { GalleryPage } from "@/pages/Storage/Gallery/page";
 
 const routes = [
   {

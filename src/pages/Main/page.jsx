@@ -25,25 +25,25 @@ export const MainPage = () => {
         <div className="grid grid-cols-2 items-center justify-center gap-[20px] px-[15px] pt-8">
           <HotFrame
             label1="지브리st 프레임"
-            onClick={() => navigate("/frame/1")}
+            onClick={() => navigate("/frame/25")}
             frameImg={frame1}
             label2={220}
           />
           <HotFrame
             label1="지브리st 프레임"
-            onClick={() => navigate("/frame/1")}
+            onClick={() => navigate("/frame/24")}
             frameImg={frame1}
             label2={220}
           />
           <HotFrame
             label1="지브리st 프레임"
-            onClick={() => navigate("/frame/1")}
+            onClick={() => navigate("/frame/23")}
             frameImg={frame1}
             label2={220}
           />
           <HotFrame
             label1="지브리st 프레임"
-            onClick={() => navigate("/frame/1")}
+            onClick={() => navigate("/frame/22")}
             frameImg={frame1}
             label2={220}
           />

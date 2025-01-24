@@ -1,6 +1,7 @@
 import RoutePath from "./routePath";
 import { MainPage } from "@/pages/Main/page";
 import LoginPage from "@/pages/Auth/Login/page";
+import SignupPage from "@/pages/Auth/Signup/page";
 import { createBrowserRouter } from "react-router-dom";
 import { MyFramePage } from "@/pages/Storage/MyFrame/page";
 import { StoragePage } from "@/pages/Storage/page";
@@ -22,14 +23,8 @@ import FrameStickerPage from "@/pages/FrameCreate/Sticker/page";
 import FrameDownloadPage from "@/pages/FrameCreate/Download/page";
 import FrameCreatePage from "@/pages/FrameCreate/page";
 import { FrameDetailPage } from "@/pages/FrameDetail/page";
-import LoginPage from "@/pages/LoginPage/page";
-import { createBrowserRouter } from "react-router-dom";
 import CameraPage from "@/pages/Camera/CameraFrame/page";
 import { HotFramePage } from "@/pages/HotFramePage/page";
-import MainPage from "@/pages/Main/page";
-import { StoragePage } from "@/pages/Storage/page";
-import { MyFramePage } from "@/pages/Storage/MyFrame/page";
-import { SavedFramePage } from "@/pages/Storage/SavedFrame/page";
 import { GalleryPage } from "@/pages/Storage/Gallery/page";
 
 const routes = [
@@ -43,7 +38,7 @@ const routes = [
   },
   {
     path: RoutePath.Signup,
-    children: [{ index: true, element: <SingupPage /> }],
+    children: [{ index: true, element: <SignupPage /> }],
   },
   {
     path: RoutePath.HotFrame,

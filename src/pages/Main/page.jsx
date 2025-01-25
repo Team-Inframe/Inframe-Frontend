@@ -57,7 +57,7 @@ export const MainPage = () => {
             <img src={MoveButtom} />
           </div>
         </div>
-        <div className="h-28 w-screen max-w-[490px]"></div>
+        <div className="h-28 max-w-[450px]"></div>
       </div>
       <Footer />
     </div>

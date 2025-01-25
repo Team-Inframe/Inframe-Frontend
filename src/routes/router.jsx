@@ -9,7 +9,6 @@ import { SavedFramePage } from "@/pages/Storage/SavedFrame/page";
 import UsersTestPage from "@/test/UsersTestPage";
 import StickersTestPage from "@/test/StickersTestPage";
 import FrameViewTestPage from "@/test/FrameViewTestPage";
-import PhotoCreateTestPage from "@/test/PhotoCreateTestPage";
 import PhotosListTestPage from "@/test/PhotoListTestPage";
 import CustomFrameCreateTestPage from "@/test/CustomFrameCreateTestPage";
 import CustomFrameReadTestPage from "@/test/CustomFrameReadTestPage";
@@ -23,9 +22,10 @@ import FrameStickerPage from "@/pages/FrameCreate/Sticker/page";
 import FrameDownloadPage from "@/pages/FrameCreate/Download/page";
 import FrameCreatePage from "@/pages/FrameCreate/page";
 import { FrameDetailPage } from "@/pages/FrameDetail/page";
-import CameraPage from "@/pages/Camera/CameraFrame/page";
 import { HotFramePage } from "@/pages/HotFramePage/page";
 import { GalleryPage } from "@/pages/Storage/Gallery/page";
+import PhotoCameraPage from "@/pages/Photo/Camera/page";
+import { PhotoDownloadPage } from "@/pages/Photo/Download/page";
 
 const routes = [
   {
@@ -67,8 +67,12 @@ const routes = [
     ],
   },
   {
-    path: RoutePath.Camera,
-    children: [{ index: true, element: <CameraPage /> }],
+    path: RoutePath.Photo,
+    children: [{ index: true, element: <PhotoCameraPage /> }],
+  },
+  {
+    path: RoutePath.PhotoDownload,
+    children: [{ index: true, element: <PhotoDownloadPage /> }],
   },
   {
     path: RoutePath.UsersTest,
@@ -81,10 +85,6 @@ const routes = [
   {
     path: RoutePath.FrameViewTest,
     children: [{ index: true, element: <FrameViewTestPage /> }],
-  },
-  {
-    path: RoutePath.PhotoCreateTest,
-    children: [{ index: true, element: <PhotoCreateTestPage /> }],
   },
   {
     path: RoutePath.PhotoListTest,

@@ -1,4 +1,4 @@
-import { getCustomFrame } from "@/api";
+import { getCustomFrame, postPhoto } from "@/api";
 import {
   BasicCameraFrame1,
   BasicCameraFrame2,
@@ -11,14 +11,17 @@ import Electronic from "@/assets/svgs/Electronic.svg";
 import LeftArrow from "@/assets/svgs/LeftArrow.svg";
 import Gallery from "@/assets/svgs/Gallery.svg";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import html2canvas from "html2canvas";
+import RoutePath from "@/routes/routePath";
 
-export default function CameraPage() {
+export default function PhotoCameraPage() {
   const [frames, setFrames] = useState([]);
   const [currentFrame, setCurrentFrame] = useState(5);
   const [isCapturing, setIsCapturing] = useState(false);
   const { id: customFrameId } = useParams();
+  const frameRef = useRef(null);
   const navigate = useNavigate();
 
   const [customFrame, setCustomFrame] = useState(null);
@@ -47,10 +50,33 @@ export default function CameraPage() {
           setCurrentFrame(i);
         }, 3000);
       });
+
+      await new Promise((resolve) => setTimeout(resolve, 300));
+    }
+
+    try {
+      const frame = frameRef.current;
+      const canvas = await html2canvas(frame, {
+        scale: 2,
+        backgroundColor: null,
+        useCORS: true,
+        allowTaint: true,
+      });
+
+      canvas.toBlob(async (blob) => {
+        if (blob) {
+          const userId = localStorage.getItem("userId");
+          const response = await postPhoto(userId, blob);
+          localStorage.setItem("photoUrl", response.photo_url);
+          console.log(response);
+          navigate(RoutePath.PhotoDownload);
+        }
+      });
+    } catch (err) {
+      console.error(err);
     }
 
     setIsCapturing(false);
-    navigate("/camera/download");
   };
 
   const renderBasicFrame = () => {
@@ -126,7 +152,7 @@ export default function CameraPage() {
       </div>
 
       <div className="flex items-center justify-center">
-        {renderBasicFrame()}
+        <div ref={frameRef}>{renderBasicFrame()}</div>
       </div>
 
       <div className="mt-3 flex items-center justify-between px-[24px]">

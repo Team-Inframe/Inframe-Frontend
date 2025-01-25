@@ -21,7 +21,8 @@ const RoutePath = {
   Gallery: "/storages/galleries",
 
   /* 사진 촬영 페이지 */
-  Camera: "/camera/:id",
+  Photo: "/photo/:id",
+  PhotoDownload: "/photo/download",
 
   /* 테스트 페이지 */
   Test: "/test",

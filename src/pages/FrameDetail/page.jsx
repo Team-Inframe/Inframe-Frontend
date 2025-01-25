@@ -23,7 +23,7 @@ export const FrameDetailPage = () => {
         </div>
       </div>
       <div className="flex items-center justify-center gap-[20px] px-24 pt-12">
-        <div className="flex" onClick={() => navigate(`/camera/${id}`)}>
+        <div className="flex" onClick={() => navigate(`/photo/${id}`)}>
           <span className="Label_M pt-[2px] text-syscolor-SystemGray">
             촬영하러 가기
           </span>

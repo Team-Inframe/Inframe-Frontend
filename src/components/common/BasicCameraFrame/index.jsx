@@ -16,7 +16,7 @@ export const BasicCameraFrame1 = ({ bgsrc, isCapturing, currentFrame }) => {
 
   return (
     <div
-      className={`flex h-[470px] w-[180px] flex-col gap-[5px] border-2 px-[19px] py-[21px] shadow-lg ${
+      className={`flex h-[450px] w-[180px] flex-col gap-[5px] border-2 px-[19px] py-[21px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{
@@ -27,19 +27,19 @@ export const BasicCameraFrame1 = ({ bgsrc, isCapturing, currentFrame }) => {
       }}
     >
       {[0, 1, 2, 3].map((index) => (
-        <div className="relative flex-1 border-2 bg-white" key={index}>
+        <div className="flex border-2 bg-white" key={index}>
           {frames[index] ? (
             <img
               src={frames[index]}
               alt={`Frame ${index + 1}`}
-              className="h-full w-full object-cover"
+              className="h-[94px] w-[134px] object-cover"
             />
           ) : (
             <video
               ref={videoRefs.current[index]}
               autoPlay
               playsInline
-              className="h-full w-full object-cover"
+              className="h-[94px] w-[134px] object-cover"
             ></video>
           )}
           <canvas ref={canvasRefs.current[index]} className="hidden"></canvas>
@@ -64,7 +64,7 @@ export const BasicCameraFrame2 = ({ bgsrc, isCapturing, currentFrame }) => {
 
   return (
     <div
-      className={`w-real-screen flex h-[470px] flex-col gap-[4px] border-2 px-[10px] py-[26px] shadow-lg ${
+      className={`flex h-[450px] w-[350px] flex-col gap-[4px] border-2 px-[13px] py-[26px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{
@@ -201,19 +201,19 @@ export const BasicCameraFrame3 = ({ bgsrc, isCapturing, currentFrame }) => {
     >
       <div className="flex flex-1 gap-[5px]">
         {[0, 1].map((index) => (
-          <div className="relative flex-1 border-2 bg-white" key={index}>
+          <div className="border-2 bg-white" key={index}>
             {frames[index] ? (
               <img
                 src={frames[index]}
                 alt={`Frame ${index + 1}`}
-                className="h-full w-full object-cover"
+                className="h-[116px] w-[164px] object-cover"
               />
             ) : (
               <video
                 ref={videoRefs.current[index]}
                 autoPlay
                 playsInline
-                className="h-full w-full object-cover"
+                className="h-[116px] w-[164px] object-cover"
               ></video>
             )}
             <canvas ref={canvasRefs.current[index]} className="hidden"></canvas>
@@ -222,19 +222,19 @@ export const BasicCameraFrame3 = ({ bgsrc, isCapturing, currentFrame }) => {
       </div>
       <div className="flex flex-1 gap-[5px]">
         {[2, 3].map((index) => (
-          <div className="relative flex-1 border-2 bg-white" key={index}>
+          <div className="border-2 bg-white" key={index}>
             {frames[index] ? (
               <img
                 src={frames[index]}
                 alt={`Frame ${index + 1}`}
-                className="h-full w-full object-cover"
+                className="h-[116px] w-[164px] object-cover"
               />
             ) : (
               <video
                 ref={videoRefs.current[index]}
                 autoPlay
                 playsInline
-                className="h-full w-full object-cover"
+                className="h-[116px] w-[164px] object-cover"
               ></video>
             )}
             <canvas ref={canvasRefs.current[index]} className="hidden"></canvas>
@@ -272,19 +272,19 @@ export const BasicCameraFrame4 = ({ bgsrc, isCapturing, currentFrame }) => {
     >
       <div className="ml-[19px] flex flex-1 gap-[4px]">
         {[0, 1].map((index) => (
-          <div className="relative flex-1 border-2 bg-white" key={index}>
+          <div className="border-2 bg-white" key={index}>
             {frames[index] ? (
               <img
                 src={frames[index]}
                 alt={`Frame ${index + 1}`}
-                className="h-full w-full object-cover"
+                className="h-[116px] w-[164px] object-cover"
               />
             ) : (
               <video
                 ref={videoRefs.current[index]}
                 autoPlay
                 playsInline
-                className="h-full w-full object-cover"
+                className="h-[116px] w-[164px] object-cover"
               ></video>
             )}
             <canvas ref={canvasRefs.current[index]} className="hidden"></canvas>
@@ -293,19 +293,19 @@ export const BasicCameraFrame4 = ({ bgsrc, isCapturing, currentFrame }) => {
       </div>
       <div className="mr-[19px] flex flex-1 gap-[4px]">
         {[2, 3].map((index) => (
-          <div className="relative flex-1 border-2 bg-white" key={index}>
+          <div className="border-2 bg-white" key={index}>
             {frames[index] ? (
               <img
                 src={frames[index]}
                 alt={`Frame ${index + 1}`}
-                className="h-full w-full object-cover"
+                className="h-[116px] w-[164px] object-cover"
               />
             ) : (
               <video
                 ref={videoRefs.current[index]}
                 autoPlay
                 playsInline
-                className="h-full w-full object-cover"
+                className="h-[116px] w-[164px] object-cover"
               ></video>
             )}
             <canvas ref={canvasRefs.current[index]} className="hidden"></canvas>

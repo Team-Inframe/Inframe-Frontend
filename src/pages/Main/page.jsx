@@ -7,7 +7,7 @@ import frame1 from "@/assets/images/frame1.png";
 export const MainPage = () => {
   const navigate = useNavigate();
   return (
-    <div className="flex min-h-real-screen flex-col items-center justify-center overflow-y-auto px-[24px] pt-[70px]">
+    <div className="flex flex-col items-center justify-center overflow-y-auto px-[24px] pt-[70px]">
       <div className="w-full flex-col justify-start text-left">
         <div className="Headline_B flex text-black">김H팀님</div>
         <div className="Headline_L text-black">프레임을 선택해보세요!</div>

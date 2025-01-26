@@ -54,8 +54,8 @@ const Footer = () => {
         onClick={() => handleClick(RoutePath.Frame)}
         className={
           activeButton === "frame"
-            ? "ml-3 mt-1 text-[#9E70D9]"
-            : "ml-3 mt-1 text-gray-600"
+            ? "ml-3 text-[#9E70D9]"
+            : "ml-3 text-gray-600"
         }
       />
 

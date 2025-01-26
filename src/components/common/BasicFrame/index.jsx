@@ -5,7 +5,7 @@ export const BasicFrame1 = ({ bgsrc }) => {
 
   return (
     <div
-      className={`flex h-[450px] w-[180px] flex-col gap-[5px] border-2 px-[19px] py-[21px] shadow-lg ${
+      className={`flex h-[420px] w-[180px] flex-col gap-[5px] border-2 px-[19px] py-[21px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{
@@ -30,7 +30,7 @@ export const BasicFrame2 = ({ bgsrc }) => {
 
   return (
     <div
-      className={`flex h-[400px] w-[320px] flex-col gap-[4px] border-2 px-[10px] py-[26px] shadow-lg ${
+      className={`flex h-[390px] w-[320px] flex-col gap-[4px] border-2 px-[10px] py-[26px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{

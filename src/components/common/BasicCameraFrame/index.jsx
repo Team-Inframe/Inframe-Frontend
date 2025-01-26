@@ -16,7 +16,7 @@ export const BasicCameraFrame1 = ({ bgsrc, isCapturing, currentFrame }) => {
 
   return (
     <div
-      className={`flex h-[450px] w-[180px] flex-col gap-[5px] px-[17px] py-[21px] shadow-lg ${
+      className={`flex h-[450px] w-[180px] flex-col gap-[5px] border-2 px-[17px] py-[21px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{
@@ -64,7 +64,7 @@ export const BasicCameraFrame2 = ({ bgsrc, isCapturing, currentFrame }) => {
 
   return (
     <div
-      className={`flex h-[400px] w-[300px] flex-col gap-[4px] px-[13px] py-[26px] shadow-lg ${
+      className={`flex h-[400px] w-[300px] flex-col gap-[4px] border-2 px-[13px] py-[26px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{
@@ -189,7 +189,7 @@ export const BasicCameraFrame3 = ({ bgsrc, isCapturing, currentFrame }) => {
 
   return (
     <div
-      className={`flex h-[290px] w-[370px] flex-col gap-[5px] px-[23px] py-[17px] shadow-lg ${
+      className={`flex h-[290px] w-[370px] flex-col gap-[5px] border-2 px-[23px] py-[17px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{
@@ -206,14 +206,14 @@ export const BasicCameraFrame3 = ({ bgsrc, isCapturing, currentFrame }) => {
               <img
                 src={frames[index]}
                 alt={`Frame ${index + 1}`}
-                className="h-[120px] w-[164px] object-cover"
+                className="h-[120px] w-[170px] object-cover"
               />
             ) : (
               <video
                 ref={videoRefs.current[index]}
                 autoPlay
                 playsInline
-                className="h-[120px] w-[164px] object-cover"
+                className="h-[120px] w-[170px] object-cover"
               ></video>
             )}
             <canvas ref={canvasRefs.current[index]} className="hidden"></canvas>
@@ -227,14 +227,14 @@ export const BasicCameraFrame3 = ({ bgsrc, isCapturing, currentFrame }) => {
               <img
                 src={frames[index]}
                 alt={`Frame ${index + 1}`}
-                className="h-[120px] w-[164px] object-cover"
+                className="h-[120px] w-[170px] object-cover"
               />
             ) : (
               <video
                 ref={videoRefs.current[index]}
                 autoPlay
                 playsInline
-                className="h-[120px] w-[164px] object-cover"
+                className="h-[120px] w-[170px] object-cover"
               ></video>
             )}
             <canvas ref={canvasRefs.current[index]} className="hidden"></canvas>
@@ -260,7 +260,7 @@ export const BasicCameraFrame4 = ({ bgsrc, isCapturing, currentFrame }) => {
 
   return (
     <div
-      className={`flex h-[290px] w-[370px] flex-col gap-[8px] px-[23px] py-[17px] shadow-lg ${
+      className={`flex h-[290px] w-[370px] flex-col gap-[8px] border-2 px-[23px] py-[17px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{
@@ -277,14 +277,14 @@ export const BasicCameraFrame4 = ({ bgsrc, isCapturing, currentFrame }) => {
               <img
                 src={frames[index]}
                 alt={`Frame ${index + 1}`}
-                className="h-[120px] w-[164px] object-cover"
+                className="h-[120px] w-[170px] object-cover"
               />
             ) : (
               <video
                 ref={videoRefs.current[index]}
                 autoPlay
                 playsInline
-                className="h-[120px] w-[164px] object-cover"
+                className="h-[120px] w-[170px] object-cover"
               ></video>
             )}
             <canvas ref={canvasRefs.current[index]} className="hidden"></canvas>
@@ -298,14 +298,14 @@ export const BasicCameraFrame4 = ({ bgsrc, isCapturing, currentFrame }) => {
               <img
                 src={frames[index]}
                 alt={`Frame ${index + 1}`}
-                className="h-[120px] w-[164px] object-cover"
+                className="h-[120px] w-[170px] object-cover"
               />
             ) : (
               <video
                 ref={videoRefs.current[index]}
                 autoPlay
                 playsInline
-                className="h-[120px] w-[164px] object-cover"
+                className="h-[120px] w-[170px] object-cover"
               ></video>
             )}
             <canvas ref={canvasRefs.current[index]} className="hidden"></canvas>

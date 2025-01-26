@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  @font-face {
+  /* @font-face {
     font-family: "pretendard";
     src: url(./public/Fonts/Pretendard-Bold.otf);
     font-weight: 700;
@@ -16,7 +16,44 @@
     font-weight: 500;
     font-style: medium;
     font-display: swap;
+  } */
+
+  @font-face {
+    font-family: Pretendard;
+    font-weight: 700;
+    font-display: swap;
+    src:
+      url("./assets/fonts/Pretendard-Bold.subset.woff2") format("woff2"),
+      url("./assets/fonts/Pretendard-Bold.subset.woff") format("woff");
   }
+
+  @font-face {
+    font-family: Pretendard;
+    font-weight: 600;
+    font-display: swap;
+    src:
+      url("./assets/fonts/Pretendard-SemiBold.subset.woff2") format("woff2"),
+      url("./assets/fonts/Pretendard-SemiBold.subset.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: Pretendard;
+    font-weight: 500;
+    font-display: swap;
+    src:
+      url("./assets/fonts/Pretendard-Medium.subset.woff2") format("woff2"),
+      url("./assets/fonts/Pretendard-Medium.subset.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: Pretendard;
+    font-weight: 400;
+    font-display: swap;
+    src:
+      url("./assets/fonts/Pretendard-Regular.subset.woff2") format("woff2"),
+      url("./assets/fonts/Pretendard-Regular.subset.woff") format("woff");
+  }
+
   @font-face {
     font-family: "pretendard";
     src: url(public/Fonts/Pretendard-Light.otf);

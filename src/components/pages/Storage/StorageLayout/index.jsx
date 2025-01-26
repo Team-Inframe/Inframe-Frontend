@@ -15,7 +15,7 @@ export const StorageLayout = ({ title, children }) => {
         onClick={handleOnClick}
         className="mb-[8px] cursor-pointer px-[14px]"
       />
-      <div className="flex flex-col px-[24px]">
+      <div className="flex flex-col justify-center px-[24px]">
         <span className="Headline_B mb-[25px] text-black">{title}</span>
         {children}
       </div>

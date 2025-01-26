@@ -43,7 +43,7 @@ export const HotFramePage = () => {
             <HotFrame
               key={frame.customFrameId}
               label1={frame.customFrameTitle}
-              onClick={() => navigate("/frame/${frame.customFrameId}")}
+              onClick={() => navigate("/frames/${frame.customFrameId}")}
               frameImg={frame.customFrameUrl}
               label2={frame.bookmarks}
             />

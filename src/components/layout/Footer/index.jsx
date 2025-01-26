@@ -32,7 +32,13 @@ const Footer = () => {
   };
 
   return (
-    <footer className="fixed bottom-0 flex h-24 w-screen max-w-[450px] items-center justify-around bg-white">
+    <footer
+      className="fixed bottom-0 flex h-24 w-screen max-w-[450px] items-center justify-around bg-white"
+      style={{
+        boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.25)",
+        borderTop: "1px solid #E5E7EB",
+      }}
+    >
       <IconButton
         iconSrc={activeButton === "home" ? ColoredHome : homebutton}
         altText="HOME"

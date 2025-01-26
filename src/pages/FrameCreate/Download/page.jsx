@@ -11,12 +11,12 @@ const FrameDownloadPage = () => {
   };
 
   return (
-    <div className="flex h-real-screen flex-col pb-[50px] pt-[50px]">
+    <div className="flex h-real-screen flex-col pb-[50px] pt-[56px]">
       <Header title="프레임 저장하기" onClick={handleConfirmClick} />
 
       <div className="flex h-full flex-col items-center justify-between">
         <div className="flex flex-1 flex-col items-center justify-center gap-[5px]">
-          <div className="self-end">
+          <div className="mt-6 self-end">
             <ShareToggle />
           </div>
           <BasicFrame1 bgsrc="BGColor3" />

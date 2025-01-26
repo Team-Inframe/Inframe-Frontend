@@ -4,25 +4,24 @@ const RoutePath = {
   Signup: "/signup",
 
   /* 메인 페이지 */
-  Main: "/home",
-  HotFrame: "/hot-frames",
-  GetFrame: "/frame/:id",
+  Main: "/main",
 
-  /* 프레임 선택 페이지 */
+  /* 프레임 페이지 */
   Frame: "/frames",
+  FrameDetail: "/frames/:id",
+  FrameHot: "/frames/hot",
   FrameBackground: "/frames/background",
   FrameSticker: "/frames/sticker",
   FrameDownload: "/frames/download",
+  FrameCamera: "/frames/camera/:id",
+  FrameCameraDownload: "/frames/camera/download",
 
   /* 보관함 페이지 */
   Storage: "/storages",
   MyFrame: "/storages/my-frames",
   SavedFrame: "/storages/saved-frames",
   Gallery: "/storages/galleries",
-
-  /* 사진 촬영 페이지 */
-  Photo: "/photo/:id",
-  PhotoDownload: "/photo/download",
+  GalleryDetail: "/storages/galleries/:id",
 
   /* 테스트 페이지 */
   Test: "/test",

@@ -16,10 +16,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import html2canvas from "html2canvas";
 import RoutePath from "@/routes/routePath";
 
-export default function PhotoCameraPage() {
+export default function FrameCameraPage() {
   const [frames, setFrames] = useState([]);
-  const [currentFrame, setCurrentFrame] = useState(5);
+  const [currentFrame, setCurrentFrame] = useState(null);
   const [isCapturing, setIsCapturing] = useState(false);
+  const [timerCount, setTimerCount] = useState("3");
   const { id: customFrameId } = useParams();
   const frameRef = useRef(null);
   const navigate = useNavigate();
@@ -41,17 +42,17 @@ export default function PhotoCameraPage() {
   }, [customFrameId]);
 
   const startCaptureSequence = async () => {
-    setIsCapturing(true);
-
     for (let i = 0; i < 5; i++) {
-      await new Promise((resolve) => {
-        setTimeout(() => {
-          resolve();
-          setCurrentFrame(i);
-        }, 3000);
-      });
-
-      await new Promise((resolve) => setTimeout(resolve, 300));
+      for (let count = 4; count > 0; count--) {
+        i === 4
+          ? setTimerCount("사진을 불러오고 있어요")
+          : count == 1
+            ? setTimerCount("찰칵!")
+            : setTimerCount(count - 1);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+      }
+      setIsCapturing(true);
+      setCurrentFrame(i);
     }
 
     try {
@@ -63,15 +64,27 @@ export default function PhotoCameraPage() {
         allowTaint: true,
       });
 
-      canvas.toBlob(async (blob) => {
-        if (blob) {
-          const userId = localStorage.getItem("userId");
-          const response = await postPhoto(userId, blob);
-          localStorage.setItem("photoUrl", response.photo_url);
-          console.log(response);
-          navigate(RoutePath.PhotoDownload);
-        }
+      const blob = await new Promise((resolve) => {
+        canvas.toBlob(
+          (blob) => {
+            if (blob) {
+              resolve(blob);
+            } else {
+              throw new Error("blob 생성 실패");
+            }
+          },
+          "image/png",
+          1.0
+        );
       });
+
+      const userId = localStorage.getItem("userId");
+      const file = new File([blob], "MyPhoto.png", { type: "image/png" });
+
+      const response = await postPhoto(userId, file);
+      localStorage.setItem("photoUrl", response.photo_url);
+      console.log(response);
+      navigate(RoutePath.FrameCameraDownload);
     } catch (err) {
       console.error(err);
     }
@@ -132,7 +145,7 @@ export default function PhotoCameraPage() {
 
   return (
     <div className="flex h-real-screen flex-col justify-between bg-white pb-[60px] pt-[40px]">
-      <div className="mb-3 flex flex-col">
+      <div className="mb-3 flex flex-col gap-[50px]">
         <div className="flex-col">
           <button onClick={() => navigate(-1)}>
             <img
@@ -149,13 +162,13 @@ export default function PhotoCameraPage() {
             <span className="Label_M mt-1">타이머는 3초에요!</span>
           </div>
         </div>
+        <div className="flex flex-col items-center justify-center">
+          <div className="Headline_B mb-[50px]">{timerCount}</div>
+          <div ref={frameRef}>{renderBasicFrame()}</div>
+        </div>
       </div>
 
-      <div className="flex items-center justify-center">
-        <div ref={frameRef}>{renderBasicFrame()}</div>
-      </div>
-
-      <div className="mt-3 flex items-center justify-between px-[24px]">
+      <div className="mt-8 flex items-center justify-between px-[24px]">
         <img src={Electronic} className="px-1" />
         <img
           src={CameraButton}

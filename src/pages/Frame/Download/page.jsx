@@ -1,7 +1,7 @@
 import RoutePath from "@/routes/routePath";
 import { useNavigate } from "react-router-dom";
 
-export const PhotoDownloadPage = () => {
+export const FrameCameraDownloadPage = () => {
   const photoUrl = localStorage.getItem("photoUrl");
   const navigate = useNavigate();
 
@@ -9,7 +9,9 @@ export const PhotoDownloadPage = () => {
     const link = document.createElement("a");
     link.href = photoUrl;
     link.download = "MyPhoto.png";
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
   };
 
   const handleConfirmClick = () => {

@@ -67,52 +67,52 @@ const SignupPage = () => {
 
       <div className="flex w-full">
         <div className="w-full">
-          <div className="Caption_normal_M mb-2.5 mt-[30px]">닉네임</div>
+          <div className="Label_M mb-2.5 mt-[70px]">닉네임</div>
           <div className="flex items-center rounded-md outline outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline has-[input:focus-within]:outline-2 has-[input:focus-within]:outline-offset-1 has-[input:focus-within]:outline-syscolor-SystemPurple1">
             <input
               type="text"
-              className="Caption_normal_M placeholder:Caption_reading_L w-full px-3 py-2.5 focus:outline focus:outline-0"
+              className="Label placeholder:Label_L w-full px-3 py-3 focus:outline focus:outline-0"
               placeholder="닉네임을 입력해주세요."
               value={username}
               onChange={handleUsername}
             />
           </div>
-          <div className="Caption_normal_M mb-2 pt-[21px]">이메일 주소</div>
+          <div className="Label_M mb-2.5 pt-[21px]">이메일 주소</div>
           <div className="flex items-center rounded-md outline outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline has-[input:focus-within]:outline-2 has-[input:focus-within]:outline-offset-1 has-[input:focus-within]:outline-syscolor-SystemPurple1">
             <input
               type="text"
-              className="Caption_normal_M placeholder:Caption_reading_L w-full px-3 py-2.5 focus:outline focus:outline-0"
+              className="Labell_M placeholder:Label_L w-full px-3 py-3 focus:outline focus:outline-0"
               placeholder="example@Email.com"
               value={email}
               onChange={handleEmail}
             />
           </div>
-          <div className="Caption_normal_M pt-[8px] text-red-600">
-            {!emailValid && email.length > 0 && (
-              <div>올바른 이메일을 입력해주세요.</div>
-            )}
-          </div>
+          {!emailValid && email.length > 0 && (
+            <div className="Caption_normal_M pt-[8px] text-red-600">
+              올바른 이메일을 입력해주세요.
+            </div>
+          )}
 
-          <div className="Caption_normal_M mb-2.5 mt-4">비밀번호</div>
+          <div className="Label_M mb-2.5 pt-[21px]">비밀번호</div>
           <div className="flex items-center rounded-md outline outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline has-[input:focus-within]:outline-2 has-[input:focus-within]:outline-offset-1 has-[input:focus-within]:outline-syscolor-SystemPurple1">
             <input
               type="password"
-              className="Caption_normal_M placeholder:Caption_reading_L w-full px-3 py-2.5 focus:outline focus:outline-0"
+              className="Label_M placeholder:Label_L w-full px-3 py-3 focus:outline focus:outline-0"
               placeholder="영문, 숫자, 특수문자 포함 8자 이상"
               value={pw}
               onChange={handlePassword}
             />
           </div>
-          <div className="Caption_normal_M pt-[8px] text-red-600">
-            {!pwValid && pw.length > 0 && (
-              <div>영문, 숫자, 특수문자 포함 8자 이상 입력해주세요.</div>
-            )}
-          </div>
+          {!pwValid && pw.length > 0 && (
+            <div className="Caption_normal_M pt-[8px] text-red-600">
+              영문, 숫자, 특수문자 포함 8자 이상 입력해주세요.
+            </div>
+          )}
 
           <button
             disabled={notAllow}
             type="button"
-            className={`Caption_normal_M mt-6 w-full rounded-md py-3 text-white outline-none ${notAllow ? "bg-syscolor-SystemLightGray" : "bg-gradient-to-b from-syscolor-SystemPurple1 to-syscolor-SystemPurple2"} `}
+            className={`Label_M mt-[50px] w-full rounded-md py-3 text-white outline-none ${notAllow ? "bg-syscolor-SystemLightGray" : "bg-gradient-to-b from-syscolor-SystemPurple1 to-syscolor-SystemPurple2"} `}
             onClick={handleSignup}
           >
             회원가입
@@ -122,7 +122,7 @@ const SignupPage = () => {
 
       <button
         type="button"
-        className="Caption_normal_M mt-4 rounded-md bg-syscolor-SystemWhite text-syscolor-SystemGray"
+        className="Caption_normal_M mt-6 rounded-md bg-syscolor-SystemWhite text-syscolor-SystemGray underline"
         onClick={handleLogin}
       >
         로그인하러 가기

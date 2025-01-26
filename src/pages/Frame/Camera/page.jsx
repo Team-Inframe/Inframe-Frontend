@@ -42,51 +42,45 @@ export default function FrameCameraPage() {
   }, [customFrameId]);
 
   const startCaptureSequence = async () => {
-    for (let i = 0; i < 5; i++) {
-      for (let count = 4; count > 0; count--) {
-        i === 4
-          ? setTimerCount("사진을 불러오고 있어요")
-          : count == 1
-            ? setTimerCount("찰칵!")
-            : setTimerCount(count - 1);
+    for (let i = 0; i < 4; i++) {
+      for (let count = 3; count > 0; count--) {
+        setTimerCount(count.toString());
         await new Promise((resolve) => setTimeout(resolve, 1000));
       }
+      setTimerCount("찰칵!");
       setIsCapturing(true);
       setCurrentFrame(i);
+
+      await new Promise((resolve) => setTimeout(resolve, 500));
     }
 
     try {
-      const frame = frameRef.current;
-      const canvas = await html2canvas(frame, {
-        scale: 2,
-        backgroundColor: null,
-        useCORS: true,
-        allowTaint: true,
-      });
+      const frameElement = frameRef.current;
 
-      const blob = await new Promise((resolve) => {
-        canvas.toBlob(
-          (blob) => {
-            if (blob) {
-              resolve(blob);
-            } else {
-              throw new Error("blob 생성 실패");
-            }
-          },
-          "image/png",
-          1.0
-        );
-      });
+      if (frameElement) {
+        const canvas = await html2canvas(frameElement, {
+          scale: 2,
+          backgroundColor: null,
+          useCORS: true,
+          allowTaint: true,
+        });
 
-      const userId = localStorage.getItem("userId");
-      const file = new File([blob], "MyPhoto.png", { type: "image/png" });
+        const blob = await new Promise((resolve) => {
+          canvas.toBlob((blob) => resolve(blob), "image/png", 1.0);
+        });
 
-      const response = await postPhoto(userId, file);
-      localStorage.setItem("photoUrl", response.photo_url);
-      console.log(response);
-      navigate(RoutePath.FrameCameraDownload);
-    } catch (err) {
-      console.error(err);
+        if (!blob) throw new Error("Blob 생성 실패");
+
+        const userId = localStorage.getItem("userId");
+        const file = new File([blob], "MyPhoto.png", { type: "image/png" });
+
+        const response = await postPhoto(userId, file);
+        localStorage.setItem("photoUrl", response.photo_url);
+
+        navigate(RoutePath.FrameCameraDownload);
+      }
+    } catch (error) {
+      console.error(error);
     }
 
     setIsCapturing(false);

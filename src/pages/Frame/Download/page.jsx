@@ -5,13 +5,28 @@ export const FrameCameraDownloadPage = () => {
   const photoUrl = localStorage.getItem("photoUrl");
   const navigate = useNavigate();
 
-  const onDownloadBtn = () => {
-    const link = document.createElement("a");
-    link.href = photoUrl;
-    link.download = "MyPhoto.png";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const onDownloadBtn = async () => {
+    try {
+      const response = await fetch(photoUrl);
+      const blob = await response.blob();
+      const file = new File([blob], "MyPhoto.png", { type: blob.type });
+
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          title: "My Four-Cut",
+          files: [file],
+        });
+      } else {
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "MyPhoto.png";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleConfirmClick = () => {

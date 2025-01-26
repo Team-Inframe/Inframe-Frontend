@@ -75,7 +75,7 @@ export const BasicCameraFrame2 = ({ bgsrc, isCapturing, currentFrame }) => {
       }}
     >
       <div className="flex gap-[8px]">
-        <div className="h-[130px] w-[140px]">
+        <div className="h-[133px] w-[140px]">
           <div
             className={`relative h-full bg-white ${
               isCapturing && currentFrame === 0 ? "border-blue-500" : ""
@@ -85,20 +85,20 @@ export const BasicCameraFrame2 = ({ bgsrc, isCapturing, currentFrame }) => {
               <img
                 src={frames[0]}
                 alt="Frame 1"
-                className="h-[150px] w-[140px] object-cover"
+                className="h-[155px] w-[140px] object-cover"
               />
             ) : (
               <video
                 ref={videoRefs.current[0]}
                 autoPlay
                 playsInline
-                className="h-[150px] w-[140px] object-cover"
+                className="h-[155px] w-[140px] object-cover"
               ></video>
             )}
             <canvas ref={canvasRefs.current[0]} className="hidden"></canvas>
           </div>
         </div>
-        <div className="h-[130px] w-[140px]">
+        <div className="h-[133px] w-[140px]">
           <div
             className={`relative mt-[26px] h-full bg-white ${
               isCapturing && currentFrame === 1 ? "border-blue-500" : ""
@@ -108,14 +108,14 @@ export const BasicCameraFrame2 = ({ bgsrc, isCapturing, currentFrame }) => {
               <img
                 src={frames[1]}
                 alt="Frame 2"
-                className="h-[150px] w-[140px] object-cover"
+                className="h-[155px] w-[140px] object-cover"
               />
             ) : (
               <video
                 ref={videoRefs.current[1]}
                 autoPlay
                 playsInline
-                className="h-[150px] w-[140px] object-cover"
+                className="h-[155px] w-[140px] object-cover"
               ></video>
             )}
             <canvas ref={canvasRefs.current[1]} className="hidden"></canvas>
@@ -123,7 +123,7 @@ export const BasicCameraFrame2 = ({ bgsrc, isCapturing, currentFrame }) => {
         </div>
       </div>
       <div className="mt-[26px] flex gap-[8px]">
-        <div className="h-[130px] w-[140px]">
+        <div className="h-[133px] w-[140px]">
           <div
             className={`relative h-full bg-white ${
               isCapturing && currentFrame === 2 ? "border-blue-500" : ""
@@ -133,20 +133,20 @@ export const BasicCameraFrame2 = ({ bgsrc, isCapturing, currentFrame }) => {
               <img
                 src={frames[2]}
                 alt="Frame 3"
-                className="h-[150px] w-[140px] object-cover"
+                className="h-[155px] w-[140px] object-cover"
               />
             ) : (
               <video
                 ref={videoRefs.current[2]}
                 autoPlay
                 playsInline
-                className="h-[150px] w-[140px] object-cover"
+                className="h-[155px] w-[140px] object-cover"
               ></video>
             )}
             <canvas ref={canvasRefs.current[2]} className="hidden"></canvas>
           </div>
         </div>
-        <div className="h-[130px] w-[140px]">
+        <div className="h-[133px] w-[140px]">
           <div
             className={`relative mt-[26px] h-full bg-white ${
               isCapturing && currentFrame === 3 ? "border-blue-500" : ""
@@ -156,14 +156,14 @@ export const BasicCameraFrame2 = ({ bgsrc, isCapturing, currentFrame }) => {
               <img
                 src={frames[3]}
                 alt="Frame 4"
-                className="h-[150px] w-[140px] object-cover"
+                className="h-[155px] w-[140px] object-cover"
               />
             ) : (
               <video
                 ref={videoRefs.current[3]}
                 autoPlay
                 playsInline
-                className="h-[150px] w-[140px] object-cover"
+                className="h-[155px] w-[140px] object-cover"
               ></video>
             )}
             <canvas ref={canvasRefs.current[3]} className="hidden"></canvas>

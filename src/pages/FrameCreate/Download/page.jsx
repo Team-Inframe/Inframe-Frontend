@@ -6,6 +6,7 @@ import pencil from "@/assets/svgs/Pencil.svg";
 
 const FrameDownloadPage = () => {
   const navigate = useNavigate();
+
   const handleConfirmClick = () => {
     navigate("/storages/my-frames");
   };

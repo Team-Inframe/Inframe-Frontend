@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { HotFrame } from "@/components/pages/HotFrame";
 import MoveButtom from "/src/assets/svgs/MoveButton.svg";
 import frame1 from "@/assets/images/frame1.png";
+import RoutePath from "@/routes/routePath";
 
 export const MainPage = () => {
   const navigate = useNavigate();
@@ -25,25 +26,25 @@ export const MainPage = () => {
         <div className="grid grid-cols-2 items-center justify-center gap-[20px] px-[15px] pt-8">
           <HotFrame
             label1="지브리st 프레임"
-            onClick={() => navigate("/frame/25")}
+            onClick={() => navigate("/frames/25")}
             frameImg={frame1}
             label2={220}
           />
           <HotFrame
             label1="지브리st 프레임"
-            onClick={() => navigate("/frame/24")}
+            onClick={() => navigate("/frames/24")}
             frameImg={frame1}
             label2={220}
           />
           <HotFrame
             label1="지브리st 프레임"
-            onClick={() => navigate("/frame/23")}
+            onClick={() => navigate("/frames/23")}
             frameImg={frame1}
             label2={220}
           />
           <HotFrame
             label1="지브리st 프레임"
-            onClick={() => navigate("/frame/22")}
+            onClick={() => navigate("/frames/22")}
             frameImg={frame1}
             label2={220}
           />
@@ -51,7 +52,7 @@ export const MainPage = () => {
         <div className="flex justify-center pt-[40px]">
           <div
             className="flex items-center justify-between gap-[9px] rounded-lg border-2 py-[6px] pl-[40px] pr-[30px]"
-            onClick={() => navigate("/hot-frames")}
+            onClick={() => navigate(RoutePath.FrameHot)}
           >
             <span className="Label_M">핫한 프레임 더보기</span>
             <img src={MoveButtom} />

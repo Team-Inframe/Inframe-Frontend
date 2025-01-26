@@ -16,7 +16,7 @@ export const BasicCameraFrame1 = ({ bgsrc, isCapturing, currentFrame }) => {
 
   return (
     <div
-      className={`flex h-[450px] w-[170px] flex-col gap-[5px] border-2 px-[19px] py-[21px] shadow-lg ${
+      className={`flex h-[450px] w-[180px] flex-col gap-[5px] px-[17px] py-[21px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{
@@ -27,19 +27,19 @@ export const BasicCameraFrame1 = ({ bgsrc, isCapturing, currentFrame }) => {
       }}
     >
       {[0, 1, 2, 3].map((index) => (
-        <div className="flex border-2 bg-white" key={index}>
+        <div className="flex bg-white" key={index}>
           {frames[index] ? (
             <img
               src={frames[index]}
               alt={`Frame ${index + 1}`}
-              className="h-[94px] w-[134px] object-cover"
+              className="h-[100px] w-[144px] object-cover"
             />
           ) : (
             <video
               ref={videoRefs.current[index]}
               autoPlay
               playsInline
-              className="h-[94px] w-[134px] object-cover"
+              className="h-[100px] w-[144px] object-cover"
             ></video>
           )}
           <canvas ref={canvasRefs.current[index]} className="hidden"></canvas>
@@ -64,7 +64,7 @@ export const BasicCameraFrame2 = ({ bgsrc, isCapturing, currentFrame }) => {
 
   return (
     <div
-      className={`flex h-[400px] w-[300px] flex-col gap-[4px] border-2 px-[13px] py-[26px] shadow-lg ${
+      className={`flex h-[400px] w-[300px] flex-col gap-[4px] px-[13px] py-[26px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{
@@ -77,7 +77,7 @@ export const BasicCameraFrame2 = ({ bgsrc, isCapturing, currentFrame }) => {
       <div className="flex gap-[8px]">
         <div className="h-[130px] w-[140px]">
           <div
-            className={`border-2 border-${bgsrc} relative h-full bg-white ${
+            className={`relative h-full bg-white ${
               isCapturing && currentFrame === 0 ? "border-blue-500" : ""
             }`}
           >
@@ -100,7 +100,7 @@ export const BasicCameraFrame2 = ({ bgsrc, isCapturing, currentFrame }) => {
         </div>
         <div className="h-[130px] w-[140px]">
           <div
-            className={`border-2 border-${bgsrc} relative mt-[26px] h-full bg-white ${
+            className={`relative mt-[26px] h-full bg-white ${
               isCapturing && currentFrame === 1 ? "border-blue-500" : ""
             }`}
           >
@@ -125,7 +125,7 @@ export const BasicCameraFrame2 = ({ bgsrc, isCapturing, currentFrame }) => {
       <div className="mt-[26px] flex gap-[8px]">
         <div className="h-[130px] w-[140px]">
           <div
-            className={`border-2 border-${bgsrc} relative h-full bg-white ${
+            className={`relative h-full bg-white ${
               isCapturing && currentFrame === 2 ? "border-blue-500" : ""
             }`}
           >
@@ -148,7 +148,7 @@ export const BasicCameraFrame2 = ({ bgsrc, isCapturing, currentFrame }) => {
         </div>
         <div className="h-[130px] w-[140px]">
           <div
-            className={`border-2 border-${bgsrc} relative mt-[26px] h-full bg-white ${
+            className={`relative mt-[26px] h-full bg-white ${
               isCapturing && currentFrame === 3 ? "border-blue-500" : ""
             }`}
           >
@@ -189,7 +189,7 @@ export const BasicCameraFrame3 = ({ bgsrc, isCapturing, currentFrame }) => {
 
   return (
     <div
-      className={`flex h-[290px] w-[370px] flex-col gap-[5px] border-2 px-[23px] py-[17px] shadow-lg ${
+      className={`flex h-[290px] w-[370px] flex-col gap-[5px] px-[23px] py-[17px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{
@@ -201,7 +201,7 @@ export const BasicCameraFrame3 = ({ bgsrc, isCapturing, currentFrame }) => {
     >
       <div className="flex flex-1 gap-[5px]">
         {[0, 1].map((index) => (
-          <div className="border-2 bg-white" key={index}>
+          <div className="bg-white" key={index}>
             {frames[index] ? (
               <img
                 src={frames[index]}
@@ -222,7 +222,7 @@ export const BasicCameraFrame3 = ({ bgsrc, isCapturing, currentFrame }) => {
       </div>
       <div className="flex flex-1 gap-[5px]">
         {[2, 3].map((index) => (
-          <div className="border-2 bg-white" key={index}>
+          <div className="bg-white" key={index}>
             {frames[index] ? (
               <img
                 src={frames[index]}
@@ -260,7 +260,7 @@ export const BasicCameraFrame4 = ({ bgsrc, isCapturing, currentFrame }) => {
 
   return (
     <div
-      className={`flex h-[290px] w-[370px] flex-col gap-[8px] border-2 px-[23px] py-[17px] shadow-lg ${
+      className={`flex h-[290px] w-[370px] flex-col gap-[8px] px-[23px] py-[17px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{
@@ -272,7 +272,7 @@ export const BasicCameraFrame4 = ({ bgsrc, isCapturing, currentFrame }) => {
     >
       <div className="ml-[19px] flex flex-1 gap-[4px]">
         {[0, 1].map((index) => (
-          <div className="border-2 bg-white" key={index}>
+          <div className="bg-white" key={index}>
             {frames[index] ? (
               <img
                 src={frames[index]}
@@ -293,7 +293,7 @@ export const BasicCameraFrame4 = ({ bgsrc, isCapturing, currentFrame }) => {
       </div>
       <div className="mr-[19px] flex flex-1 gap-[4px]">
         {[2, 3].map((index) => (
-          <div className="border-2 bg-white" key={index}>
+          <div className="bg-white" key={index}>
             {frames[index] ? (
               <img
                 src={frames[index]}

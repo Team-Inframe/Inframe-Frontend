@@ -33,7 +33,7 @@ const Footer = () => {
 
   return (
     <footer
-      className="fixed bottom-0 flex h-24 w-screen max-w-[450px] items-center justify-between bg-white px-[40px]"
+      className="fixed bottom-0 flex h-24 w-full max-w-[450px] items-center justify-between gap-[80px] bg-white px-[40px]"
       style={{
         boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.25)",
         borderTop: "1px solid #E5E7EB",
@@ -53,7 +53,9 @@ const Footer = () => {
         label="프레임 만들기"
         onClick={() => handleClick(RoutePath.Frame)}
         className={
-          activeButton === "frame" ? "text-[#9E70D9]" : "text-gray-600"
+          activeButton === "frame"
+            ? "ml-3 mt-1 text-[#9E70D9]"
+            : "ml-3 mt-1 text-gray-600"
         }
       />
 

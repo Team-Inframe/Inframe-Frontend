@@ -163,7 +163,7 @@ export default function FrameCameraPage() {
           </div>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <div className="Headline_B mb-[50px]">{timerCount}</div>
+          <div className="Headline_B mb-[30px]">{timerCount}</div>
           <div ref={frameRef}>{renderBasicFrame()}</div>
         </div>
       </div>

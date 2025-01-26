@@ -29,3 +29,14 @@ export const getPhotosList = async (userId) => {
     return error.response.data;
   }
 };
+
+export const getPhoto = async (photoId) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/photos/${photoId}`, {
+      params: { photo_id: photoId },
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

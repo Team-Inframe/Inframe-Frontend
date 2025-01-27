@@ -2,13 +2,11 @@ const RoutePath = {
   /* 로그인 페이지 */
   Login: "/",
   Signup: "/signup",
-
-  /* 메인 페이지 */
   Main: "/main",
 
   /* 프레임 페이지 */
   Frame: "/frames",
-  FrameDetail: "/frames/:id",
+  FrameDetail: "/frames/:customFrameId",
   FrameHot: "/frames/hot",
   FrameBackground: "/frames/background",
   FrameSticker: "/frames/sticker",

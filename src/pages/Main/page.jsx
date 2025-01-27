@@ -1,18 +1,75 @@
-import Footer from "@/components/layout/Footer/index.jsx";
-import { useNavigate } from "react-router-dom";
+import Footer from "@/components/layout/Footer";
 import { HotFrame } from "@/components/pages/HotFrame";
-import MoveButtom from "/src/assets/svgs/MoveButton.svg";
-import frame1 from "@/assets/images/frame1.png";
+import { useNavigate } from "react-router-dom";
+import { useQuery, useMutation, useQueryClient } from "react-query";
+import { getCustomFrameList, bookmarkCustomFrame } from "@/api";
 import RoutePath from "@/routes/routePath";
 
 export const MainPage = () => {
   const navigate = useNavigate();
   const username = localStorage.getItem("username");
+  const queryClient = useQueryClient();
+
+  // 프레임 데이터 가져오기
+  const {
+    data: frames,
+    isLoading,
+    isError,
+  } = useQuery(
+    "frames",
+    () =>
+      getCustomFrameList("bookmarks").then((res) =>
+        res.data.customFrames.map((frame) => ({
+          ...frame,
+          isBookmarked: frame.isBookmarked || false, // 서버 데이터에 따라 초기화
+        }))
+      ),
+    {
+      staleTime: 300000, // 5분 동안 데이터 재요청 방지
+    }
+  );
+
+  // 북마크 저장/취소 Mutation
+  const mutation = useMutation(
+    async (frameId) => {
+      const userId = 1;
+      const response = await bookmarkCustomFrame(userId, frameId);
+      return { frameId, isBookmarked: response.data.is_bookmarked }; // 서버에서 `is_bookmarked` 값 반환
+    },
+    {
+      onMutate: async (frameId) => {
+        await queryClient.cancelQueries("frames");
+
+        const previousFrames = queryClient.getQueryData("frames");
+        queryClient.setQueryData("frames", (oldFrames) =>
+          oldFrames.map((frame) =>
+            frame.customFrameId === frameId
+              ? {
+                  ...frame,
+                  isBookmarked: !frame.isBookmarked,
+                  bookmarks: frame.isBookmarked
+                    ? frame.bookmarks - 1
+                    : frame.bookmarks + 1,
+                }
+              : frame
+          )
+        );
+
+        return { previousFrames };
+      },
+      onError: (err, frameId, context) => {
+        queryClient.setQueryData("frames", context.previousFrames);
+      },
+    }
+  );
+
+  if (isLoading) return <div>로딩 중...</div>;
+  if (isError) return <div>데이터를 불러오는데 실패했습니다.</div>;
 
   return (
     <div className="flex flex-col items-center justify-center overflow-y-auto pt-[70px]">
       <div className="w-full flex-col justify-start px-[24px] text-left">
-        <div className="Headline_B bg-gradient-to-r from-[#8761D2] to-[#ff00d9] bg-clip-text pb-7 text-transparent">
+        <div className="Headline_B bg-gradient-to-r from-[#8761D2] to-[#B37DDF] bg-clip-text pb-7 text-transparent">
           INFRAME
         </div>
         <div className="Body_normal_M mb-1 flex text-black">{username}님</div>
@@ -29,30 +86,17 @@ export const MainPage = () => {
           </div>
         </div>
         <div className="grid grid-cols-2 items-center justify-center gap-[20px] px-[15px] pt-8">
-          <HotFrame
-            label1="지브리st 프레임"
-            onClick={() => navigate("/frames/25")}
-            frameImg={frame1}
-            label2={220}
-          />
-          <HotFrame
-            label1="지브리st 프레임"
-            onClick={() => navigate("/frames/24")}
-            frameImg={frame1}
-            label2={220}
-          />
-          <HotFrame
-            label1="지브리st 프레임"
-            onClick={() => navigate("/frames/23")}
-            frameImg={frame1}
-            label2={220}
-          />
-          <HotFrame
-            label1="지브리st 프레임"
-            onClick={() => navigate("/frames/22")}
-            frameImg={frame1}
-            label2={220}
-          />
+          {frames.slice(0, 4).map((frame) => (
+            <HotFrame
+              key={frame.customFrameId}
+              label1={frame.customFrameTitle}
+              onClick={() => navigate(`/frames/${frame.customFrameId}`)}
+              frameImg={frame.customFrameUrl}
+              label2={frame.bookmarks}
+              isBookmarked={frame.isBookmarked}
+              onBookmarkClick={() => mutation.mutate(frame.customFrameId)}
+            />
+          ))}
         </div>
         <div className="flex justify-center pt-[40px]">
           <div
@@ -60,13 +104,14 @@ export const MainPage = () => {
             onClick={() => navigate(RoutePath.FrameHot)}
           >
             <span className="Label_M">핫한 프레임 더보기</span>
-            <img src={MoveButtom} />
+            <img src="/src/assets/svgs/MoveButton.svg" alt="이동 버튼" />
           </div>
         </div>
-        <div className="h-28 max-w-[450px]"></div>
+        <div className="h-28 max-w-[490px]"></div>
       </div>
       <Footer />
     </div>
   );
 };
+
 export default MainPage;

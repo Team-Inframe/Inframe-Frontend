@@ -93,7 +93,7 @@ export const bookmarkCustomFrame = async (userId, customFrameId) => {
         },
       }
     );
-    return response;
+    return response.data;
   } catch (error) {
     return error.response;
   }

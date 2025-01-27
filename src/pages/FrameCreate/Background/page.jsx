@@ -14,6 +14,7 @@ import AiUploadeder from "@/components/pages/FrameCreate/AiUploader";
 import html2canvas from "html2canvas";
 import { postFrame, postFrameBackground } from "@/api/frames";
 import RoutePath from "@/routes/routePath";
+
 const FrameBackgroundPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -53,7 +54,8 @@ const FrameBackgroundPage = () => {
         const basicFrameId = localStorage.getItem("basicFrameId");
         if (blob !== null) {
           const response = await postFrame(blob, bgsrc, basicFrameId);
-          console.log("API Response:", response);
+          //프레임 아이디 확인
+          localStorage.setItem("frameId", response.data.frame_id);
           localStorage.setItem("frameBg", bgsrc);
           navigate(RoutePath.FrameSticker);
         }

@@ -1,14 +1,15 @@
-import { BasicFrame1 } from "@/components/common/BasicFrame";
 import Header from "@/components/layout/Header";
 import ShareToggle from "@/components/pages/FrameCreate/ShareToggle";
-import { useNavigate } from "react-router-dom";
 import pencil from "@/assets/svgs/Pencil.svg";
+//import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import RoutePath from "@/routes/routePath";
 
 const FrameDownloadPage = () => {
   const navigate = useNavigate();
 
   const handleConfirmClick = () => {
-    navigate("/storages/my-frames");
+    navigate(RoutePath.Main);
   };
 
   return (
@@ -20,7 +21,8 @@ const FrameDownloadPage = () => {
           <div className="mt-6 self-end">
             <ShareToggle />
           </div>
-          <BasicFrame1 bgsrc="BGColor3" />
+          {/* 이미지불러오기 */}
+          <img src={localStorage.getItem("file_url")}></img>
         </div>
 
         <div className="mt-[40px] flex h-[150px] flex-col items-center gap-[40px]">

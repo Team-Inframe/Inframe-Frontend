@@ -1,6 +1,6 @@
 import { useStickerStore } from "@/libraries/store/storesticker";
 
-const Sticker = ({ imgSrc }) => {
+const Sticker = ({ stickerId, imgSrc }) => {
   const addsticker = useStickerStore((state) => state.addSticker);
 
   return (
@@ -9,6 +9,7 @@ const Sticker = ({ imgSrc }) => {
       //addsticker에 imgSrc를 넣어서 스티커를 추가하는 함수를 실행
       onClick={() =>
         addsticker({
+          id: stickerId,
           src: imgSrc,
           position: { x: 0, y: 0 },
         })

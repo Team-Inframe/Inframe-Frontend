@@ -9,7 +9,7 @@ const AiUploader = ({ onClick, prompt, onPromptChange }) => {
         onChange={onPromptChange}
         className="Body_reading_M flex w-full items-center rounded-[5px] border-2 px-[7px] py-[5px] focus:border-none focus:outline-2 focus:outline-syscolor-SystemPurple1"
       />
-      <img src={sendbutton} onClick={() => onClick} />
+      <img src={sendbutton} onClick={onClick} />
     </div>
   );
 };

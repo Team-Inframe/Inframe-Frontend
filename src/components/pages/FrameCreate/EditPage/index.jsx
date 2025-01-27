@@ -1,5 +1,5 @@
 import { useStickerStore } from "@/libraries/store/storesticker";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Rnd } from "react-rnd";
 import {
   BasicFrame1,
@@ -11,11 +11,16 @@ import {
 const EditPage = () => {
   const stickers = useStickerStore((state) => state.stickers);
   const updateSticker = useStickerStore((state) => state.updateSticker);
+  const removeSticker = useStickerStore((state) => state.removeSticker);
   //const [width, setWidth] = useState(0);
   //const [height, setHeight] = useState(0);
   const frameRef = useRef(null);
+  const [selectedsticker, setSelectedSticker] = useState(null);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    console.log(selectedsticker);
+  }, [stickers]);
+
   const renderFrame = () => {
     switch (localStorage.getItem("basicFrameId")) {
       case "1":
@@ -31,6 +36,9 @@ const EditPage = () => {
     }
   };
 
+  const handlesetSticker = (stickerindex) => {
+    setSelectedSticker(stickerindex);
+  };
   const handleDrag = (e, d, index) => {
     updateSticker(index, {
       position: { x: d.x, y: d.y },
@@ -48,12 +56,17 @@ const EditPage = () => {
     });
   };
 
+  const handleremover = (e, index) => {
+    //e.preventDefault();
+    removeSticker(index);
+  };
+
   return (
     <div>
       <div className="flex flex-1 items-center justify-center">
         <div ref={frameRef}>{renderFrame()}</div>
       </div>
-      {/* {console.log(stickers)} */}
+      {console.log(stickers)}
       {stickers.map((sticker, index) => (
         <Rnd
           key={index}
@@ -67,7 +80,9 @@ const EditPage = () => {
           }}
           onDragStop={(e, d) => {
             handleDrag(e, d, index);
+            handlesetSticker(index);
           }}
+          //dragHandleClassName="handle"
           onResizeStop={(e, direction, ref, delta, position) =>
             handleResizeStop(index, e, direction, ref, delta, position)
           }
@@ -75,6 +90,7 @@ const EditPage = () => {
           <img src={sticker.src} alt="" />
         </Rnd>
       ))}
+      {/* <button onClick={handleremover}>삭제</button> */}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import Header from "@/components/layout/Header";
 import TextButton from "@/components/common/Button/TextButton";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import AiUploader from "@/components/pages/FrameCreate/AiUploader";
 import PictureUploader from "@/components/pages/FrameCreate/PictureUploader";
@@ -9,6 +9,8 @@ import Sticker from "@/components/pages/FrameCreate/Sticker";
 import { postSticker } from "@/api";
 import { getStickers } from "@/api";
 import EditPage from "@/components/pages/FrameCreate/EditPage";
+import html2canvas from "html2canvas";
+import { postCustomFrameImg } from "@/api/customframes";
 
 const FrameStickerPage = () => {
   const navigate = useNavigate();
@@ -17,6 +19,7 @@ const FrameStickerPage = () => {
   const [istoggled, setIstoggled] = useState(false);
   const [prompt, setPrompt] = useState("");
   const [stickers, setStickers] = useState([]);
+  const frameRef = useRef(null);
 
   const handlePromptChange = (e) => {
     setPrompt(e.target.value);
@@ -46,7 +49,11 @@ const FrameStickerPage = () => {
       }
     };
     getStickerlist();
-  }, []);
+  }, [SelectedComp]);
+
+  // useEffect(() => {
+  //   <Stickers />;
+  // }, [stickers]);
 
   const handleTextButtonClick = (text) => {
     //아무버튼도 안눌렸을때
@@ -65,8 +72,30 @@ const FrameStickerPage = () => {
     }
   };
 
-  const handleConfirmClick = () => {
-    navigate(RoutePath.FrameDownload);
+  const handleConfirmClick = async () => {
+    if (!frameRef.current) return;
+
+    try {
+      const frame = frameRef.current;
+      //완성프레임 사진찍기
+      const canvas = await html2canvas(frame, {
+        scale: 2,
+        backgroundColor: null,
+        useCORS: true,
+        allowTaint: true,
+      });
+      canvas.toBlob(async (blob) => {
+        if (blob !== null) {
+          //finishFrameBlob을 서버에 보내기
+          const response = await postCustomFrameImg(blob);
+          //state로 넘겨주기
+          localStorage.setItem("file_url", response.data.file_url);
+          navigate(RoutePath.FrameDownload);
+        }
+      });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   // const addSticker = (newSticker) => {
@@ -78,7 +107,7 @@ const FrameStickerPage = () => {
       <Header title="스티커 만들기" onClick={handleConfirmClick} />
 
       <div className="flex h-full flex-col justify-between">
-        <div className="flex flex-1 items-center justify-center">
+        <div ref={frameRef} className="flex flex-1 items-center justify-center">
           <EditPage className="max-h-[450px] max-w-[350px]" />
         </div>
 
@@ -100,7 +129,11 @@ const FrameStickerPage = () => {
             {SelectedComp == list[0] ? (
               <div className="grid h-full w-full grid-cols-4 overflow-auto bg-slate-100">
                 {stickers.map((group) => (
-                  <Sticker key={group.sticker_id} imgSrc={group.sticker_url} />
+                  <Sticker
+                    key={group.sticker_id}
+                    stickerId={group.sticker_id}
+                    imgSrc={group.sticker_url}
+                  />
                 ))}
               </div>
             ) : SelectedComp == list[1] ? (

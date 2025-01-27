@@ -5,18 +5,20 @@ const BASE_URL = `${import.meta.env.VITE_BASE_URL}`;
 export const createCustomFrame = async (
   userId,
   frameId,
+  bgsrc,
   customFrameTitle,
-  stickers,
-  customFrameImg,
-  isShared
+  customFrameUrl,
+  isShared,
+  stickers
 ) => {
   try {
     const formData = new FormData();
-    formData.append("custom_frame_img", customFrameImg);
     const data = {
       user_id: userId, // userId -> user_id
       frame_id: frameId, // frameId -> frame_id
       custom_frame_title: customFrameTitle, // customFrameTitle -> custom_frame_title
+      custom_frame_img_url: customFrameUrl, // customFrameUrl -> custom_frame_img_url
+      is_shared: isShared, // isShared -> is_shared
       stickers: stickers.map((sticker) => ({
         sticker_id: sticker.stickerId, // stickerId -> sticker_id
         position_x: sticker.positionX,
@@ -24,7 +26,6 @@ export const createCustomFrame = async (
         sticker_width: sticker.stickerWidth, // stickerWidth -> sticker_width
         sticker_height: sticker.stickerHeight, // stickerHeight -> sticker_height
       })),
-      is_shared: isShared, // isShared -> is_shared
     };
     console.log(data);
     formData.append("data", JSON.stringify(data));
@@ -34,6 +35,25 @@ export const createCustomFrame = async (
         "Content-Type": "multipart/form-data",
       },
     });
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
+
+export const postCustomFrameImg = async (imgFile) => {
+  try {
+    const formData = new FormData();
+    formData.append("file", imgFile);
+    const response = await axios.post(
+      `${BASE_URL}/custom-frames/images`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
     return response.data;
   } catch (error) {
     return error.response.data;

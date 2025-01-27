@@ -8,7 +8,7 @@ import {
   BasicFrame4,
 } from "@/components/common/BasicFrame";
 
-const EditPage = () => {
+const EditPage = ({ isdeleted }) => {
   const stickers = useStickerStore((state) => state.stickers);
   const updateSticker = useStickerStore((state) => state.updateSticker);
   const removeSticker = useStickerStore((state) => state.removeSticker);
@@ -19,7 +19,8 @@ const EditPage = () => {
 
   useEffect(() => {
     console.log(selectedsticker);
-  }, [stickers]);
+    removeSticker(selectedsticker);
+  }, [isdeleted]);
 
   const renderFrame = () => {
     switch (localStorage.getItem("basicFrameId")) {
@@ -34,10 +35,6 @@ const EditPage = () => {
       default:
         return null;
     }
-  };
-
-  const handlesetSticker = (stickerindex) => {
-    setSelectedSticker(stickerindex);
   };
   const handleDrag = (e, d, index) => {
     updateSticker(index, {
@@ -56,10 +53,10 @@ const EditPage = () => {
     });
   };
 
-  const handleremover = (e, index) => {
-    //e.preventDefault();
-    removeSticker(index);
-  };
+  //   const handleremover = (e, index) => {
+  //     //e.preventDefault();
+  //     removeSticker(index);
+  //   };
 
   return (
     <div>
@@ -80,7 +77,7 @@ const EditPage = () => {
           }}
           onDragStop={(e, d) => {
             handleDrag(e, d, index);
-            handlesetSticker(index);
+            setSelectedSticker(index);
           }}
           //dragHandleClassName="handle"
           onResizeStop={(e, direction, ref, delta, position) =>

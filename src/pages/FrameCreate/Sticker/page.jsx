@@ -20,6 +20,7 @@ const FrameStickerPage = () => {
   const [prompt, setPrompt] = useState("");
   const [stickers, setStickers] = useState([]);
   const frameRef = useRef(null);
+  const [isdeleted, setisdeleted] = useState(false);
 
   const handlePromptChange = (e) => {
     setPrompt(e.target.value);
@@ -98,9 +99,9 @@ const FrameStickerPage = () => {
     }
   };
 
-  // const addSticker = (newSticker) => {
-  //   setStickers((prevStickers) => [...prevStickers, newSticker]);
-  // };
+  const handleremover = () => {
+    setisdeleted(!isdeleted);
+  };
 
   return (
     <div className="flex h-real-screen flex-col pb-[50px] pt-[50px]">
@@ -108,9 +109,12 @@ const FrameStickerPage = () => {
 
       <div className="flex h-full flex-col justify-between">
         <div ref={frameRef} className="flex flex-1 items-center justify-center">
-          <EditPage className="max-h-[450px] max-w-[350px]" />
+          <EditPage
+            handleremover={isdeleted}
+            className="max-h-[450px] max-w-[350px]"
+          />
         </div>
-
+        <button onClick={() => handleremover}>삭제</button>
         <div className="mt-[40px] flex h-[150px] w-full flex-col gap-[30px]">
           <div className="flex w-full justify-between px-[100px]">
             <TextButton

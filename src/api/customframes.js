@@ -2,11 +2,10 @@ import axios from "axios";
 
 const BASE_URL = `${import.meta.env.VITE_BASE_URL}`;
 
-export const createCustomFrame = async (
+export const postCustomFrame = async (
   userId,
   frameId,
-  bgsrc,
-  customFrameTitle,
+  title,
   customFrameUrl,
   isShared,
   stickers
@@ -16,7 +15,7 @@ export const createCustomFrame = async (
     const data = {
       user_id: userId, // userId -> user_id
       frame_id: frameId, // frameId -> frame_id
-      custom_frame_title: customFrameTitle, // customFrameTitle -> custom_frame_title
+      custom_frame_title: title, // customFrameTitle -> custom_frame_title
       custom_frame_img_url: customFrameUrl, // customFrameUrl -> custom_frame_img_url
       is_shared: isShared, // isShared -> is_shared
       stickers: stickers.map((sticker) => ({

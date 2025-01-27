@@ -31,7 +31,7 @@ export const MainPage = () => {
   // 북마크 저장/취소 Mutation
   const mutation = useMutation(
     async (frameId) => {
-      const userId = 1;
+      const userId = localStorage.getItem("user_id");
       const response = await bookmarkCustomFrame(userId, frameId);
       return { frameId, isBookmarked: response.data.is_bookmarked }; // 서버에서 `is_bookmarked` 값 반환
     },

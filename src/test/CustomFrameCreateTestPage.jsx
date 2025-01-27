@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { useState } from "react";
-import { createCustomFrame } from "@/api"; // API 호출 함수
+import { postCustomFrame } from "@/api"; // API 호출 함수
 
 const CustomFrameCreateTestPage = () => {
   // 상태 변수 설정
@@ -66,7 +66,7 @@ const CustomFrameCreateTestPage = () => {
     formData.append("data", JSON.stringify(requestData));
 
     try {
-      const response = await createCustomFrame(
+      const response = await postCustomFrame(
         userId,
         frameId,
         customFrameTitle,

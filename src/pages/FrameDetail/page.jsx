@@ -28,7 +28,7 @@ export const FrameDetailPage = () => {
   // 북마크 저장/취소 Mutation
   const mutation = useMutation(
     async () => {
-      const userId = 1;
+      const userId = localStorage.getItem("userId");
       const response = await bookmarkCustomFrame(userId, customFrameId);
       return response.status;
     },

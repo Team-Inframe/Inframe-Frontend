@@ -25,7 +25,7 @@ export const HotFramePage = () => {
   // 북마크 저장/취소 Mutation
   const mutation = useMutation(
     async (frameId) => {
-      const userId = 1;
+      const userId = localStorage.getItem("userId");
       const response = await bookmarkCustomFrame(userId, frameId);
       return { frameId, isBookmarked: response.data.is_bookmarked }; // 반환 값에 `is_bookmarked` 추가
     },

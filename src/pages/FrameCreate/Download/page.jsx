@@ -4,7 +4,6 @@ import ShareToggle from "@/components/pages/FrameCreate/ShareToggle";
 import { useNavigate } from "react-router-dom";
 import pencil from "@/assets/svgs/Pencil.svg";
 import axios from "axios";
-const BASE_URL = `${import.meta.env.VITE_BASE_URL}`;
 
 const FrameDownloadPage = () => {
   const BASE_URL = `${import.meta.env.VITE_BASE_URL}`;
@@ -19,33 +18,34 @@ const FrameDownloadPage = () => {
     stickers: [],
   });
 
+  // localStorage에서 데이터 로드
   useEffect(() => {
-    // localStorage에서 데이터 로드
-    const userId = localStorage.getItem("user_id");
-    const frameId = localStorage.getItem("frame_id");
-    const customFrameImgUrl = localStorage.getItem("custom_frame_img_url");
-    const basicFrameId = localStorage.getItem("basic_frame_id");
+    const userId = localStorage.getItem("user_id") || "0";
+    const frameId = localStorage.getItem("frame_id") || "0";
+    const customFrameImgUrl =
+      localStorage.getItem("custom_frame_img_url") || "";
     const stickers = JSON.parse(localStorage.getItem("stickers") || "[]");
 
     setCustomFrameData({
       user_id: Number(userId),
       frame_id: Number(frameId),
       custom_frame_img_url: customFrameImgUrl,
-      basic_frame_id: Number(basicFrameId),
       stickers: stickers,
     });
   }, []);
 
+  // 저장하기 버튼 클릭 핸들러
   const handleSaveClick = async () => {
-    if (!title) {
-      alert("프레임 제목을 입력해주세요.");
-      return;
-    }
-
+    // 기본값 설정 (필수 데이터 누락 방지)
     const requestData = {
-      ...customFrameData,
-      custom_frame_title: title,
-      is_shared: isShared,
+      user_id: customFrameData.user_id || 0, // 기본값: 0
+      frame_id: customFrameData.frame_id || 0, // 기본값: 0
+      custom_frame_title: title || "Untitled Frame", // 제목이 없으면 기본 제목
+      custom_frame_img_url:
+        customFrameData.custom_frame_img_url ||
+        "https://via.placeholder.com/300x500", // 기본 이미지 URL
+      is_shared: isShared || false, // 기본값: false
+      stickers: customFrameData.stickers || [], // 기본값: 빈 배열
     };
 
     try {
@@ -61,14 +61,20 @@ const FrameDownloadPage = () => {
 
       if (response.status === 200) {
         alert("프레임이 성공적으로 저장되었습니다.");
-        navigate("/storages/my-frames");
+        console.log("Request Data:", requestData);
+        localStorage.removeItem("frame_id");
+        localStorage.removeItem("custom_frame_img_url");
+        localStorage.removeItem("stickers");
+
+        navigate("/storages/my-frames"); // 저장 후 페이지 이동
       }
     } catch (error) {
-      console.error(error);
+      console.error("프레임 저장 중 오류 발생:", error);
       alert("프레임 저장 중 오류가 발생했습니다.");
     }
   };
 
+  // 뒤로가기 버튼 핸들러
   const handleConfirmClick = () => {
     navigate("/storages/my-frames");
   };
@@ -80,27 +86,35 @@ const FrameDownloadPage = () => {
       <div className="flex h-full flex-col items-center justify-between">
         <div className="flex flex-1 flex-col items-center justify-center gap-[5px]">
           <div className="mt-6 self-end">
-            <ShareToggle onChange={setIsShared} />
+            <ShareToggle
+              onChange={(value) => {
+                setIsShared(value);
+                console.log("공유 상태 변경됨:", value);
+              }}
+            />
           </div>
 
           {/* 프레임 동적 렌더링 */}
           <div
             className="relative h-[500px] w-[300px] bg-cover bg-center"
             style={{
-              backgroundImage: `url(${customFrameData.custom_frame_img_url})`,
+              backgroundImage: `url(${
+                customFrameData.custom_frame_img_url ||
+                "https://via.placeholder.com/300x500"
+              })`,
             }}
           >
             {customFrameData.stickers.map((sticker, index) => (
               <img
                 key={index}
-                src={sticker.sticker_url}
+                src={sticker.sticker_url || "https://via.placeholder.com/50"}
                 alt="sticker"
                 style={{
                   position: "absolute",
-                  left: `${sticker.position_x}px`,
-                  top: `${sticker.position_y}px`,
-                  width: `${sticker.sticker_width}px`,
-                  height: `${sticker.sticker_height}px`,
+                  left: `${sticker.position_x || 0}px`,
+                  top: `${sticker.position_y || 0}px`,
+                  width: `${sticker.sticker_width || 50}px`,
+                  height: `${sticker.sticker_height || 50}px`,
                 }}
               />
             ))}

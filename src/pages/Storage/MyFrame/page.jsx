@@ -27,7 +27,7 @@ export const MyFramePage = () => {
     };
     getMyFrames();
   }, []);
-  const response = getMyCustomFrames(1);
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -36,7 +36,7 @@ export const MyFramePage = () => {
     <div>
       <StorageLayout title="내가 만든 프레임">
         <div className="flex flex-col gap-[21px]">
-          {response.map((group) => (
+          {savedMyFrame.map((group) => (
             <StorageImages
               key={group.date}
               date={group.date}

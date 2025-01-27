@@ -28,7 +28,7 @@ import CameraPage from "@/pages/Camera/CameraFrame/page";
 
 const routes = [
   {
-    path: "/",
+    path: RoutePath.Main,
     children: [{ index: true, element: <MainPage /> }],
   },
   {

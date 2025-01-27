@@ -5,10 +5,10 @@ import { useNavigate } from "react-router-dom";
 import AiUploader from "@/components/pages/FrameCreate/AiUploader";
 import PictureUploader from "@/components/pages/FrameCreate/PictureUploader";
 import RoutePath from "@/routes/routePath";
-import StickerList from "@/components/pages/FrameCreate/StickerList";
 import Sticker from "@/components/pages/FrameCreate/Sticker";
 import { postSticker } from "@/api";
 import { getStickers } from "@/api";
+import EditPage from "@/components/pages/FrameCreate/EditPage";
 
 const FrameStickerPage = () => {
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ const FrameStickerPage = () => {
   useEffect(() => {
     const getStickerlist = async () => {
       try {
-        const response = await getStickers(1);
+        const response = await getStickers(localStorage.getItem("userId"));
         setStickers(response.data);
         console.log(response.data);
       } catch (error) {
@@ -78,10 +78,7 @@ const FrameStickerPage = () => {
 
       <div className="flex h-full flex-col justify-between">
         <div className="flex flex-1 items-center justify-center">
-          <img
-            src={localStorage.getItem("frameUrl")}
-            className="max-h-[400px] max-w-[350px]"
-          />
+          <EditPage className="max-h-[450px] max-w-[350px]" />
         </div>
 
         <div className="mt-[40px] flex h-[150px] w-full flex-col gap-[30px]">
@@ -98,13 +95,13 @@ const FrameStickerPage = () => {
             />
           </div>
 
-          <div className="h-full w-full">
+          <div className="min-h-40 w-full">
             {SelectedComp == list[0] ? (
-              <StickerList>
+              <div className="grid h-full w-full grid-cols-4 overflow-auto bg-slate-100">
                 {stickers.map((group) => (
                   <Sticker key={group.sticker_id} imgSrc={group.sticker_url} />
                 ))}
-              </StickerList>
+              </div>
             ) : SelectedComp == list[1] ? (
               <div className="px-[60px]">
                 <AiUploader

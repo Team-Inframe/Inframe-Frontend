@@ -5,7 +5,7 @@ export const BasicFrame1 = ({ bgsrc }) => {
 
   return (
     <div
-      className={`flex h-[400px] w-[180px] flex-col gap-[5px] border-2 px-[19px] py-[21px] shadow-lg ${
+      className={`flex h-[450px] w-[180px] flex-col gap-[5px] border-2 px-[19px] py-[21px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{

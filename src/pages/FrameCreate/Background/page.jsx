@@ -63,11 +63,10 @@ const FrameBackgroundPage = () => {
         if (blob !== null) {
           const response = await postFrame(blob, bgsrc, basicFrameId);
           console.log("API Response:", response);
-          const frameUrl = response.data.frame_url;
+          //const frameUrl = response.data.frame_url;
 
-          localStorage.removeItem("basicFrameId", basicFrameId);
-          localStorage.setItem("frameUrl", frameUrl);
-
+          //localStorage.setItem("frameUrl", frameUrl);
+          localStorage.setItem("frameBg", bgsrc);
           navigate(RoutePath.FrameSticker);
         }
       });
@@ -101,7 +100,7 @@ const FrameBackgroundPage = () => {
 
   return (
     <div className="flex h-real-screen flex-col pb-[50px] pt-[50px]">
-      <Header title="프레임 만들기" onClick={handleConfirmClick} />
+      <Header title="프레임 만들기" onClick={() => handleConfirmClick} />
 
       <div className="flex h-full flex-col justify-between">
         <div className="flex flex-1 items-center justify-center">

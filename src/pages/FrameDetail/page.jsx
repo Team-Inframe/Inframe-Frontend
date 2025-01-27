@@ -1,12 +1,17 @@
 import Footer from "@/components/layout/Footer";
 import { DownloadButton } from "@/components/common/Button/DownloadButton";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { getCustomFrame, bookmarkCustomFrame } from "@/api";
 
 export const FrameDetailPage = () => {
+  const navigate = useNavigate();
   const { customFrameId } = useParams();
   const queryClient = useQueryClient();
+
+  // Frame 데이터 가져오기
   const {
     data: frameData,
     isLoading,

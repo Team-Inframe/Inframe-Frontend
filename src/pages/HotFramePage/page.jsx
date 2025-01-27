@@ -1,86 +1,84 @@
 import Footer from "@/components/layout/Footer";
 import { HotFrame } from "@/components/pages/HotFrame";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { getCustomFrameList } from "@/api";
-import { bookmarkCustomFrame } from "@/api";
+import { useQuery, useMutation, useQueryClient } from "react-query";
+import { getCustomFrameList, bookmarkCustomFrame } from "@/api";
 
 export const HotFramePage = () => {
   const navigate = useNavigate();
-  const [frames, setFrames] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const queryClient = useQueryClient();
 
-  const fetchFrames = async () => {
-    try {
-      setLoading(true);
-      const response = await getCustomFrameList("bookmarks");
-      const sortedFrames = response.data.customFrames.map((frame) => ({
+  // 핫한 프레임 데이터 가져오기
+  const {
+    data: frames,
+    isLoading,
+    isError,
+  } = useQuery("hotFrames", () =>
+    getCustomFrameList("bookmarks").then((res) =>
+      res.data.customFrames.map((frame) => ({
         ...frame,
-        isBookmarked: false,
-      }));
-      setFrames(sortedFrames);
-    } catch (error) {
-      console.error(error);
-      setError("데이터를 불러오는데 실패했습니다.");
-    } finally {
-      setLoading(false);
-    }
-  };
+        isBookmarked: frame.isBookmarked || false, // 기본값 설정
+      }))
+    )
+  );
 
-  const handleSaveBookmark = async (frameId) => {
-    try {
+  // 북마크 저장/취소 Mutation
+  const mutation = useMutation(
+    async (frameId) => {
       const userId = 1;
       const response = await bookmarkCustomFrame(userId, frameId);
+      return { frameId, isBookmarked: response.data.is_bookmarked }; // 반환 값에 `is_bookmarked` 추가
+    },
+    {
+      onMutate: async (frameId) => {
+        await queryClient.cancelQueries("hotFrames");
 
-      setFrames((prevFrames) =>
-        prevFrames.map(
-          (frame) =>
+        const previousFrames = queryClient.getQueryData("hotFrames");
+
+        queryClient.setQueryData("hotFrames", (oldFrames) =>
+          oldFrames.map((frame) =>
             frame.customFrameId === frameId
               ? {
                   ...frame,
-                  isBookmarked: response.status === 201,
-                  // API 응답 상태가 201(저장 성공)일 경우 true, 아니면 false.
+                  isBookmarked: !frame.isBookmarked,
+                  bookmarks: frame.isBookmarked
+                    ? frame.bookmarks - 1
+                    : frame.bookmarks + 1,
                 }
-              : frame,
-          console.log(response.status)
-        )
-      );
-    } catch (error) {
-      console.error(error); // 에러 로그 출력.
-      alert("북마크 저장/취소에 실패했습니다."); // 사용자에게 에러 알림.
-    }
-  };
+              : frame
+          )
+        );
 
-  useEffect(() => {
-    fetchFrames();
-  }, []);
+        return { previousFrames };
+      },
+      onError: (err, frameId, context) => {
+        queryClient.setQueryData("hotFrames", context.previousFrames);
+      },
+    }
+  );
+
+  if (isLoading) return <div>로딩 중...</div>;
+  if (isError) return <div>데이터를 불러오는데 실패했습니다.</div>;
 
   return (
     <div>
       <div className="px-[24px] pt-[70px]">
         <div className="Headline_B">핫한 프레임 🔥</div>
       </div>
-      {loading ? (
-        <div className="text-center">로딩 중...</div> // 로딩 중 메시지
-      ) : error ? (
-        <div className="text-center text-red-500">{error}</div> // 에러 메시지
-      ) : (
-        <div className="grid grid-cols-2 items-center justify-center gap-11 px-[50px] pt-12">
-          {frames.map((frame) => (
-            <HotFrame
-              key={frame.customFrameId} // 각 프레임의 고유 ID.
-              label1={frame.customFrameTitle} // 프레임 제목 전달.
-              onClick={() => navigate(`/frame/${frame.customFrameId}`)} // 클릭 시 특정 프레임 상세 페이지로 이동.
-              frameImg={frame.customFrameUrl} // 프레임 이미지 URL 전달.
-              label2={frame.bookmarks} // 북마크 수 전달.
-              isBookmarked={frame.isBookmarked} // 북마크 상태 전달.
-              onBookmarkClick={() => handleSaveBookmark(frame.customFrameId)}
-            />
-          ))}
-        </div>
-      )}
-      <div className="h-28 w-screen max-w-[490px]"></div>
+      <div className="grid grid-cols-2 items-center justify-center gap-11 px-[50px] pt-12">
+        {frames.map((frame) => (
+          <HotFrame
+            key={frame.customFrameId}
+            label1={frame.customFrameTitle}
+            onClick={() => navigate(`/frame/${frame.customFrameId}`)}
+            frameImg={frame.customFrameUrl}
+            label2={frame.bookmarks}
+            isBookmarked={frame.isBookmarked}
+            onBookmarkClick={() => mutation.mutate(frame.customFrameId)}
+          />
+        ))}
+      </div>
+      <div className="h-28 max-w-[490px]"></div>
       <Footer />
     </div>
   );

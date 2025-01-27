@@ -7,6 +7,7 @@ export const HotFrame = ({
   isBookmarked,
   onBookmarkClick,
 }) => {
+  console.log("HotFrame isBookmarked:", isBookmarked);
   return (
     <div className="flex-col">
       <button className="border-black bg-white shadow-lg" onClick={onClick}>

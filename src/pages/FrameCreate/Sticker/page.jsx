@@ -27,6 +27,7 @@ const FrameStickerPage = () => {
     try {
       const response = await postSticker(prompt);
       setStickers(response.data);
+      setSelectComp("스티커 페이지");
     } catch (error) {
       console.error(error);
     } finally {

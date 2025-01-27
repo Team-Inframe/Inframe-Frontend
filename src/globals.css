@@ -3,23 +3,63 @@
 @tailwind utilities;
 
 @layer base {
-  @font-face {
+  /* @font-face {
     font-family: "pretendard";
     src: url(./public/Fonts/Pretendard-Bold.otf);
     font-weight: 700;
     font-style: bold;
+    font-display: swap;
   }
   @font-face {
     font-family: "pretendard";
     src: url(./public/Fonts/Pretendard-Medium.otf);
     font-weight: 500;
     font-style: medium;
+    font-display: swap;
+  } */
+
+  @font-face {
+    font-family: Pretendard;
+    font-weight: 700;
+    font-display: swap;
+    src:
+      url("./assets/fonts/Pretendard-Bold.subset.woff2") format("woff2"),
+      url("./assets/fonts/Pretendard-Bold.subset.woff") format("woff");
   }
+
+  @font-face {
+    font-family: Pretendard;
+    font-weight: 600;
+    font-display: swap;
+    src:
+      url("./assets/fonts/Pretendard-SemiBold.subset.woff2") format("woff2"),
+      url("./assets/fonts/Pretendard-SemiBold.subset.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: Pretendard;
+    font-weight: 500;
+    font-display: swap;
+    src:
+      url("./assets/fonts/Pretendard-Medium.subset.woff2") format("woff2"),
+      url("./assets/fonts/Pretendard-Medium.subset.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: Pretendard;
+    font-weight: 400;
+    font-display: swap;
+    src:
+      url("./assets/fonts/Pretendard-Regular.subset.woff2") format("woff2"),
+      url("./assets/fonts/Pretendard-Regular.subset.woff") format("woff");
+  }
+
   @font-face {
     font-family: "pretendard";
     src: url(public/Fonts/Pretendard-Light.otf);
     font-weight: 300;
     font-style: light;
+    font-display: swap;
   }
 
   html {
@@ -34,6 +74,14 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  input,
+  textarea {
+    pointer-events: auto;
+    user-select: auto;
+    -ms-user-select: auto;
+    -webkit-user-select: auto;
   }
 }
 

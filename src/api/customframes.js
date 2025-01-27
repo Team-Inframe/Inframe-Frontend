@@ -43,7 +43,13 @@ export const createCustomFrame = async (
 export const getCustomFrame = async (customFrameId) => {
   try {
     const response = await axios.get(
-      `${BASE_URL}/custom-frames/${customFrameId}`
+      `${BASE_URL}/custom-frames/${customFrameId}`,
+      {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
     );
     return response.data;
   } catch (error) {
@@ -87,7 +93,7 @@ export const bookmarkCustomFrame = async (userId, customFrameId) => {
         },
       }
     );
-    return response;
+    return response.data;
   } catch (error) {
     return error.response;
   }

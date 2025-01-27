@@ -1,4 +1,4 @@
-import { getCustomFrame } from "@/api";
+import { getCustomFrame, postPhoto } from "@/api";
 import {
   BasicCameraFrame1,
   BasicCameraFrame2,
@@ -11,14 +11,18 @@ import Electronic from "@/assets/svgs/Electronic.svg";
 import LeftArrow from "@/assets/svgs/LeftArrow.svg";
 import Gallery from "@/assets/svgs/Gallery.svg";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import html2canvas from "html2canvas";
+import RoutePath from "@/routes/routePath";
 
-export default function CameraPage() {
+export default function FrameCameraPage() {
   const [frames, setFrames] = useState([]);
-  const [currentFrame, setCurrentFrame] = useState(5);
+  const [currentFrame, setCurrentFrame] = useState(null);
   const [isCapturing, setIsCapturing] = useState(false);
+  const [timerCount, setTimerCount] = useState("3");
   const { id: customFrameId } = useParams();
+  const frameRef = useRef(null);
   const navigate = useNavigate();
 
   const [customFrame, setCustomFrame] = useState(null);
@@ -38,19 +42,48 @@ export default function CameraPage() {
   }, [customFrameId]);
 
   const startCaptureSequence = async () => {
-    setIsCapturing(true);
+    for (let i = 0; i < 4; i++) {
+      for (let count = 3; count > 0; count--) {
+        setTimerCount(count.toString());
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+      }
+      setTimerCount("찰칵!");
+      setIsCapturing(true);
+      setCurrentFrame(i);
 
-    for (let i = 0; i < 5; i++) {
-      await new Promise((resolve) => {
-        setTimeout(() => {
-          resolve();
-          setCurrentFrame(i);
-        }, 3000);
-      });
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    }
+
+    try {
+      const frameElement = frameRef.current;
+
+      if (frameElement) {
+        const canvas = await html2canvas(frameElement, {
+          scale: 2,
+          backgroundColor: null,
+          useCORS: true,
+          allowTaint: true,
+        });
+
+        const blob = await new Promise((resolve) => {
+          canvas.toBlob((blob) => resolve(blob), "image/png", 1.0);
+        });
+
+        if (!blob) throw new Error("Blob 생성 실패");
+
+        const userId = localStorage.getItem("userId");
+        const file = new File([blob], "MyPhoto.png", { type: "image/png" });
+
+        const response = await postPhoto(userId, file);
+        localStorage.setItem("photoUrl", response.photo_url);
+
+        navigate(RoutePath.FrameCameraDownload);
+      }
+    } catch (error) {
+      console.error(error);
     }
 
     setIsCapturing(false);
-    navigate("/camera/download");
   };
 
   const renderBasicFrame = () => {
@@ -106,7 +139,7 @@ export default function CameraPage() {
 
   return (
     <div className="flex h-real-screen flex-col justify-between bg-white pb-[60px] pt-[40px]">
-      <div className="mb-3 flex flex-col">
+      <div className="mb-3 flex flex-col gap-[50px]">
         <div className="flex-col">
           <button onClick={() => navigate(-1)}>
             <img
@@ -123,13 +156,13 @@ export default function CameraPage() {
             <span className="Label_M mt-1">타이머는 3초에요!</span>
           </div>
         </div>
+        <div className="flex flex-col items-center justify-center">
+          <div className="Headline_B mb-[30px]">{timerCount}</div>
+          <div ref={frameRef}>{renderBasicFrame()}</div>
+        </div>
       </div>
 
-      <div className="flex items-center justify-center">
-        {renderBasicFrame()}
-      </div>
-
-      <div className="mt-3 flex items-center justify-between px-[24px]">
+      <div className="mt-8 flex items-center justify-between px-[24px]">
         <img src={Electronic} className="px-1" />
         <img
           src={CameraButton}

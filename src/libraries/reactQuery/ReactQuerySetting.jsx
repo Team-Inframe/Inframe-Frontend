@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const MINUTES = 1000 * 60;
 
@@ -15,7 +16,10 @@ const queryClient = new QueryClient({
 
 export default function ReactQuerySetting({ children }) {
   return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools />
+      {children}
+    </QueryClientProvider>
   );
 }
 

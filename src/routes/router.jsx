@@ -26,6 +26,7 @@ import { GalleryPage } from "@/pages/Storage/Gallery/page";
 import { FrameCameraDownloadPage } from "@/pages/Frame/Download/page";
 import { GalleryDetailPage } from "@/pages/Storage/Gallery/[id]/page";
 import FrameCameraPage from "@/pages/Frame/Camera/page";
+import LocationWeatherApp from "@/pages/Weather/page";
 
 const routes = [
   {
@@ -62,7 +63,10 @@ const routes = [
       { path: RoutePath.GalleryDetail, element: <GalleryDetailPage /> },
     ],
   },
-
+  {
+    path: RoutePath.Weather,
+    children: [{ index: true, element: <LocationWeatherApp /> }],
+  },
   {
     path: RoutePath.StickerTest,
     children: [{ index: true, element: <StickersTestPage /> }],

@@ -7,17 +7,22 @@ import RoutePath from "@/routes/routePath";
 
 export const MainPage = () => {
   const navigate = useNavigate();
+  const username = localStorage.getItem("username");
+
   return (
-    <div className="flex flex-col items-center justify-center overflow-y-auto px-[24px] pt-[70px]">
-      <div className="w-full flex-col justify-start text-left">
-        <div className="Headline_B flex text-black">김H팀님</div>
-        <div className="Headline_L text-black">프레임을 선택해보세요!</div>
+    <div className="flex flex-col items-center justify-center overflow-y-auto pt-[70px]">
+      <div className="w-full flex-col justify-start px-[24px] text-left">
+        <div className="Headline_B bg-gradient-to-r from-[#8761D2] to-[#ff00d9] bg-clip-text pb-7 text-transparent">
+          INFRAME
+        </div>
+        <div className="Body_normal_M mb-1 flex text-black">{username}님</div>
+        <div className="Label_L text-black">프레임을 선택해보세요!</div>
       </div>
-      <div className="items-center pt-8">
+      <div className="w-real-screen items-center pt-8">
         <img src="/icons/bannerimage.png" />
       </div>
-      <div className="flex w-full flex-col text-left">
-        <div className="items-start justify-start pt-8 text-left">
+      <div className="mt-10 flex w-full flex-col px-[24px] text-left">
+        <div className="items-start justify-start pt-2 text-left">
           <div className="Label_L text-black">많은 사람이 이용했어요!</div>
           <div className="caption_normal_M text-black">
             지금 제일 핫한 프레임

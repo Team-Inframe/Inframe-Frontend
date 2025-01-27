@@ -6,7 +6,7 @@ const Header = ({ title, onClick }) => {
   return (
     <header>
       <button onClick={() => navigate(-1)}>
-        <img src={leftarrow} alt="뒤로가기" className="mb-[8px] px-[10px]" />
+        <img src={leftarrow} alt="뒤로가기" className="mb-[8px] px-[14px]" />
       </button>
       <div className="flex justify-between px-[24px]">
         <span className="Headline_B">{title}</span>

@@ -3,6 +3,7 @@ import { HotFrame } from "@/components/pages/HotFrame";
 import { useNavigate } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { getCustomFrameList, bookmarkCustomFrame } from "@/api";
+import RoutePath from "@/routes/routePath";
 
 export const MainPage = () => {
   const navigate = useNavigate();
@@ -65,7 +66,7 @@ export const MainPage = () => {
   if (isError) return <div>데이터를 불러오는데 실패했습니다.</div>;
 
   return (
-    <div className="flex min-h-real-screen flex-col items-center justify-center overflow-y-auto px-[24px] pt-[70px]">
+    <div className="flex flex-col items-center justify-center overflow-y-auto px-[24px] pt-[70px]">
       <div className="w-full flex-col justify-start text-left">
         <div className="Headline_B flex text-black">김H팀님</div>
         <div className="Headline_L text-black">프레임을 선택해보세요!</div>
@@ -85,7 +86,7 @@ export const MainPage = () => {
             <HotFrame
               key={frame.customFrameId}
               label1={frame.customFrameTitle}
-              onClick={() => navigate(`/frame/${frame.customFrameId}`)}
+              onClick={() => navigate(`/frames/${frame.customFrameId}`)}
               frameImg={frame.customFrameUrl}
               label2={frame.bookmarks}
               isBookmarked={frame.isBookmarked}
@@ -96,7 +97,7 @@ export const MainPage = () => {
         <div className="flex justify-center pt-[40px]">
           <div
             className="flex items-center justify-between gap-[9px] rounded-lg border-2 py-[6px] pl-[40px] pr-[30px]"
-            onClick={() => navigate("/hot-frames")}
+            onClick={() => navigate(RoutePath.FrameHot)}
           >
             <span className="Label_M">핫한 프레임 더보기</span>
             <img src="/src/assets/svgs/MoveButton.svg" alt="이동 버튼" />

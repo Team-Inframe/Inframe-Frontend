@@ -1,7 +1,7 @@
 export { login, signup } from "./users";
 export { createSticker } from "./stickers";
 export { postFrameBackground, postFrame, viewFrame } from "./frames";
-export { createPhoto, getPhotosList } from "./photos";
+export { postPhoto, getPhotosList } from "./photos";
 export {
   createCustomFrame,
   getCustomFrame,

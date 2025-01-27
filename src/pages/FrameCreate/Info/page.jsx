@@ -11,8 +11,7 @@ const FrameCreatePage = () => {
   const [frameType, setFrameType] = useState("세로프레임");
 
   const handleFrameClick = (frame) => {
-    localStorage.setItem("cameraWidth", frame.cameraWidth);
-    localStorage.setItem("cameraHeight", frame.cameraHeight);
+    localStorage.setItem("basicFrameId", frame.id);
 
     navigate(RoutePath.FrameBackground, { state: { selectedFrame: frame } });
   };
@@ -32,8 +31,10 @@ const FrameCreatePage = () => {
       </div>
 
       <div
-        className={`flex items-center justify-between ${
-          frameType === "세로프레임" ? "px-[67px]" : "px-[26px]"
+        className={`flex items-center justify-center ${
+          frameType === "세로프레임"
+            ? "gap-[70px] px-[67px]"
+            : "gap-[30px] px-[26px]"
         }`}
       >
         {frameData[frameType].map((frame) => (

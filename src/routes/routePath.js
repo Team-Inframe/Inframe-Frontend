@@ -1,25 +1,25 @@
-// import { bookmarkCustomFrame } from "@/api";
-// import FrameBackgroundCreateTestPage from "@/test/FrameBackgroundCreateTestPage";
-// import MyBookmarkCustomFrameTestPage from "@/test/MyBookmarkCustomFrameTestPage";
-// import MyCustomFramesPageTest from "@/test/MyCustomFramesPageTest";
-
 const RoutePath = {
-  /* 메인 페이지 */
-  Main: "/",
-  HotFrame: "/hot-frames",
-  GetFrame: "/frame/:customFrameId",
+  /* 로그인 페이지 */
+  Login: "/",
+  Signup: "/signup",
+  Main: "/main",
 
-  /* 프레임 선택 페이지 */
+  /* 프레임 페이지 */
   Frame: "/frames",
+  FrameDetail: "/frames/:customFrameId",
+  FrameHot: "/frames/hot",
   FrameBackground: "/frames/background",
   FrameSticker: "/frames/sticker",
   FrameDownload: "/frames/download",
+  FrameCamera: "/frames/camera/:id",
+  FrameCameraDownload: "/frames/camera/download",
 
   /* 보관함 페이지 */
   Storage: "/storages",
   MyFrame: "/storages/my-frames",
   SavedFrame: "/storages/saved-frames",
   Gallery: "/storages/galleries",
+  GalleryDetail: "/storages/galleries/:id",
 
   /* 테스트 페이지 */
   Test: "/test",

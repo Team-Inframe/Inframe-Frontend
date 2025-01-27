@@ -1,5 +1,5 @@
 import { RouterProvider } from "react-router-dom";
-import Router from "@/routes/router";
+import Router from "./routes/router";
 import AppContainer from "./libraries";
 import { QueryClient, QueryClientProvider } from "react-query";
 

@@ -1,41 +1,44 @@
-import Footer from "@/components/layout/Footer";
 import { HotFrame } from "@/components/pages/HotFrame";
 import { useNavigate } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { getCustomFrameList, bookmarkCustomFrame } from "@/api";
+import LeftArrow from "@/assets/svgs/LeftArrow.svg";
 
 export const HotFramePage = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const sort = "bookmarks";
 
-  // 핫한 프레임 데이터 가져오기
   const {
     data: frames,
     isLoading,
     isError,
-  } = useQuery("hotFrames", () =>
-    getCustomFrameList("bookmarks").then((res) =>
-      res.data.customFrames.map((frame) => ({
-        ...frame,
-        isBookmarked: frame.isBookmarked || false, // 기본값 설정
-      }))
-    )
+  } = useQuery(
+    ["frames", sort],
+    () =>
+      getCustomFrameList(sort).then((res) =>
+        res.data.customFrames.map((frame) => ({
+          ...frame,
+          isBookmarked: frame.isBookmarked || false,
+        }))
+      ),
+    {
+      staleTime: 300000,
+    }
   );
 
-  // 북마크 저장/취소 Mutation
   const mutation = useMutation(
     async (frameId) => {
       const userId = localStorage.getItem("userId");
       const response = await bookmarkCustomFrame(userId, frameId);
-      return { frameId, isBookmarked: response.data.is_bookmarked }; // 반환 값에 `is_bookmarked` 추가
+      return { frameId, isBookmarked: response.data.is_bookmarked };
     },
     {
       onMutate: async (frameId) => {
-        await queryClient.cancelQueries("hotFrames");
+        await queryClient.cancelQueries(["frames", sort]);
 
-        const previousFrames = queryClient.getQueryData("hotFrames");
-
-        queryClient.setQueryData("hotFrames", (oldFrames) =>
+        const previousFrames = queryClient.getQueryData(["frames", sort]);
+        queryClient.setQueryData(["frames", sort], (oldFrames) =>
           oldFrames.map((frame) =>
             frame.customFrameId === frameId
               ? {
@@ -52,20 +55,28 @@ export const HotFramePage = () => {
         return { previousFrames };
       },
       onError: (err, frameId, context) => {
-        queryClient.setQueryData("hotFrames", context.previousFrames);
+        queryClient.setQueryData(["frames", sort], context.previousFrames);
       },
     }
   );
+
+  const handleOnClick = () => {
+    navigate(-1);
+  };
 
   if (isLoading) return <div>로딩 중...</div>;
   if (isError) return <div>데이터를 불러오는데 실패했습니다.</div>;
 
   return (
-    <div>
-      <div className="px-[24px] pt-[70px]">
-        <div className="Headline_B">핫한 프레임 🔥</div>
-      </div>
-      <div className="grid grid-cols-2 items-center justify-center gap-11 px-[50px] pt-12">
+    <div className="pt-[56px]">
+      <img
+        src={LeftArrow}
+        alt="Left Arrow"
+        onClick={handleOnClick}
+        className="mb-[8px] cursor-pointer px-[14px]"
+      />
+      <div className="Headline_B px-[24px]">핫한 프레임 🔥</div>
+      <div className="grid grid-cols-2 items-center justify-center gap-12 px-[44px] pt-12">
         {frames.map((frame) => (
           <HotFrame
             key={frame.customFrameId}
@@ -78,8 +89,7 @@ export const HotFramePage = () => {
           />
         ))}
       </div>
-      <div className="h-28 max-w-[490px]"></div>
-      <Footer />
+      <div className="h-28 max-w-[450px]"></div>
     </div>
   );
 };

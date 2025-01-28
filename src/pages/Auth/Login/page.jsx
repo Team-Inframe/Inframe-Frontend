@@ -43,8 +43,10 @@ const LoginPage = () => {
     try {
       const response = await login(email, pw);
       const userId = response.data.user_id;
+      const username = response.data.username;
 
       localStorage.setItem("userId", userId);
+      localStorage.setItem("username", username);
       navigate(RoutePath.Main);
       return response.data;
     } catch (e) {

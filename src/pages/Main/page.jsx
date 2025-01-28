@@ -1,110 +1,146 @@
 import Footer from "@/components/layout/Footer";
-import { HotFrame } from "@/components/pages/HotFrame";
-import { useNavigate } from "react-router-dom";
-import { useQuery, useMutation, useQueryClient } from "react-query";
-import { getCustomFrameList, bookmarkCustomFrame } from "@/api";
+import FrameList from "@/components/pages/Main/FrameList";
 import RoutePath from "@/routes/routePath";
+import { useNavigate } from "react-router-dom";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import weather1 from "@/assets/images/weather1.png";
+import weather2 from "@/assets/images/weather2.png";
+import weather3 from "@/assets/images/weather3.png";
+import RightArrow from "@/assets/svgs/RightArrow.svg";
 
 export const MainPage = () => {
+  const username = localStorage.getItem("username");
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
+  // const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+  // const OPENWEATHER_API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
 
-  // 프레임 데이터 가져오기
-  const {
-    data: frames,
-    isLoading,
-    isError,
-  } = useQuery(
-    "frames",
-    () =>
-      getCustomFrameList("bookmarks").then((res) =>
-        res.data.customFrames.map((frame) => ({
-          ...frame,
-          isBookmarked: frame.isBookmarked || false, // 서버 데이터에 따라 초기화
-        }))
-      ),
-    {
-      staleTime: 300000, // 5분 동안 데이터 재요청 방지
-    }
-  );
+  // const { location, weather, error } = useWeatherStore();
+  // const { fetchLocationAndWeather, loading } = useGetLocationAndWeather(
+  //   GOOGLE_MAPS_API_KEY,
+  //   OPENWEATHER_API_KEY
+  // );
 
-  // 북마크 저장/취소 Mutation
-  const mutation = useMutation(
-    async (frameId) => {
-      const userId = localStorage.getItem("user_id");
-      const response = await bookmarkCustomFrame(userId, frameId);
-      return { frameId, isBookmarked: response.data.is_bookmarked }; // 서버에서 `is_bookmarked` 값 반환
-    },
-    {
-      onMutate: async (frameId) => {
-        await queryClient.cancelQueries("frames");
+  // useEffect(() => {
+  //   fetchLocationAndWeather();
+  // }, []);
 
-        const previousFrames = queryClient.getQueryData("frames");
-        queryClient.setQueryData("frames", (oldFrames) =>
-          oldFrames.map((frame) =>
-            frame.customFrameId === frameId
-              ? {
-                  ...frame,
-                  isBookmarked: !frame.isBookmarked,
-                  bookmarks: frame.isBookmarked
-                    ? frame.bookmarks - 1
-                    : frame.bookmarks + 1,
-                }
-              : frame
-          )
-        );
+  // {location && <p className="Label_M">현재 위치: {location}</p>}
+  // {weather && (
+  //   <div>
+  //     <p className="Label_M">날씨: {weather.description}</p>
+  //   </div>
+  // )}
+  // {error && <div className="text-red-500">오류: {error}</div>}
 
-        return { previousFrames };
-      },
-      onError: (err, frameId, context) => {
-        queryClient.setQueryData("frames", context.previousFrames);
-      },
-    }
-  );
+  const handleOnClick = () => {
+    navigate(RoutePath.FrameWeather);
+  };
 
-  if (isLoading) return <div>로딩 중...</div>;
-  if (isError) return <div>데이터를 불러오는데 실패했습니다.</div>;
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+  };
 
   return (
-    <div className="flex flex-col items-center justify-center overflow-y-auto px-[24px] pt-[70px]">
+    <div className="flex flex-col items-center justify-center overflow-y-auto pt-[56px]">
       <div className="w-full flex-col justify-start text-left">
-        <div className="Headline_B flex text-black">김H팀님</div>
-        <div className="Headline_L text-black">프레임을 선택해보세요!</div>
-      </div>
-      <div className="items-center pt-8">
-        <img src="/icons/bannerimage.png" alt="배너 이미지" />
-      </div>
-      <div className="flex w-full flex-col text-left">
-        <div className="items-start justify-start pt-8 text-left">
-          <div className="Label_L text-black">많은 사람이 이용했어요!</div>
-          <div className="caption_normal_M text-black">
-            지금 제일 핫한 프레임
+        <div className="Logo_B bg-gradient-to-r from-[#966BD6] to-[#B37DDF] bg-clip-text px-[24px] pb-7 text-transparent">
+          INFRAME
+        </div>
+        <div className="flex justify-between px-[24px]">
+          <div className="flex-col">
+            <span className="Body_normal_M mb-1 flex text-black">
+              {username}님
+            </span>
+            <span className="Label_L text-black">
+              오늘의 날씨, 프레임으로 기억해볼까요?
+            </span>
           </div>
+          <img src={RightArrow} onClick={handleOnClick} />
         </div>
-        <div className="grid grid-cols-2 items-center justify-center gap-[20px] px-[15px] pt-8">
-          {frames.slice(0, 4).map((frame) => (
-            <HotFrame
-              key={frame.customFrameId}
-              label1={frame.customFrameTitle}
-              onClick={() => navigate(`/frames/${frame.customFrameId}`)}
-              frameImg={frame.customFrameUrl}
-              label2={frame.bookmarks}
-              isBookmarked={frame.isBookmarked}
-              onBookmarkClick={() => mutation.mutate(frame.customFrameId)}
-            />
-          ))}
+        <div className="mt-7 flex w-full flex-col items-center justify-center px-[24px]">
+          <Slider {...settings} className="w-full">
+            <div className="relative">
+              <img src={weather1} className="w-full rounded-[10px]" />
+              <div className="absolute bottom-0 left-0 h-40 w-full rounded-b-[10px] bg-gradient-to-t from-black/80 to-transparent p-4" />
+
+              <div className="absolute bottom-0 left-0 w-full rounded-b-[10px] px-5 py-8">
+                <span className="Body_normal_M font-bold text-white">
+                  맑음 프레임
+                </span>
+                <div className="mt-3 flex-col gap-1">
+                  <div className="font-regular font-pretendard text-[14px] text-white">
+                    맑고 투명한 하루를 담아내는 프레임
+                  </div>
+                  <div className="font-pretendard text-[12px] font-light text-white">
+                    #햇살 #푸른하늘 #상쾌한기분
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative">
+              <img src={weather2} className="w-full rounded-[10px]" />
+              <div className="absolute bottom-0 left-0 h-40 w-full rounded-b-[10px] bg-gradient-to-t from-black/80 to-transparent p-4" />
+
+              <div className="absolute bottom-0 left-0 w-full rounded-b-[10px] px-5 py-8">
+                <span className="Body_normal_M font-bold text-white">
+                  윈터 프레임
+                </span>
+                <div className="mt-3 flex-col gap-1">
+                  <div className="font-regular font-pretendard text-[14px] text-white">
+                    포근한 겨울 감성이 스며든 프레임
+                  </div>
+                  <div className="font-pretendard text-[12px] font-light text-white">
+                    #겨울감성 #눈내리는날 #포근한분위기
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative">
+              <img src={weather3} className="w-full rounded-[8px]" />
+              <div className="absolute bottom-0 left-0 h-40 w-full rounded-b-[10px] bg-gradient-to-t from-black/80 to-transparent p-4" />
+
+              <div className="absolute bottom-0 left-0 w-full rounded-b-[10px] px-5 py-8">
+                <span className="Body_normal_M font-bold text-white">
+                  빗방울 프레임
+                </span>
+                <div className="mt-3 flex-col gap-1">
+                  <div className="font-regular font-pretendard text-[14px] text-white">
+                    잔잔한 빗소리와 감성을 담은 프레임
+                  </div>
+                  <div className="font-pretendard text-[12px] font-light text-white">
+                    #비오는날 #감성 #잔잔한무드
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Slider>
         </div>
-        <div className="flex justify-center pt-[40px]">
-          <div
-            className="flex items-center justify-between gap-[9px] rounded-lg border-2 py-[6px] pl-[40px] pr-[30px]"
-            onClick={() => navigate(RoutePath.FrameHot)}
-          >
-            <span className="Label_M">핫한 프레임 더보기</span>
-            <img src="/src/assets/svgs/MoveButton.svg" alt="이동 버튼" />
-          </div>
-        </div>
-        <div className="h-28 max-w-[490px]"></div>
       </div>
+      <FrameList
+        sort="bookmarks"
+        title="오늘 하루 가장 인기 있는 프레임들이에요!"
+        subtitle="지금 제일 핫한 프레임"
+        navigateTo="/frames/hot"
+        movePage="핫한 프레임 더 보러 가기"
+      />
+      <FrameList
+        sort="latest"
+        title="새로운 프레임을 확인해보세요!"
+        subtitle="최신 프레임 목록"
+        navigateTo="/frames/latest"
+        movePage="최신 프레임 더 보러 가기"
+      />
+      <div className="h-36 max-w-[450px]"></div>
       <Footer />
     </div>
   );

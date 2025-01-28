@@ -1,7 +1,6 @@
 import { StorageImages } from "@/components/pages/Storage/StorageImages";
 import { StorageLayout } from "@/components/pages/Storage/StorageLayout";
 import { EmptyStorage } from "@/components/pages/Storage/EmptyStorage";
-import Footer from "@/components/layout/Footer";
 import { getMyCustomFrames } from "@/api";
 import { useEffect, useState } from "react";
 
@@ -46,7 +45,6 @@ export const MyFramePage = () => {
         </div>
       </StorageLayout>
       <div className="h-28 w-screen max-w-[490px]"></div>
-      <Footer />
     </div>
   ) : (
     <div>
@@ -56,7 +54,6 @@ export const MyFramePage = () => {
         </div>
       </StorageLayout>
       <div className="h-28 w-screen max-w-[490px]"></div>
-      <Footer />
     </div>
   );
 };

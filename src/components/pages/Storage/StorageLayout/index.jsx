@@ -8,7 +8,7 @@ export const StorageLayout = ({ title, children }) => {
   };
 
   return (
-    <div className={`pt-[56px]`}>
+    <div className="pt-[56px]">
       <img
         src={LeftArrow}
         alt="Left Arrow"

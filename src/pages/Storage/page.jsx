@@ -3,7 +3,7 @@ import { StorageMenu } from "@/components/pages/Storage/StorageMenu";
 
 export const StoragePage = () => {
   return (
-    <div className="pt-[80px]">
+    <div className="pt-[70px]">
       <span className="Headline_B px-[24px]">보관함</span>
       <div className="flex flex-col gap-[43px] px-[24px] pt-[74px]">
         <div className="flex-col gap-[11px]">

@@ -46,13 +46,20 @@ export const GalleryDetailPage = () => {
   };
 
   return (
-    <div className="flex h-real-screen flex-col justify-between bg-white pb-[120px] pt-[56px]">
+    <div className="flex h-real-screen flex-col bg-white pb-[120px] pt-[56px]">
       <button onClick={() => navigate(-1)}>
         <img src={LeftArrow} alt="뒤로가기" className="mb-[20px] px-[10px]" />
       </button>
-      <img src={photo} className="max-h-[450px] max-w-[350px] self-center" />
-      <div className="Label_M text-center" onClick={handleDownload}>
-        저장하기
+      <div className="flex h-full flex-col justify-between px-[24px]">
+        <div className="flex flex-col">
+          <span className="Label_M text-black">2025.02.01</span>
+          <span className="Label_L text-black">경기도 부천시에서의 추억</span>
+        </div>
+
+        <img src={photo} className="max-h-[450px] max-w-[350px] self-center" />
+        <div className="Label_M text-center" onClick={handleDownload}>
+          저장하기
+        </div>
       </div>
     </div>
   );

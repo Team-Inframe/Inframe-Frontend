@@ -1,5 +1,5 @@
 import { useStickerStore } from "@/libraries/store/storesticker";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { Rnd } from "react-rnd";
 import {
   BasicFrame1,
@@ -8,19 +8,19 @@ import {
   BasicFrame4,
 } from "@/components/common/BasicFrame";
 
-const EditPage = ({ isdeleted }) => {
+const EditPage = ({ setSelectedSticker }) => {
   const stickers = useStickerStore((state) => state.stickers);
   const updateSticker = useStickerStore((state) => state.updateSticker);
-  const removeSticker = useStickerStore((state) => state.removeSticker);
+  // const removeSticker = useStickerStore((state) => state.removeSticker);
   //const [width, setWidth] = useState(0);
   //const [height, setHeight] = useState(0);
   const frameRef = useRef(null);
-  const [selectedsticker, setSelectedSticker] = useState(null);
+  // const [selectedsticker, setSelectedSticker] = useState(null);
 
-  useEffect(() => {
-    console.log(selectedsticker);
-    removeSticker(selectedsticker);
-  }, [isdeleted]);
+  // useEffect(() => {
+  //   console.log(selectedsticker);
+  //   removeSticker(selectedsticker);
+  // }, [isdeleted]);
 
   const renderFrame = () => {
     switch (localStorage.getItem("basicFrameId")) {
@@ -67,7 +67,7 @@ const EditPage = ({ isdeleted }) => {
       <div className="flex flex-1 items-center justify-center">
         <div ref={frameRef}>{renderFrame()}</div>
       </div>
-      {console.log(stickers)}
+      {/* {console.log(selectedsticker)} */}
       {stickers.map((sticker, index) => (
         <Rnd
           key={index}

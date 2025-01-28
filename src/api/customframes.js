@@ -11,32 +11,31 @@ export const postCustomFrame = async (
   stickers
 ) => {
   try {
-    const formData = new FormData();
     const data = {
-      user_id: userId, // userId -> user_id
-      frame_id: frameId, // frameId -> frame_id
-      custom_frame_title: title, // customFrameTitle -> custom_frame_title
-      custom_frame_img_url: customFrameUrl, // customFrameUrl -> custom_frame_img_url
-      is_shared: isShared, // isShared -> is_shared
+      user_id: userId,
+      frame_id: frameId,
+      custom_frame_title: title,
+      custom_frame_img_url: customFrameUrl,
+      is_shared: isShared,
       stickers: stickers.map((sticker) => ({
-        sticker_id: sticker.stickerId, // stickerId -> sticker_id
+        sticker_id: sticker.stickerId,
         position_x: sticker.positionX,
         position_y: sticker.positionY,
-        sticker_width: sticker.stickerWidth, // stickerWidth -> sticker_width
-        sticker_height: sticker.stickerHeight, // stickerHeight -> sticker_height
+        sticker_width: sticker.stickerWidth,
+        sticker_height: sticker.stickerHeight,
       })),
     };
-    console.log(data);
-    formData.append("data", JSON.stringify(data));
 
-    const response = await axios.post(`${BASE_URL}/custom-frames/`, formData, {
+    const response = await axios.post(`${BASE_URL}/custom-frames/`, data, {
       headers: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
       },
     });
+
     return response.data;
   } catch (error) {
-    return error.response.data;
+    console.error("Error posting custom frame:", error);
+    return error.response?.data;
   }
 };
 

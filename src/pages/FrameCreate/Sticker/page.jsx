@@ -44,7 +44,6 @@ const FrameStickerPage = () => {
       try {
         const response = await getStickers(localStorage.getItem("userId"));
         setStickers(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error(error);
       }

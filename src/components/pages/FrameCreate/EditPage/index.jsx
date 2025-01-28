@@ -36,6 +36,7 @@ const EditPage = ({ isdeleted }) => {
         return null;
     }
   };
+
   const handleDrag = (e, d, index) => {
     updateSticker(index, {
       position: { x: d.x, y: d.y },
@@ -49,7 +50,10 @@ const EditPage = ({ isdeleted }) => {
         width: ref.style.width,
         height: ref.style.height,
       },
-      ...position,
+      position: {
+        x: position.x,
+        y: position.y,
+      },
     });
   };
 
@@ -72,9 +76,10 @@ const EditPage = ({ isdeleted }) => {
           default={{
             x: sticker.position.x,
             y: sticker.position.y,
-            width: 70,
-            height: 70,
+            width: sticker.size.width,
+            height: sticker.size.height,
           }}
+          lockAspectRatio={true}
           onDragStop={(e, d) => {
             handleDrag(e, d, index);
             setSelectedSticker(index);

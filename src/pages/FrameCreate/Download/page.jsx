@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Header from "@/components/layout/Header";
+import LeftArrow from "@/assets/svgs/LeftArrow.svg";
 import ShareToggle from "@/components/pages/FrameCreate/ShareToggle";
 import pencil from "@/assets/svgs/Pencil.svg";
 //import { useState } from "react";
@@ -13,16 +13,31 @@ const FrameDownloadPage = () => {
   const [title, setTitle] = useState(""); // 사용자 입력 제목
   const [isShared, setIsShared] = useState(false); // 공유 여부
   const zustandStickers = useStickerStore((state) => state.stickers);
+  const clearStickers = useStickerStore((state) => state.clearStickers);
 
   //커스텀 프레임 저장하기 위한 데이터
   const userId = localStorage.getItem("user_id");
   const frameId = localStorage.getItem("frameId");
   const customFrameUrl = localStorage.getItem("file_url");
-  const stickers = JSON.parse(localStorage.getItem("stickers"));
+  const stickers = zustandStickers.map((sticker) => {
+    if (sticker.size == undefined) {
+      sticker.size.width = 70;
+      sticker.size.height = 70;
+    }
+    return {
+      stickerId: sticker.id,
+      positionx: sticker.position.x,
+      positiony: sticker.position.y,
+      width: sticker.size.width,
+      height: sticker.size.height,
+    };
+  });
   // localStorage에서 데이터 로드
-  useEffect(() => {
-    console.log("스티커 데이터 로드됨:", zustandStickers);
-  }, []);
+  useEffect(() => {}, []);
+
+  const handleOnClick = () => {
+    navigate(-1);
+  };
 
   // 저장하기 버튼 클릭 핸들러
   const handleSaveClick = async () => {
@@ -34,17 +49,24 @@ const FrameDownloadPage = () => {
       isShared,
       stickers
     );
-    console.log(response);
-  };
-
-  // 완료버튼 삭제필요
-  const handleConfirmClick = () => {
-    navigate(RoutePath.FrameSticker);
+    navigate(RoutePath.Gallery);
+    clearStickers();
+    console.log(zustandStickers);
   };
 
   return (
     <div className="flex h-real-screen flex-col pb-[50px] pt-[56px]">
-      <Header title="프레임 저장하기" onClick={handleConfirmClick} />
+      <div>
+        <img
+          src={LeftArrow}
+          alt="Left Arrow"
+          onClick={handleOnClick}
+          className="mb-[8px] cursor-pointer px-[14px]"
+        />
+      </div>
+      <div className="flex flex-col justify-center px-[24px]">
+        <span className="Headline_B mb-[25px] text-black">프레임 저장하기</span>
+      </div>
 
       <div className="flex h-full flex-col items-center justify-between">
         <div className="flex flex-1 flex-col items-center justify-center gap-[5px]">
@@ -57,7 +79,9 @@ const FrameDownloadPage = () => {
             />
           </div>
           {/* 이미지불러오기 */}
-          <img src={localStorage.getItem("file_url")}></img>
+          <div className="h-[350px] w-[420px]">
+            <img src={localStorage.getItem("file_url")}></img>
+          </div>
         </div>
 
         <div className="mt-[40px] flex h-[150px] flex-col items-center gap-[40px]">

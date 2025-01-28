@@ -12,6 +12,7 @@ const Sticker = ({ stickerId, imgSrc }) => {
           id: stickerId,
           src: imgSrc,
           position: { x: 0, y: 0 },
+          size: { width: 70, height: 70 },
         })
       }
     >

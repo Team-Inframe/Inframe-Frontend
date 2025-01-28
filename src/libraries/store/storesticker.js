@@ -2,8 +2,12 @@ import { create } from "zustand";
 
 export const useStickerStore = create((set) => ({
   stickers: [],
-  addSticker: (sticker) =>
-    set((state) => ({ stickers: [...state.stickers, sticker] })),
+  addSticker: (
+    sticker = {
+      position: { x: 0, y: 0 },
+      size: { width: 70, height: 70 },
+    }
+  ) => set((state) => ({ stickers: [...state.stickers, sticker] })),
 
   updateSticker: (index, newProps) =>
     set((state) => ({

@@ -75,7 +75,7 @@ const FrameStickerPage = () => {
 
   const handleConfirmClick = async () => {
     if (!frameRef.current) return;
-
+    //스티커
     try {
       const frame = frameRef.current;
       //완성프레임 사진찍기
@@ -89,7 +89,7 @@ const FrameStickerPage = () => {
         if (blob !== null) {
           //finishFrameBlob을 서버에 보내기
           const response = await postCustomFrameImg(blob);
-          //state로 넘겨주기
+
           localStorage.setItem("file_url", response.data.file_url);
           navigate(RoutePath.FrameDownload);
         }
@@ -100,6 +100,7 @@ const FrameStickerPage = () => {
   };
 
   const handleremover = () => {
+    console.log(isdeleted);
     setisdeleted(!isdeleted);
   };
 
@@ -108,13 +109,15 @@ const FrameStickerPage = () => {
       <Header title="스티커 만들기" onClick={handleConfirmClick} />
 
       <div className="flex h-full flex-col justify-between">
-        <div ref={frameRef} className="flex flex-1 items-center justify-center">
-          <EditPage
-            handleremover={isdeleted}
-            className="max-h-[450px] max-w-[350px]"
-          />
+        <div className="flex flex-1 items-center justify-center">
+          <div ref={frameRef}>
+            <EditPage
+              handleremover={isdeleted}
+              className="max-h-[450px] max-w-[350px]"
+            />
+          </div>
         </div>
-        <button onClick={() => handleremover}>삭제</button>
+        <button onClick={() => handleremover()}>삭제</button>
         <div className="mt-[40px] flex h-[150px] w-full flex-col gap-[30px]">
           <div className="flex w-full justify-between px-[100px]">
             <TextButton
@@ -132,6 +135,7 @@ const FrameStickerPage = () => {
           <div className="min-h-40 w-full">
             {SelectedComp == list[0] ? (
               <div className="grid h-full w-full grid-cols-4 overflow-auto bg-slate-100">
+                {/* 스티커 리스트 컴포넌트 */}
                 {stickers.map((group) => (
                   <Sticker
                     key={group.sticker_id}

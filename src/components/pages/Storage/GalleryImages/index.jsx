@@ -11,13 +11,13 @@ export const GalleryImages = ({ date, photos }) => {
         {photos.map((photo) => (
           <div
             key={photo.photo_id}
-            className="flex h-full w-full cursor-pointer flex-col"
+            className="flex min-h-[140px] cursor-pointer flex-col items-center justify-center"
             onClick={() => navigate(`/storages/galleries/${photo.photo_id}`)}
           >
             <img
               src={photo.photo_url}
               alt={photo.photo_id}
-              className="mb-[10px]"
+              className="min-w-[100px]"
             />
           </div>
         ))}

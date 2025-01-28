@@ -9,16 +9,16 @@ export const HotFrame = ({
 }) => {
   console.log("HotFrame isBookmarked:", isBookmarked);
   return (
-    <div className="mt-8 flex max-h-[160px] flex-col items-center justify-center">
-      <div>
+    <div className="mt-6 flex flex-col items-center justify-center">
+      <div className="flex min-h-[200px] min-w-[129px] flex-col justify-between">
         <img
           src={frameImg}
           alt="Frame"
           className="cursor-pointer shadow-lg"
           onClick={onClick}
         />
-        <div className="mt-2 flex w-full items-center justify-between">
-          <div className="Caption_reading_L text-black">{label1}</div>
+        <div className="mt-1 flex w-full items-center justify-between">
+          <div className="Caption_normal_M text-black">{label1}</div>
           <DownloadButton
             label={label2}
             isBookmarked={isBookmarked}

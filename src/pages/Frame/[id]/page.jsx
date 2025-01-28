@@ -73,7 +73,7 @@ export const FrameDetailPage = () => {
           {frameData.customFrameTitle}
         </span>
       </div>
-      <div className="mt-[130px] flex flex-col items-center justify-center">
+      <div className="mt-[100px] flex flex-col items-center justify-center">
         <div className="flex w-3/5 flex-col items-center justify-center">
           <img src={frameData.customFrameUrl} className="mb-10 w-full" />
           <div className="flex items-center justify-center gap-[5px] px-[6px]">

@@ -1,6 +1,5 @@
 import { StorageLayout } from "@/components/pages/Storage/StorageLayout";
 import { EmptyStorage } from "@/components/pages/Storage/EmptyStorage";
-import Footer from "@/components/layout/Footer";
 import { useEffect, useState } from "react";
 import { getPhotosList } from "@/api";
 import { GalleryImages } from "@/components/pages/Storage/GalleryImages";
@@ -30,7 +29,7 @@ export const GalleryPage = () => {
   return savedGallery.length != [] ? (
     <div>
       <StorageLayout title="갤러리">
-        <div className="flex flex-col gap-[21px]">
+        <div className="flex flex-col gap-[13px]">
           {savedGallery.map((group) => (
             <GalleryImages
               key={group.date}
@@ -40,8 +39,7 @@ export const GalleryPage = () => {
           ))}
         </div>
       </StorageLayout>
-      <div className="h-28 w-screen max-w-[490px]"></div>
-      <Footer />
+      <div className="h-28 w-screen max-w-[450px]"></div>
     </div>
   ) : (
     <div>
@@ -50,8 +48,7 @@ export const GalleryPage = () => {
           <EmptyStorage />
         </div>
       </StorageLayout>
-      <div className="h-28 w-screen max-w-[490px]"></div>
-      <Footer />
+      <div className="h-28 w-screen max-w-[450px]"></div>
     </div>
   );
 };

@@ -27,6 +27,7 @@ import { FrameCameraDownloadPage } from "@/pages/Frame/Download/page";
 import { GalleryDetailPage } from "@/pages/Storage/Gallery/[id]/page";
 import FrameCameraPage from "@/pages/Frame/Camera/page";
 import { LatestFramePage } from "@/pages/LatestFrame/page";
+import { WeatherFramePage } from "@/pages/WeatherFrame/page";
 
 const routes = [
   {
@@ -52,6 +53,7 @@ const routes = [
         path: RoutePath.FrameCameraDownload,
         element: <FrameCameraDownloadPage />,
       },
+      { path: RoutePath.FrameWeather, element: <WeatherFramePage /> },
     ],
   },
   {
@@ -64,10 +66,6 @@ const routes = [
       { path: RoutePath.GalleryDetail, element: <GalleryDetailPage /> },
     ],
   },
-  // {
-  //   path: RoutePath.Weather,
-  //   children: [{ index: true, element: <LocationWeatherApp /> }],
-  // },
   {
     path: RoutePath.StickerTest,
     children: [{ index: true, element: <StickersTestPage /> }],

@@ -1,6 +1,5 @@
 import { StorageLayout } from "@/components/pages/Storage/StorageLayout";
 import { EmptyStorage } from "@/components/pages/Storage/EmptyStorage";
-import Footer from "@/components/layout/Footer";
 import { useState, useEffect } from "react";
 import { getMyBookmarkCustomFrame } from "@/api";
 import { StorageImages } from "@/components/pages/Storage/StorageImages";
@@ -43,7 +42,6 @@ export const SavedFramePage = () => {
         </div>
       </StorageLayout>
       <div className="h-28 w-screen max-w-[490px]"></div>
-      <Footer />
     </div>
   ) : (
     <div>
@@ -53,7 +51,6 @@ export const SavedFramePage = () => {
         </div>
       </StorageLayout>
       <div className="h-28 w-screen max-w-[490px]"></div>
-      <Footer />
     </div>
   );
 };

@@ -62,6 +62,22 @@
     font-display: swap;
   }
 
+  @font-face {
+    font-family: "Ownglyph_wiseelist-Rg";
+    src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2501-1@1.1/Ownglyph_wiseelist-Rg.woff2")
+      format("woff2");
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Y_Spotlight";
+    src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/Y_Spotlight.woff")
+      format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+
   html {
     background-color: rgb(239, 239, 239);
     @media (max-width: 450px) {
@@ -86,6 +102,16 @@
 }
 
 @layer components {
+  /* .Logo_B {
+    font-family: 'Ownglyph_wiseelist-Rg', sans-serif;
+    @apply text-[26px] font-bold leading-[30px] tracking-[-0.41px];
+  } */
+
+  .Logo_B {
+    font-family: "Y_Spotlight";
+    @apply text-[26px] font-bold leading-[30px] tracking-[-0.41px];
+  }
+
   .Headline_B {
     @apply font-pretendard text-[26px] font-bold leading-[30px] tracking-[-0.41px];
   }

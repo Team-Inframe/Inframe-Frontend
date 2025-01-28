@@ -1,4 +1,4 @@
-import Header from "@/components/layout/Header";
+import leftarrow from "/src/assets/svgs/LeftArrow.svg";
 import TextButton from "@/components/common/Button/TextButton";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,7 @@ import { getStickers } from "@/api";
 import EditPage from "@/components/pages/FrameCreate/EditPage";
 import html2canvas from "html2canvas";
 import { postCustomFrameImg } from "@/api/customframes";
+import { useStickerStore } from "@/libraries/store/storesticker";
 
 const FrameStickerPage = () => {
   const navigate = useNavigate();
@@ -20,7 +21,10 @@ const FrameStickerPage = () => {
   const [prompt, setPrompt] = useState("");
   const [stickers, setStickers] = useState([]);
   const frameRef = useRef(null);
-  const [isdeleted, setisdeleted] = useState(false);
+  // const [isdeleted, setisdeleted] = useState(false);
+  const removeSticker = useStickerStore((state) => state.removeSticker);
+  const clearStickers = useStickerStore((state) => state.clearStickers);
+  const [selectedsticker, setSelectedSticker] = useState(null);
 
   const handlePromptChange = (e) => {
     setPrompt(e.target.value);
@@ -73,6 +77,11 @@ const FrameStickerPage = () => {
     }
   };
 
+  const handleBackClick = () => {
+    clearStickers();
+    navigate(-1);
+  };
+
   const handleConfirmClick = async () => {
     if (!frameRef.current) return;
     //스티커
@@ -100,19 +109,33 @@ const FrameStickerPage = () => {
   };
 
   const handleremover = () => {
-    console.log(isdeleted);
-    setisdeleted(!isdeleted);
+    console.log("click:", selectedsticker);
+    removeSticker(selectedsticker);
   };
 
   return (
     <div className="flex h-real-screen flex-col pb-[50px] pt-[50px]">
-      <Header title="스티커 만들기" onClick={handleConfirmClick} />
+      <header>
+        <button onClick={handleBackClick}>
+          <img src={leftarrow} alt="뒤로가기" className="mb-[8px] px-[14px]" />
+        </button>
+        <div className="flex justify-between px-[24px]">
+          <span className="Headline_B">스티커 만들기</span>
+          <button
+            className="Label_L text-syscolor-SystemGray"
+            onClick={handleConfirmClick}
+          >
+            완료
+          </button>
+        </div>
+      </header>
 
       <div className="flex h-full flex-col justify-between">
         <div className="flex flex-1 items-center justify-center">
           <div ref={frameRef}>
             <EditPage
-              handleremover={isdeleted}
+              selectedsticker={selectedsticker}
+              setSelectedSticker={setSelectedSticker}
               className="max-h-[450px] max-w-[350px]"
             />
           </div>

@@ -15,6 +15,7 @@ const PictureUploader = ({ uploadedImage }) => {
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       uploadedImage(imageUrl);
+      localStorage.setItem("image", imageUrl);
     }
   };
 

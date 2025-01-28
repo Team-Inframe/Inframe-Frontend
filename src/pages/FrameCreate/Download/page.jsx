@@ -1,87 +1,72 @@
 import { useState, useEffect } from "react";
-import Header from "@/components/layout/Header";
+import LeftArrow from "@/assets/svgs/LeftArrow.svg";
 import ShareToggle from "@/components/pages/FrameCreate/ShareToggle";
-import { useNavigate } from "react-router-dom";
 import pencil from "@/assets/svgs/Pencil.svg";
-import axios from "axios";
+//import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import RoutePath from "@/routes/routePath";
+import { postCustomFrame } from "@/api";
+import { useStickerStore } from "@/libraries/store/storesticker";
 
 const FrameDownloadPage = () => {
-  const BASE_URL = `${import.meta.env.VITE_BASE_URL}`;
   const navigate = useNavigate();
-
   const [title, setTitle] = useState(""); // 사용자 입력 제목
   const [isShared, setIsShared] = useState(false); // 공유 여부
-  const [customFrameData, setCustomFrameData] = useState({
-    user_id: 0,
-    frame_id: 0,
-    custom_frame_img_url: "",
-    stickers: [],
+  const zustandStickers = useStickerStore((state) => state.stickers);
+  const clearStickers = useStickerStore((state) => state.clearStickers);
+
+  //커스텀 프레임 저장하기 위한 데이터
+  const userId = localStorage.getItem("user_id");
+  const frameId = localStorage.getItem("frameId");
+  const customFrameUrl = localStorage.getItem("file_url");
+  const stickers = zustandStickers.map((sticker) => {
+    if (sticker.size == undefined) {
+      sticker.size.width = 70;
+      sticker.size.height = 70;
+    }
+    return {
+      stickerId: sticker.id,
+      positionx: sticker.position.x,
+      positiony: sticker.position.y,
+      width: sticker.size.width,
+      height: sticker.size.height,
+    };
   });
-
   // localStorage에서 데이터 로드
-  useEffect(() => {
-    const userId = localStorage.getItem("user_id") || "0";
-    const frameId = localStorage.getItem("frame_id") || "0";
-    const customFrameImgUrl =
-      localStorage.getItem("custom_frame_img_url") || "";
-    const stickers = JSON.parse(localStorage.getItem("stickers") || "[]");
+  useEffect(() => {}, []);
 
-    setCustomFrameData({
-      user_id: Number(userId),
-      frame_id: Number(frameId),
-      custom_frame_img_url: customFrameImgUrl,
-      stickers: stickers,
-    });
-  }, []);
+  const handleOnClick = () => {
+    navigate(-1);
+  };
 
   // 저장하기 버튼 클릭 핸들러
   const handleSaveClick = async () => {
-    // 기본값 설정 (필수 데이터 누락 방지)
-    const requestData = {
-      user_id: customFrameData.user_id || 0, // 기본값: 0
-      frame_id: customFrameData.frame_id || 0, // 기본값: 0
-      custom_frame_title: title || "Untitled Frame", // 제목이 없으면 기본 제목
-      custom_frame_img_url:
-        customFrameData.custom_frame_img_url ||
-        "https://via.placeholder.com/300x500", // 기본 이미지 URL
-      is_shared: isShared || false, // 기본값: false
-      stickers: customFrameData.stickers || [], // 기본값: 빈 배열
-    };
-
-    try {
-      const response = await axios.post(
-        `${BASE_URL}/custom-frames/`,
-        requestData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        alert("프레임이 성공적으로 저장되었습니다.");
-        console.log("Request Data:", requestData);
-        localStorage.removeItem("frame_id");
-        localStorage.removeItem("custom_frame_img_url");
-        localStorage.removeItem("stickers");
-
-        navigate("/storages/my-frames"); // 저장 후 페이지 이동
-      }
-    } catch (error) {
-      console.error("프레임 저장 중 오류 발생:", error);
-      alert("프레임 저장 중 오류가 발생했습니다.");
-    }
-  };
-
-  // 뒤로가기 버튼 핸들러
-  const handleConfirmClick = () => {
-    navigate("/storages/my-frames");
+    const response = await postCustomFrame(
+      userId,
+      frameId,
+      title,
+      customFrameUrl,
+      isShared,
+      stickers
+    );
+    navigate(RoutePath.Gallery);
+    clearStickers();
+    console.log(zustandStickers);
   };
 
   return (
     <div className="flex h-real-screen flex-col pb-[50px] pt-[56px]">
-      <Header title="프레임 저장하기" onClick={handleConfirmClick} />
+      <div>
+        <img
+          src={LeftArrow}
+          alt="Left Arrow"
+          onClick={handleOnClick}
+          className="mb-[8px] cursor-pointer px-[14px]"
+        />
+      </div>
+      <div className="flex flex-col justify-center px-[24px]">
+        <span className="Headline_B mb-[25px] text-black">프레임 저장하기</span>
+      </div>
 
       <div className="flex h-full flex-col items-center justify-between">
         <div className="flex flex-1 flex-col items-center justify-center gap-[5px]">
@@ -93,31 +78,9 @@ const FrameDownloadPage = () => {
               }}
             />
           </div>
-
-          {/* 프레임 동적 렌더링 */}
-          <div
-            className="relative h-[500px] w-[300px] bg-cover bg-center"
-            style={{
-              backgroundImage: `url(${
-                customFrameData.custom_frame_img_url ||
-                "https://via.placeholder.com/300x500"
-              })`,
-            }}
-          >
-            {customFrameData.stickers.map((sticker, index) => (
-              <img
-                key={index}
-                src={sticker.sticker_url || "https://via.placeholder.com/50"}
-                alt="sticker"
-                style={{
-                  position: "absolute",
-                  left: `${sticker.position_x || 0}px`,
-                  top: `${sticker.position_y || 0}px`,
-                  width: `${sticker.sticker_width || 50}px`,
-                  height: `${sticker.sticker_height || 50}px`,
-                }}
-              />
-            ))}
+          {/* 이미지불러오기 */}
+          <div className="h-[350px] w-[420px]">
+            <img src={localStorage.getItem("file_url")}></img>
           </div>
         </div>
 
@@ -132,7 +95,7 @@ const FrameDownloadPage = () => {
             />
             <img src={pencil} className="w-4" />
           </div>
-          <button onClick={handleSaveClick} className="Label_L">
+          <button onClick={() => handleSaveClick} className="Label_L">
             저장하기
           </button>
         </div>

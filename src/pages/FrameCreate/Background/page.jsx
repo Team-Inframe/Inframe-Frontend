@@ -19,19 +19,15 @@ const FrameBackgroundPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const selectedFrame = location.state?.selectedFrame;
-
   const frameRef = useRef(null);
-
   const List = ["기본 색상", "AI 배경", "사진 배경"];
   const [prompt, setPrompt] = useState("");
   const [bgsrc, setBgsrc] = useState("#DADADA");
   const [SelectedComp, setSelectComp] = useState(List[0]);
   // const [isLoading, setIsLoading] = useState(false);
-
   const handlePromptChange = (e) => {
     setPrompt(e.target.value);
   };
-
   const handleAIBackgroundImage = async () => {
     // setIsLoading(true);
     try {
@@ -44,10 +40,8 @@ const FrameBackgroundPage = () => {
       // setIsLoading(false);
     }
   };
-
   const handleConfirmClick = async () => {
     if (!frameRef.current) return;
-
     try {
       const frame = frameRef.current;
       const canvas = await html2canvas(frame, {
@@ -56,18 +50,13 @@ const FrameBackgroundPage = () => {
         useCORS: true,
         allowTaint: true,
       });
-
       canvas.toBlob(async (blob) => {
         const basicFrameId = localStorage.getItem("basicFrameId");
-
         if (blob !== null) {
           const response = await postFrame(blob, bgsrc, basicFrameId);
-          console.log("API Response:", response);
-          const frameUrl = response.data.frame_url;
-
-          localStorage.removeItem("basicFrameId", basicFrameId);
-          localStorage.setItem("frameUrl", frameUrl);
-
+          //프레임 아이디 확인
+          localStorage.setItem("frameId", response.data.frame_id);
+          localStorage.setItem("frameBg", bgsrc);
           navigate(RoutePath.FrameSticker);
         }
       });
@@ -75,15 +64,12 @@ const FrameBackgroundPage = () => {
       console.error(err);
     }
   };
-
   const handleColorChange = (newColor) => {
     setBgsrc(newColor);
   };
-
   const handleImageUpload = (imageURL) => {
     setBgsrc(imageURL);
   };
-
   const renderFrame = () => {
     switch (selectedFrame?.id) {
       case 1:
@@ -98,16 +84,13 @@ const FrameBackgroundPage = () => {
         return null;
     }
   };
-
   return (
     <div className="flex h-real-screen flex-col pb-[50px] pt-[50px]">
       <Header title="프레임 만들기" onClick={handleConfirmClick} />
-
       <div className="flex h-full flex-col justify-between">
         <div className="flex flex-1 items-center justify-center">
           <div ref={frameRef}>{renderFrame()}</div>
         </div>
-
         <div className="mt-[40px] flex h-[150px] w-full flex-col gap-[30px]">
           <div className="flex w-full justify-between px-[60px]">
             <TextButton
@@ -149,5 +132,4 @@ const FrameBackgroundPage = () => {
     </div>
   );
 };
-
 export default FrameBackgroundPage;

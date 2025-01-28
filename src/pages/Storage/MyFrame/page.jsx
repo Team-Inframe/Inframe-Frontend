@@ -15,7 +15,9 @@ export const MyFramePage = () => {
         const response = await getMyCustomFrames(
           localStorage.getItem("userId")
         );
+
         setSavedMyFrame(response.data);
+        console.log(savedMyFrame);
         //return response;
       } catch (error) {
         console.error(error);

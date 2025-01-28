@@ -39,6 +39,14 @@ const routes = [
     ],
   },
   {
+    path: RoutePath.HotFrame,
+    children: [{ index: true, element: <HotFramePage /> }],
+  },
+  {
+    path: RoutePath.GetFrame,
+    children: [{ index: true, element: <FrameDetailPage /> }],
+  },
+  {
     path: RoutePath.Frame,
     children: [
       { index: true, element: <FrameCreatePage /> },

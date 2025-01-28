@@ -1,4 +1,4 @@
-import Header from "@/components/layout/Header";
+import leftarrow from "/src/assets/svgs/LeftArrow.svg";
 import TextButton from "@/components/common/Button/TextButton";
 import { useRef, useState } from "react";
 import BasicBG from "@/components/pages/FrameCreate/BasicBG";
@@ -41,6 +41,7 @@ const FrameBackgroundPage = () => {
     }
   };
   const handleConfirmClick = async () => {
+    console.log("confirm");
     if (!frameRef.current) return;
     try {
       const frame = frameRef.current;
@@ -86,7 +87,21 @@ const FrameBackgroundPage = () => {
   };
   return (
     <div className="flex h-real-screen flex-col pb-[50px] pt-[50px]">
-      <Header title="프레임 만들기" onClick={handleConfirmClick} />
+      <header>
+        <button onClick={() => navigate(-1)}>
+          <img src={leftarrow} alt="뒤로가기" className="mb-[8px] px-[14px]" />
+        </button>
+        <div className="flex justify-between px-[24px]">
+          <span className="Headline_B">프레임 만들기</span>
+          <button
+            className="Label_L text-syscolor-SystemGray"
+            onClick={handleConfirmClick}
+          >
+            완료
+          </button>
+        </div>
+      </header>
+
       <div className="flex h-full flex-col justify-between">
         <div className="flex flex-1 items-center justify-center">
           <div ref={frameRef}>{renderFrame()}</div>

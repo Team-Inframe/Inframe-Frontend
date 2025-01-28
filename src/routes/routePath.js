@@ -8,13 +8,14 @@ const RoutePath = {
   Frame: "/frames",
   FrameDetail: "/frames/:customFrameId",
   FrameHot: "/frames/hot",
+  FrameLatest: "/frames/latest",
   FrameBackground: "/frames/background",
   FrameSticker: "/frames/sticker",
   FrameDownload: "/frames/download",
   FrameCamera: "/frames/camera/:id",
   FrameCameraDownload: "/frames/camera/download",
 
-  Weather: "weather",
+  // Weather: "/weather",
 
   /* 보관함 페이지 */
   Storage: "/storages",

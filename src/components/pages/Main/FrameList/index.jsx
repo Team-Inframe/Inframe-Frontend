@@ -1,14 +1,13 @@
-import { HotFrame } from "@/components/pages/HotFrame";
-import { useNavigate } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { getCustomFrameList, bookmarkCustomFrame } from "@/api";
-import LeftArrow from "@/assets/svgs/LeftArrow.svg";
+import { useNavigate } from "react-router-dom";
+import { HotFrame } from "@/components/pages/HotFrame";
 
-export const HotFramePage = () => {
+const FrameList = ({ sort, title, subtitle, navigateTo, movePage }) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const sort = "bookmarks";
 
+  // 프레임 데이터 가져오기
   const {
     data: frames,
     isLoading,
@@ -23,10 +22,11 @@ export const HotFramePage = () => {
         }))
       ),
     {
-      staleTime: 300000,
+      staleTime: 300000, // 5분 동안 데이터 재요청 방지
     }
   );
 
+  // 북마크 저장/취소 Mutation
   const mutation = useMutation(
     async (frameId) => {
       const userId = localStorage.getItem("userId");
@@ -60,24 +60,17 @@ export const HotFramePage = () => {
     }
   );
 
-  const handleOnClick = () => {
-    navigate(-1);
-  };
-
   if (isLoading) return <div>로딩 중...</div>;
   if (isError) return <div>데이터를 불러오는데 실패했습니다.</div>;
 
   return (
-    <div className="pt-[56px]">
-      <img
-        src={LeftArrow}
-        alt="Left Arrow"
-        onClick={handleOnClick}
-        className="mb-[8px] cursor-pointer px-[14px]"
-      />
-      <div className="Headline_B px-[24px]">핫한 프레임 🔥</div>
-      <div className="grid grid-cols-2 items-center justify-center gap-12 px-[44px] pt-12">
-        {frames.map((frame) => (
+    <div className="mt-10 flex w-full flex-col px-[24px] text-left">
+      <div className="items-start justify-start pt-2 text-left">
+        <div className="Caption_reading_L text-black">{title}</div>
+        <div className="Label_M text-black">{subtitle}</div>
+      </div>
+      <div className="mt-2 grid grid-cols-2 items-center justify-center gap-[20px]">
+        {frames.slice(0, 4).map((frame) => (
           <HotFrame
             key={frame.customFrameId}
             label1={frame.customFrameTitle}
@@ -89,7 +82,17 @@ export const HotFramePage = () => {
           />
         ))}
       </div>
-      <div className="h-28 max-w-[450px]"></div>
+      <div className="flex justify-center pt-[40px]">
+        <div
+          className="flex items-center justify-between gap-[9px] rounded-[8px] border-2 py-[4px] pl-[40px] pr-[30px]"
+          onClick={() => navigate(navigateTo)}
+        >
+          <span className="Caption_normal_M">{movePage}</span>
+          <img src="/src/assets/svgs/MoveButton.svg" alt="이동 버튼" />
+        </div>
+      </div>
     </div>
   );
 };
+
+export default FrameList;

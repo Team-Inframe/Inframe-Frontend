@@ -12,9 +12,11 @@ export const StorageImages = ({ date, frames }) => {
             <img
               src={frame.custom_frame_url}
               alt={frame.custom_frame_title}
-              className="mb-[8px]"
+              className="mb-[4px]"
             />
-            <span className="Label_B">{frame.custom_frame_title}</span>
+            <span className="Caption_reading_M">
+              {frame.custom_frame_title}
+            </span>
           </div>
         ))}
       </div>

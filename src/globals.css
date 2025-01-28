@@ -114,6 +114,10 @@
     @apply font-pretendard text-[14px] font-medium leading-[18px] tracking-[-0.41px];
   }
 
+  .Caption_reading_M {
+    @apply font-pretendard text-[12px] font-medium leading-[22px] tracking-[-0.41px];
+  }
+
   .Caption_reading_L {
     @apply font-pretendard text-[12px] font-light leading-[22px] tracking-[-0.41px];
   }

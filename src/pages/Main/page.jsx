@@ -1,24 +1,21 @@
 import Footer from "@/components/layout/Footer";
 import FrameList from "@/components/pages/Main/FrameList";
-import useGetLocationAndWeather from "@/hooks/useGetLocationAndWeather";
-import useWeatherStore from "@/libraries/store/weather";
-import { useEffect } from "react";
 
 export const MainPage = () => {
   const username = localStorage.getItem("username");
 
-  const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-  const OPENWEATHER_API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
+  // const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+  // const OPENWEATHER_API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
 
-  const { location, weather, error } = useWeatherStore();
-  const { fetchLocationAndWeather, loading } = useGetLocationAndWeather(
-    GOOGLE_MAPS_API_KEY,
-    OPENWEATHER_API_KEY
-  );
+  // const { location, weather, error } = useWeatherStore();
+  // const { fetchLocationAndWeather, loading } = useGetLocationAndWeather(
+  //   GOOGLE_MAPS_API_KEY,
+  //   OPENWEATHER_API_KEY
+  // );
 
-  useEffect(() => {
-    fetchLocationAndWeather();
-  }, []);
+  // useEffect(() => {
+  //   fetchLocationAndWeather();
+  // }, []);
 
   // {location && <p className="Label_M">현재 위치: {location}</p>}
   // {weather && (

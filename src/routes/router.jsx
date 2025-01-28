@@ -26,7 +26,6 @@ import { GalleryPage } from "@/pages/Storage/Gallery/page";
 import { FrameCameraDownloadPage } from "@/pages/Frame/Download/page";
 import { GalleryDetailPage } from "@/pages/Storage/Gallery/[id]/page";
 import FrameCameraPage from "@/pages/Frame/Camera/page";
-import { element } from "prop-types";
 import { LatestFramePage } from "@/pages/LatestFrame/page";
 
 const routes = [

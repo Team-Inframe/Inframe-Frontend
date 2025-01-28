@@ -1,14 +1,12 @@
 import Footer from "@/components/layout/Footer";
-import { DownloadButton } from "@/components/common/Button/DownloadButton";
 import { useNavigate, useParams } from "react-router-dom";
-import { useQuery, useMutation, useQueryClient } from "react-query";
-import { getCustomFrame, bookmarkCustomFrame } from "@/api";
+import { useQuery } from "react-query";
+import { getCustomFrame } from "@/api";
 import LeftArrow from "@/assets/svgs/LeftArrow.svg";
 import Camera from "@/assets/svgs/Camera.svg";
 
 export const FrameDetailPage = () => {
   const { customFrameId } = useParams();
-  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const {
     data: frameData,
@@ -23,37 +21,37 @@ export const FrameDetailPage = () => {
     }
   );
 
-  // 북마크 저장/취소 Mutation
-  const mutation = useMutation(
-    async () => {
-      const userId = 1;
-      const response = await bookmarkCustomFrame(userId, customFrameId);
-      return response.status;
-    },
-    {
-      onMutate: async () => {
-        // Optimistic Update
-        await queryClient.cancelQueries(["frame", customFrameId]);
-        const previousData = queryClient.getQueryData(["frame", customFrameId]);
+  // // 북마크 저장/취소 Mutation
+  // const mutation = useMutation(
+  //   async () => {
+  //     const userId = 1;
+  //     const response = await bookmarkCustomFrame(userId, customFrameId);
+  //     return response.status;
+  //   },
+  //   {
+  //     onMutate: async () => {
+  //       // Optimistic Update
+  //       await queryClient.cancelQueries(["frame", customFrameId]);
+  //       const previousData = queryClient.getQueryData(["frame", customFrameId]);
 
-        queryClient.setQueryData(["frame", customFrameId], (oldData) => ({
-          ...oldData,
-          isBookmarked: !oldData.isBookmarked,
-          bookmarks: oldData.isBookmarked
-            ? oldData.bookmarks - 1
-            : oldData.bookmarks + 1,
-        }));
+  //       queryClient.setQueryData(["frame", customFrameId], (oldData) => ({
+  //         ...oldData,
+  //         isBookmarked: !oldData.isBookmarked,
+  //         bookmarks: oldData.isBookmarked
+  //           ? oldData.bookmarks - 1
+  //           : oldData.bookmarks + 1,
+  //       }));
 
-        return { previousData };
-      },
-      onError: (err, variables, context) => {
-        queryClient.setQueryData(
-          ["frame", customFrameId],
-          context.previousData
-        );
-      },
-    }
-  );
+  //       return { previousData };
+  //     },
+  //     onError: (err, variables, context) => {
+  //       queryClient.setQueryData(
+  //         ["frame", customFrameId],
+  //         context.previousData
+  //       );
+  //     },
+  //   }
+  // );
 
   const handleOnClick = () => {
     navigate(-1);

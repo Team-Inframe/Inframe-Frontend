@@ -45,6 +45,7 @@ export const BasicCameraFrame1 = ({
               autoPlay
               playsInline
               className="h-full w-full object-cover"
+              style={{ transform: "scaleX(-1)" }}
             ></video>
           )}
           <canvas ref={canvasRefs.current[index]} className="hidden"></canvas>
@@ -117,6 +118,7 @@ export const BasicCameraFrame2 = ({
                 autoPlay
                 playsInline
                 className="h-[165px] w-[140px] object-cover"
+                style={{ transform: "scaleX(-1)" }}
               ></video>
             )}
             <canvas ref={canvasRefs.current[0]} className="hidden"></canvas>
@@ -140,6 +142,7 @@ export const BasicCameraFrame2 = ({
                 autoPlay
                 playsInline
                 className="h-[165px] w-[140px] object-cover"
+                style={{ transform: "scaleX(-1)" }}
               ></video>
             )}
             <canvas ref={canvasRefs.current[1]} className="hidden"></canvas>
@@ -165,6 +168,7 @@ export const BasicCameraFrame2 = ({
                 autoPlay
                 playsInline
                 className="h-[165px] w-[140px] object-cover"
+                style={{ transform: "scaleX(-1)" }}
               ></video>
             )}
             <canvas ref={canvasRefs.current[2]} className="hidden"></canvas>
@@ -188,6 +192,7 @@ export const BasicCameraFrame2 = ({
                 autoPlay
                 playsInline
                 className="h-[165px] w-[140px] object-cover"
+                style={{ transform: "scaleX(-1)" }}
               ></video>
             )}
             <canvas ref={canvasRefs.current[3]} className="hidden"></canvas>
@@ -257,6 +262,7 @@ export const BasicCameraFrame3 = ({
                 autoPlay
                 playsInline
                 className="h-[119px] w-[170px] object-cover"
+                style={{ transform: "scaleX(-1)" }}
               ></video>
             )}
             <canvas ref={canvasRefs.current[index]} className="hidden"></canvas>
@@ -278,6 +284,7 @@ export const BasicCameraFrame3 = ({
                 autoPlay
                 playsInline
                 className="h-[119px] w-[170px] object-cover"
+                style={{ transform: "scaleX(-1)" }}
               ></video>
             )}
             <canvas ref={canvasRefs.current[index]} className="hidden"></canvas>
@@ -347,6 +354,7 @@ export const BasicCameraFrame4 = ({
                 autoPlay
                 playsInline
                 className="h-[115px] w-[170px] object-cover"
+                style={{ transform: "scaleX(-1)" }}
               ></video>
             )}
             <canvas ref={canvasRefs.current[index]} className="hidden"></canvas>
@@ -368,6 +376,7 @@ export const BasicCameraFrame4 = ({
                 autoPlay
                 playsInline
                 className="h-[115px] w-[170px] object-cover"
+                style={{ transform: "scaleX(-1)" }}
               ></video>
             )}
             <canvas ref={canvasRefs.current[index]} className="hidden"></canvas>

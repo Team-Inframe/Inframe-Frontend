@@ -25,6 +25,13 @@ const FrameDownloadPage = () => {
     navigate(-1);
   };
 
+  const parseSize = (size) => {
+    if (typeof size === "string") {
+      return parseInt(size.replace("px", ""), 10) || 70;
+    }
+    return size || 70;
+  };
+
   const handleSaveClick = async () => {
     try {
       const data = {
@@ -37,8 +44,8 @@ const FrameDownloadPage = () => {
           sticker_id: sticker?.stickerId ?? sticker?.id,
           position_x: Math.max(0, sticker?.position?.x ?? 0),
           position_y: Math.max(0, sticker?.position?.y ?? 0),
-          sticker_width: sticker?.size?.width ?? 70,
-          sticker_height: sticker?.size?.height ?? 70,
+          sticker_width: parseSize(sticker?.size?.width),
+          sticker_height: parseSize(sticker?.size?.height),
         })),
       };
 
@@ -87,10 +94,10 @@ const FrameDownloadPage = () => {
               }}
             />
           </div>
-          <div className="flex max-h-[380px] max-w-[380px] items-center justify-center">
+          <div className="flex max-h-[380px] max-w-[350px] items-center justify-center">
             <img
               src={customFrameUrl}
-              className="max-h-[380px] max-w-[380px] object-contain shadow-md"
+              className="max-h-[380px] max-w-[350px] object-contain shadow-md"
             />
           </div>
         </div>

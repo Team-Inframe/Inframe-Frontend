@@ -26,12 +26,14 @@ export default function FrameCameraPage() {
   const navigate = useNavigate();
 
   const [customFrame, setCustomFrame] = useState(null);
+  const [stickers, setStickers] = useState([]);
 
   useEffect(() => {
     const getCustomFrameDetail = async () => {
       try {
         const response = await getCustomFrame(customFrameId);
         setCustomFrame(response.data);
+        setStickers(response.data.stickers || []);
         console.log(response.data);
       } catch (error) {
         console.error(error);
@@ -100,6 +102,7 @@ export default function FrameCameraPage() {
             setFrames={setFrames}
             isCapturing={isCapturing}
             currentFrame={currentFrame}
+            stickers={stickers}
           />
         );
       case 2:
@@ -110,6 +113,7 @@ export default function FrameCameraPage() {
             setFrames={setFrames}
             isCapturing={isCapturing}
             currentFrame={currentFrame}
+            stickers={stickers}
           />
         );
       case 3:
@@ -120,6 +124,7 @@ export default function FrameCameraPage() {
             setFrames={setFrames}
             isCapturing={isCapturing}
             currentFrame={currentFrame}
+            stickers={stickers}
           />
         );
       case 4:
@@ -130,6 +135,7 @@ export default function FrameCameraPage() {
             setFrames={setFrames}
             isCapturing={isCapturing}
             currentFrame={currentFrame}
+            stickers={stickers}
           />
         );
       default:

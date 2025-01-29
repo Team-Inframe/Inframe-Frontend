@@ -1,4 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 export const StorageImages = ({ date, frames }) => {
+  const navigate = useNavigate();
+
+  const handleOnClick = (customFrameId) => {
+    navigate(`/frames/${customFrameId}`);
+  };
+
   return (
     <div className="mb-[20px] flex flex-col">
       <span className="Body_normal_M text-black">{date}</span>
@@ -8,6 +16,7 @@ export const StorageImages = ({ date, frames }) => {
           <div
             key={frame.custom_frame_id}
             className="flex min-h-[140px] cursor-pointer flex-col justify-center"
+            onClick={() => handleOnClick(frame.custom_frame_id)}
           >
             <img
               src={frame.custom_frame_url}

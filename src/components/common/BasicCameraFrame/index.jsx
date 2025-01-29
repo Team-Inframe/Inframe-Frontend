@@ -1,7 +1,12 @@
 import { useCameraFrames } from "@/hooks";
 import { useEffect } from "react";
 
-export const BasicCameraFrame1 = ({ bgsrc, isCapturing, currentFrame }) => {
+export const BasicCameraFrame1 = ({
+  bgsrc,
+  isCapturing,
+  currentFrame,
+  stickers,
+}) => {
   const isColor = bgsrc && bgsrc.startsWith("BG");
   const isImage =
     (bgsrc && bgsrc.startsWith("blob:")) || bgsrc.startsWith("http");
@@ -16,7 +21,7 @@ export const BasicCameraFrame1 = ({ bgsrc, isCapturing, currentFrame }) => {
 
   return (
     <div
-      className={`flex h-[450px] w-[180px] flex-col gap-[5px] border-2 px-[17px] py-[21px] shadow-lg ${
+      className={`relative flex h-[450px] w-[180px] flex-col gap-[5px] border-2 px-[17px] py-[21px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{
@@ -27,29 +32,48 @@ export const BasicCameraFrame1 = ({ bgsrc, isCapturing, currentFrame }) => {
       }}
     >
       {[0, 1, 2, 3].map((index) => (
-        <div className="flex bg-white" key={index}>
+        <div className="relative flex h-[100px] w-[144px] bg-white" key={index}>
           {frames[index] ? (
             <img
               src={frames[index]}
               alt={`Frame ${index + 1}`}
-              className="h-[100px] w-[144px] object-cover"
+              className="h-full w-full object-cover"
             />
           ) : (
             <video
               ref={videoRefs.current[index]}
               autoPlay
               playsInline
-              className="h-[100px] w-[144px] object-cover"
+              className="h-full w-full object-cover"
             ></video>
           )}
           <canvas ref={canvasRefs.current[index]} className="hidden"></canvas>
         </div>
       ))}
+      {stickers?.map((sticker, stickerIndex) => (
+        <img
+          key={stickerIndex}
+          src={sticker.stickerUrl}
+          alt="sticker"
+          className="absolute"
+          style={{
+            left: `${sticker.positionX}px`,
+            top: `${sticker.positionY}px`,
+            width: `${sticker.stickerWidth}px`,
+            height: `${sticker.stickerHeight}px`,
+          }}
+        />
+      ))}
     </div>
   );
 };
 
-export const BasicCameraFrame2 = ({ bgsrc, isCapturing, currentFrame }) => {
+export const BasicCameraFrame2 = ({
+  bgsrc,
+  isCapturing,
+  currentFrame,
+  stickers,
+}) => {
   const { frames, videoRefs, canvasRefs, captureFrame } = useCameraFrames(4);
 
   useEffect(() => {
@@ -64,7 +88,7 @@ export const BasicCameraFrame2 = ({ bgsrc, isCapturing, currentFrame }) => {
 
   return (
     <div
-      className={`flex h-[400px] w-[300px] flex-col gap-[4px] border-2 px-[13px] py-[26px] shadow-lg ${
+      className={`relative flex h-[425px] w-[320px] flex-col gap-[4px] border-2 px-[13px] py-[26px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{
@@ -75,7 +99,7 @@ export const BasicCameraFrame2 = ({ bgsrc, isCapturing, currentFrame }) => {
       }}
     >
       <div className="flex gap-[8px]">
-        <div className="h-[133px] w-[140px]">
+        <div className="h-[150px] w-[140px]">
           <div
             className={`relative h-full bg-white ${
               isCapturing && currentFrame === 0 ? "border-blue-500" : ""
@@ -85,20 +109,20 @@ export const BasicCameraFrame2 = ({ bgsrc, isCapturing, currentFrame }) => {
               <img
                 src={frames[0]}
                 alt="Frame 1"
-                className="h-[155px] w-[140px] object-cover"
+                className="h-[165px] w-[140px] object-cover"
               />
             ) : (
               <video
                 ref={videoRefs.current[0]}
                 autoPlay
                 playsInline
-                className="h-[155px] w-[140px] object-cover"
+                className="h-[165px] w-[140px] object-cover"
               ></video>
             )}
             <canvas ref={canvasRefs.current[0]} className="hidden"></canvas>
           </div>
         </div>
-        <div className="h-[133px] w-[140px]">
+        <div className="h-[150px] w-[140px]">
           <div
             className={`relative mt-[26px] h-full bg-white ${
               isCapturing && currentFrame === 1 ? "border-blue-500" : ""
@@ -108,14 +132,14 @@ export const BasicCameraFrame2 = ({ bgsrc, isCapturing, currentFrame }) => {
               <img
                 src={frames[1]}
                 alt="Frame 2"
-                className="h-[155px] w-[140px] object-cover"
+                className="h-[165px] w-[140px] object-cover"
               />
             ) : (
               <video
                 ref={videoRefs.current[1]}
                 autoPlay
                 playsInline
-                className="h-[155px] w-[140px] object-cover"
+                className="h-[165px] w-[140px] object-cover"
               ></video>
             )}
             <canvas ref={canvasRefs.current[1]} className="hidden"></canvas>
@@ -123,7 +147,7 @@ export const BasicCameraFrame2 = ({ bgsrc, isCapturing, currentFrame }) => {
         </div>
       </div>
       <div className="mt-[26px] flex gap-[8px]">
-        <div className="h-[133px] w-[140px]">
+        <div className="h-[150px] w-[140px]">
           <div
             className={`relative h-full bg-white ${
               isCapturing && currentFrame === 2 ? "border-blue-500" : ""
@@ -133,20 +157,20 @@ export const BasicCameraFrame2 = ({ bgsrc, isCapturing, currentFrame }) => {
               <img
                 src={frames[2]}
                 alt="Frame 3"
-                className="h-[155px] w-[140px] object-cover"
+                className="h-[165px] w-[140px] object-cover"
               />
             ) : (
               <video
                 ref={videoRefs.current[2]}
                 autoPlay
                 playsInline
-                className="h-[155px] w-[140px] object-cover"
+                className="h-[165px] w-[140px] object-cover"
               ></video>
             )}
             <canvas ref={canvasRefs.current[2]} className="hidden"></canvas>
           </div>
         </div>
-        <div className="h-[133px] w-[140px]">
+        <div className="h-[150px] w-[140px]">
           <div
             className={`relative mt-[26px] h-full bg-white ${
               isCapturing && currentFrame === 3 ? "border-blue-500" : ""
@@ -156,25 +180,44 @@ export const BasicCameraFrame2 = ({ bgsrc, isCapturing, currentFrame }) => {
               <img
                 src={frames[3]}
                 alt="Frame 4"
-                className="h-[155px] w-[140px] object-cover"
+                className="h-[165px] w-[140px] object-cover"
               />
             ) : (
               <video
                 ref={videoRefs.current[3]}
                 autoPlay
                 playsInline
-                className="h-[155px] w-[140px] object-cover"
+                className="h-[165px] w-[140px] object-cover"
               ></video>
             )}
             <canvas ref={canvasRefs.current[3]} className="hidden"></canvas>
           </div>
         </div>
       </div>
+      {stickers?.map((sticker, stickerIndex) => (
+        <img
+          key={stickerIndex}
+          src={sticker.stickerUrl}
+          alt="sticker"
+          className="absolute"
+          style={{
+            left: `${sticker.positionX}px`,
+            top: `${sticker.positionY}px`,
+            width: `${sticker.stickerWidth}px`,
+            height: `${sticker.stickerHeight}px`,
+          }}
+        />
+      ))}
     </div>
   );
 };
 
-export const BasicCameraFrame3 = ({ bgsrc, isCapturing, currentFrame }) => {
+export const BasicCameraFrame3 = ({
+  bgsrc,
+  isCapturing,
+  currentFrame,
+  stickers,
+}) => {
   const { frames, videoRefs, canvasRefs, captureFrame } = useCameraFrames(4);
 
   useEffect(() => {
@@ -189,7 +232,7 @@ export const BasicCameraFrame3 = ({ bgsrc, isCapturing, currentFrame }) => {
 
   return (
     <div
-      className={`flex h-[290px] w-[370px] flex-col gap-[5px] border-2 px-[23px] py-[17px] shadow-lg ${
+      className={`relative flex h-[270px] w-[350px] flex-col gap-[5px] border-2 px-[23px] py-[17px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{
@@ -199,53 +242,72 @@ export const BasicCameraFrame3 = ({ bgsrc, isCapturing, currentFrame }) => {
         backgroundPosition: isImage ? "center" : undefined,
       }}
     >
-      <div className="flex flex-1 gap-[5px]">
+      <div className="relative flex flex-1 gap-[5px]">
         {[0, 1].map((index) => (
           <div className="bg-white" key={index}>
             {frames[index] ? (
               <img
                 src={frames[index]}
                 alt={`Frame ${index + 1}`}
-                className="h-[120px] w-[170px] object-cover"
+                className="h-[115px] w-[170px] object-cover"
               />
             ) : (
               <video
                 ref={videoRefs.current[index]}
                 autoPlay
                 playsInline
-                className="h-[120px] w-[170px] object-cover"
+                className="h-[115px] w-[170px] object-cover"
               ></video>
             )}
             <canvas ref={canvasRefs.current[index]} className="hidden"></canvas>
           </div>
         ))}
       </div>
-      <div className="flex flex-1 gap-[5px]">
+      <div className="relative flex flex-1 gap-[5px]">
         {[2, 3].map((index) => (
           <div className="bg-white" key={index}>
             {frames[index] ? (
               <img
                 src={frames[index]}
                 alt={`Frame ${index + 1}`}
-                className="h-[120px] w-[170px] object-cover"
+                className="h-[115px] w-[170px] object-cover"
               />
             ) : (
               <video
                 ref={videoRefs.current[index]}
                 autoPlay
                 playsInline
-                className="h-[120px] w-[170px] object-cover"
+                className="h-[115px] w-[170px] object-cover"
               ></video>
             )}
             <canvas ref={canvasRefs.current[index]} className="hidden"></canvas>
           </div>
         ))}
       </div>
+      {stickers?.map((sticker, stickerIndex) => (
+        <img
+          key={stickerIndex}
+          src={sticker.stickerUrl}
+          alt="sticker"
+          className="absolute"
+          style={{
+            left: `${sticker.positionX}px `,
+            top: `${sticker.positionY}px`,
+            width: `${sticker.stickerWidth}px`,
+            height: `${sticker.stickerHeight}px`,
+          }}
+        />
+      ))}
     </div>
   );
 };
 
-export const BasicCameraFrame4 = ({ bgsrc, isCapturing, currentFrame }) => {
+export const BasicCameraFrame4 = ({
+  bgsrc,
+  isCapturing,
+  currentFrame,
+  stickers,
+}) => {
   const { frames, videoRefs, canvasRefs, captureFrame } = useCameraFrames(4);
 
   useEffect(() => {
@@ -260,7 +322,7 @@ export const BasicCameraFrame4 = ({ bgsrc, isCapturing, currentFrame }) => {
 
   return (
     <div
-      className={`flex h-[290px] w-[370px] flex-col gap-[8px] border-2 px-[23px] py-[17px] shadow-lg ${
+      className={`relative flex h-[270px] w-[350px] flex-col gap-[8px] border-2 px-[23px] py-[17px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{
@@ -277,14 +339,14 @@ export const BasicCameraFrame4 = ({ bgsrc, isCapturing, currentFrame }) => {
               <img
                 src={frames[index]}
                 alt={`Frame ${index + 1}`}
-                className="h-[120px] w-[170px] object-cover"
+                className="h-[115px] w-[170px] object-cover"
               />
             ) : (
               <video
                 ref={videoRefs.current[index]}
                 autoPlay
                 playsInline
-                className="h-[120px] w-[170px] object-cover"
+                className="h-[115px] w-[170px] object-cover"
               ></video>
             )}
             <canvas ref={canvasRefs.current[index]} className="hidden"></canvas>
@@ -298,20 +360,34 @@ export const BasicCameraFrame4 = ({ bgsrc, isCapturing, currentFrame }) => {
               <img
                 src={frames[index]}
                 alt={`Frame ${index + 1}`}
-                className="h-[120px] w-[170px] object-cover"
+                className="h-[115px] w-[170px] object-cover"
               />
             ) : (
               <video
                 ref={videoRefs.current[index]}
                 autoPlay
                 playsInline
-                className="h-[120px] w-[170px] object-cover"
+                className="h-[115px] w-[170px] object-cover"
               ></video>
             )}
             <canvas ref={canvasRefs.current[index]} className="hidden"></canvas>
           </div>
         ))}
       </div>
+      {stickers?.map((sticker, stickerIndex) => (
+        <img
+          key={stickerIndex}
+          src={sticker.stickerUrl}
+          alt="sticker"
+          className="absolute"
+          style={{
+            left: `${sticker.positionX}px`,
+            top: `${sticker.positionY}px`,
+            width: `${sticker.stickerWidth}px`,
+            height: `${sticker.stickerHeight}px`,
+          }}
+        />
+      ))}
     </div>
   );
 };

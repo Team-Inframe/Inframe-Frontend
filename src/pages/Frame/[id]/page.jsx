@@ -57,6 +57,10 @@ export const FrameDetailPage = () => {
     navigate(-1);
   };
 
+  const handleCameraClick = () => {
+    navigate(`/frames/camera/${customFrameId}`);
+  };
+
   if (isLoading) return <div>로딩중...</div>;
   if (isError) return <div>데이터를 불러오는데 실패했습니다.</div>;
 
@@ -73,12 +77,17 @@ export const FrameDetailPage = () => {
           {frameData.customFrameTitle}
         </span>
       </div>
-      <div className="mt-[100px] flex flex-col items-center justify-center">
-        <div className="flex w-3/5 flex-col items-center justify-center">
-          <img src={frameData.customFrameUrl} className="mb-10 w-full" />
+      <div className="mt-[80px] flex flex-col items-center justify-center">
+        <div className="flex max-w-[300px] flex-col items-center justify-center">
+          <img
+            src={frameData.customFrameUrl}
+            className="mb-10 max-h-[400px] w-full"
+          />
           <div className="flex items-center justify-center gap-[5px] px-[6px]">
             <img src={Camera} className="mt-1" />
-            <span className="Label_M mt-2">촬영하러 가기</span>
+            <div className="Label_M mt-2" onClick={handleCameraClick}>
+              촬영하러 가기
+            </div>
           </div>
         </div>
       </div>

@@ -232,7 +232,7 @@ export const BasicCameraFrame3 = ({
 
   return (
     <div
-      className={`relative flex h-[270px] w-[350px] flex-col gap-[5px] px-[23px] py-[17px] shadow-lg ${
+      className={`relative flex h-[273px] w-[350px] flex-col gap-[5px] px-[23px] py-[17px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{
@@ -249,14 +249,14 @@ export const BasicCameraFrame3 = ({
               <img
                 src={frames[index]}
                 alt={`Frame ${index + 1}`}
-                className="h-[115px] w-[170px] object-cover"
+                className="h-[119px] w-[170px] object-cover"
               />
             ) : (
               <video
                 ref={videoRefs.current[index]}
                 autoPlay
                 playsInline
-                className="h-[115px] w-[170px] object-cover"
+                className="h-[119px] w-[170px] object-cover"
               ></video>
             )}
             <canvas ref={canvasRefs.current[index]} className="hidden"></canvas>
@@ -270,14 +270,14 @@ export const BasicCameraFrame3 = ({
               <img
                 src={frames[index]}
                 alt={`Frame ${index + 1}`}
-                className="h-[115px] w-[170px] object-cover"
+                className="h-[119px] w-[170px] object-cover"
               />
             ) : (
               <video
                 ref={videoRefs.current[index]}
                 autoPlay
                 playsInline
-                className="h-[115px] w-[170px] object-cover"
+                className="h-[119px] w-[170px] object-cover"
               ></video>
             )}
             <canvas ref={canvasRefs.current[index]} className="hidden"></canvas>

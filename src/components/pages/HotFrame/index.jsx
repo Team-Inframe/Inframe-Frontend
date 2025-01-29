@@ -10,7 +10,7 @@ export const HotFrame = ({
   console.log("HotFrame isBookmarked:", isBookmarked);
   return (
     <div className="mt-6 flex flex-col items-center justify-center">
-      <div className="flex min-h-[200px] min-w-[129px] flex-col justify-between">
+      <div className="flex min-w-[129px] flex-col justify-between">
         <img
           src={frameImg}
           alt="Frame"

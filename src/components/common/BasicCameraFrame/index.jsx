@@ -21,7 +21,7 @@ export const BasicCameraFrame1 = ({
 
   return (
     <div
-      className={`relative flex h-[420px] w-[180px] flex-col gap-[5px] border-2 px-[17px] py-[21px] shadow-lg ${
+      className={`relative flex h-[420px] w-[180px] flex-col gap-[5px] px-[17px] py-[21px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{
@@ -88,7 +88,7 @@ export const BasicCameraFrame2 = ({
 
   return (
     <div
-      className={`relative flex h-[425px] w-[320px] flex-col gap-[4px] border-2 px-[13px] py-[26px] shadow-lg ${
+      className={`relative flex h-[425px] w-[320px] flex-col gap-[4px] px-[13px] py-[26px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{
@@ -232,7 +232,7 @@ export const BasicCameraFrame3 = ({
 
   return (
     <div
-      className={`relative flex h-[270px] w-[350px] flex-col gap-[5px] border-2 px-[23px] py-[17px] shadow-lg ${
+      className={`relative flex h-[270px] w-[350px] flex-col gap-[5px] px-[23px] py-[17px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{
@@ -322,7 +322,7 @@ export const BasicCameraFrame4 = ({
 
   return (
     <div
-      className={`relative flex h-[270px] w-[350px] flex-col gap-[8px] border-2 px-[23px] py-[17px] shadow-lg ${
+      className={`relative flex h-[270px] w-[350px] flex-col gap-[8px] px-[23px] py-[17px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{

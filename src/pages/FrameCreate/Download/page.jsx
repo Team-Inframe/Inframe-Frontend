@@ -1,8 +1,6 @@
 import { useState } from "react";
 import LeftArrow from "@/assets/svgs/LeftArrow.svg";
 import ShareToggle from "@/components/pages/FrameCreate/ShareToggle";
-import pencil from "@/assets/svgs/Pencil.svg";
-//import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import RoutePath from "@/routes/routePath";
 import { useStickerStore } from "@/libraries/store/storesticker";

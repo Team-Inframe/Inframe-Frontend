@@ -88,7 +88,9 @@ const FrameList = ({ sort, title, subtitle, navigateTo, movePage }) => {
           className="flex items-center justify-between gap-[9px] rounded-[8px] border-2 py-[4px] pl-[40px] pr-[30px]"
           onClick={() => navigate(navigateTo)}
         >
-          <span className="Caption_normal_M">{movePage}</span>
+          <span className="Caption_normal_M font-regular mt-[2px]">
+            {movePage}
+          </span>
           <img src={RightArrow} alt="이동 버튼" />
         </div>
       </div>

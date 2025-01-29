@@ -1,6 +1,5 @@
 import Footer from "@/components/layout/Footer";
 import FrameList from "@/components/pages/Main/FrameList";
-import RoutePath from "@/routes/routePath";
 import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -9,33 +8,45 @@ import weather1 from "@/assets/images/weather1.png";
 import weather2 from "@/assets/images/weather2.png";
 import weather3 from "@/assets/images/weather3.png";
 import RightArrow from "@/assets/svgs/RightArrow.svg";
+import { useEffect } from "react";
+import useWeatherStore from "@/libraries/store/weather";
+import useGetLocationAndWeather from "@/hooks/useGetLocationAndWeather";
 
 export const MainPage = () => {
   const username = localStorage.getItem("username");
   const navigate = useNavigate();
-  // const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-  // const OPENWEATHER_API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
 
-  // const { location, weather, error } = useWeatherStore();
-  // const { fetchLocationAndWeather, loading } = useGetLocationAndWeather(
-  //   GOOGLE_MAPS_API_KEY,
-  //   OPENWEATHER_API_KEY
-  // );
+  const { weather } = useWeatherStore();
+  const { fetchLocationAndWeather } = useGetLocationAndWeather(
+    import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
+    import.meta.env.VITE_OPENWEATHER_API_KEY
+  );
 
-  // useEffect(() => {
-  //   fetchLocationAndWeather();
-  // }, []);
+  useEffect(() => {
+    fetchLocationAndWeather().then(() => {
+      const storedLocation = localStorage.getItem("location");
+      if (!storedLocation) {
+        localStorage.setItem("location", weather?.city || "Unknown");
+      }
+    });
+  }, []);
 
-  // {location && <p className="Label_M">현재 위치: {location}</p>}
-  // {weather && (
-  //   <div>
-  //     <p className="Label_M">날씨: {weather.description}</p>
-  //   </div>
-  // )}
-  // {error && <div className="text-red-500">오류: {error}</div>}
+  const WEATHER_FRAME_IDS = {
+    Clear: 72,
+    Snow: 73,
+    Thunderstorm: 74,
+    Rain: 74,
+    Drizzle: 74,
+    Clouds: 74,
+    Atmosphere: 74,
+  };
+
+  const customFrameId = WEATHER_FRAME_IDS[weather?.main] || null;
 
   const handleOnClick = () => {
-    navigate(RoutePath.FrameWeather);
+    if (customFrameId) {
+      navigate(`/frames/camera/${customFrameId}`);
+    }
   };
 
   const settings = {

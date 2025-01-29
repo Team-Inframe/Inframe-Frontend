@@ -2,6 +2,7 @@ import { useQuery, useMutation, useQueryClient } from "react-query";
 import { getCustomFrameList, bookmarkCustomFrame } from "@/api";
 import { useNavigate } from "react-router-dom";
 import { HotFrame } from "@/components/pages/HotFrame";
+import RightArrow from "@/assets/svgs/RightArrow.svg";
 
 const FrameList = ({ sort, title, subtitle, navigateTo, movePage }) => {
   const navigate = useNavigate();
@@ -88,7 +89,7 @@ const FrameList = ({ sort, title, subtitle, navigateTo, movePage }) => {
           onClick={() => navigate(navigateTo)}
         >
           <span className="Caption_normal_M">{movePage}</span>
-          <img src="/src/assets/svgs/MoveButton.svg" alt="이동 버튼" />
+          <img src={RightArrow} alt="이동 버튼" />
         </div>
       </div>
     </div>

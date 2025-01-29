@@ -109,7 +109,7 @@ const FrameDownloadPage = () => {
               placeholder="프레임 제목을 입력해주세요"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="Body_reading_M placeholder:Label_L w-full rounded-[5px] py-[5px] text-center focus:border-none focus:outline-none"
+              className="Body_reading_M placeholder:Label_L w-[150px] rounded-[5px] py-[5px] text-center focus:border-none focus:outline-none"
             />
           </div>
           <button

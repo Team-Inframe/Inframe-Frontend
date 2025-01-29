@@ -1,8 +1,9 @@
+import filledbookmark from "@/assets/svgs/filledbookmark.svg";
+import bookmark from "@/assets/svgs/bookmark.svg";
+
 export const DownloadButton = ({ label, onClick, isBookmarked }) => {
   console.log("isBookmarked:", isBookmarked);
-  const BookmarkIcon = isBookmarked
-    ? "/src/assets/svgs/filledbookmark.svg"
-    : "/src/assets/svgs/bookmark.svg";
+  const BookmarkIcon = isBookmarked ? filledbookmark : bookmark;
 
   return (
     <button className="flex gap-1" onClick={onClick}>

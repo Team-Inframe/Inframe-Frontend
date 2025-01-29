@@ -21,7 +21,7 @@ export const BasicCameraFrame1 = ({
 
   return (
     <div
-      className={`relative flex h-[450px] w-[180px] flex-col gap-[5px] border-2 px-[17px] py-[21px] shadow-lg ${
+      className={`relative flex h-[420px] w-[180px] flex-col gap-[5px] border-2 px-[17px] py-[21px] shadow-lg ${
         isColor ? `bg-BGColor-${bgsrc}` : ""
       }`}
       style={{
@@ -32,7 +32,7 @@ export const BasicCameraFrame1 = ({
       }}
     >
       {[0, 1, 2, 3].map((index) => (
-        <div className="relative flex h-[100px] w-[144px] bg-white" key={index}>
+        <div className="relative flex h-[90px] w-[144px] bg-white" key={index}>
           {frames[index] ? (
             <img
               src={frames[index]}

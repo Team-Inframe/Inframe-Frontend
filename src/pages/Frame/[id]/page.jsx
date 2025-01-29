@@ -81,7 +81,7 @@ export const FrameDetailPage = () => {
         <div className="flex max-w-[300px] flex-col items-center justify-center">
           <img
             src={frameData.customFrameUrl}
-            className="mb-10 max-h-[400px] w-full"
+            className="mb-10 max-h-[300px] w-full"
           />
           <div className="flex items-center justify-center gap-[5px] px-[6px]">
             <img src={Camera} className="mt-1" />

@@ -5,7 +5,7 @@ export const GalleryImages = ({ date, photos }) => {
 
   return (
     <div className="mb-[20px] flex flex-col">
-      <span className="Body_normal_M text-black">{date}</span>
+      <span className="Body_reading_L text-black">{date}</span>
 
       <div className="mt-[10px] grid grid-cols-3 gap-[20px]">
         {photos.map((photo) => (

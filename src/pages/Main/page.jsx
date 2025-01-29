@@ -56,7 +56,7 @@ export const MainPage = () => {
         </div>
         <div className="flex justify-between px-[24px]">
           <div className="flex-col">
-            <span className="Body_normal_M mb-1 flex text-black">
+            <span className="Body_normal_M mb-1 flex font-bold text-black">
               {username}님
             </span>
             <span className="Label_L text-black">

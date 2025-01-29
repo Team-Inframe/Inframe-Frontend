@@ -67,7 +67,7 @@ const FrameList = ({ sort, title, subtitle, navigateTo, movePage }) => {
     <div className="mt-10 flex w-full flex-col px-[24px] text-left">
       <div className="items-start justify-start pt-2 text-left">
         <div className="Caption_reading_L text-black">{title}</div>
-        <div className="Label_M text-black">{subtitle}</div>
+        <div className="Label_M font-bold text-black">{subtitle}</div>
       </div>
       <div className="mt-2 grid grid-cols-2 items-center justify-center gap-[20px]">
         {frames.slice(0, 4).map((frame) => (

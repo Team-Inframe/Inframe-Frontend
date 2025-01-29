@@ -1,4 +1,3 @@
-import Footer from "@/components/layout/Footer";
 import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getCustomFrame } from "@/api";
@@ -78,10 +77,10 @@ export const FrameDetailPage = () => {
         </span>
       </div>
       <div className="mt-[80px] flex flex-col items-center justify-center">
-        <div className="flex max-w-[300px] flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center">
           <img
             src={frameData.customFrameUrl}
-            className="mb-10 max-h-[300px] w-full"
+            className="mb-10 w-full px-[10px]"
           />
           <div className="flex items-center justify-center gap-[5px] px-[6px]">
             <img src={Camera} className="mt-1" />
@@ -91,7 +90,6 @@ export const FrameDetailPage = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

@@ -31,6 +31,7 @@ export const FrameCameraDownloadPage = () => {
 
   const handleConfirmClick = () => {
     localStorage.removeItem("photoUrl");
+    localStorage.removeItem("bgsrc");
     navigate(RoutePath.Storage);
   };
 

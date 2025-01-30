@@ -2,6 +2,7 @@ import { useQuery, useMutation, useQueryClient } from "react-query";
 import { getCustomFrameList, bookmarkCustomFrame } from "@/api";
 import { useNavigate } from "react-router-dom";
 import { HotFrame } from "@/components/pages/HotFrame";
+import RightArrow from "@/assets/svgs/RightArrow.svg";
 
 const FrameList = ({ sort, title, subtitle, navigateTo, movePage }) => {
   const navigate = useNavigate();
@@ -67,7 +68,7 @@ const FrameList = ({ sort, title, subtitle, navigateTo, movePage }) => {
     <div className="mt-10 flex w-full flex-col px-[24px] text-left">
       <div className="items-start justify-start pt-2 text-left">
         <div className="Caption_reading_L text-black">{title}</div>
-        <div className="Label_M text-black">{subtitle}</div>
+        <div className="Label_M font-bold text-black">{subtitle}</div>
       </div>
       <div className="mt-2 grid grid-cols-2 items-center justify-center gap-[20px]">
         {frames.slice(0, 4).map((frame) => (
@@ -87,8 +88,10 @@ const FrameList = ({ sort, title, subtitle, navigateTo, movePage }) => {
           className="flex items-center justify-between gap-[9px] rounded-[8px] border-2 py-[4px] pl-[40px] pr-[30px]"
           onClick={() => navigate(navigateTo)}
         >
-          <span className="Caption_normal_M">{movePage}</span>
-          <img src="/src/assets/svgs/MoveButton.svg" alt="이동 버튼" />
+          <span className="Caption_normal_M font-regular mt-[2px]">
+            {movePage}
+          </span>
+          <img src={RightArrow} alt="이동 버튼" />
         </div>
       </div>
     </div>

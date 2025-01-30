@@ -14,6 +14,7 @@ import AiUploadeder from "@/components/pages/FrameCreate/AiUploader";
 import html2canvas from "html2canvas";
 import { postFrame, postFrameBackground } from "@/api/frames";
 import RoutePath from "@/routes/routePath";
+import { Loading } from "@/components/common/Loading";
 
 const FrameBackgroundPage = () => {
   const navigate = useNavigate();
@@ -24,12 +25,14 @@ const FrameBackgroundPage = () => {
   const [prompt, setPrompt] = useState("");
   const [bgsrc, setBgsrc] = useState("#DADADA");
   const [SelectedComp, setSelectComp] = useState(List[0]);
-  // const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const handlePromptChange = (e) => {
     setPrompt(e.target.value);
   };
+
   const handleAIBackgroundImage = async () => {
-    // setIsLoading(true);
+    setIsLoading(true);
     try {
       const response = await postFrameBackground(prompt);
       const aiFrameUrl = response.data.frame_ai_url;
@@ -37,12 +40,13 @@ const FrameBackgroundPage = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      // setIsLoading(false);
+      setIsLoading(false);
     }
   };
   const handleConfirmClick = async () => {
     console.log("confirm");
     if (!frameRef.current) return;
+    setIsLoading(true);
     try {
       const frame = frameRef.current;
       const canvas = await html2canvas(frame, {
@@ -55,7 +59,6 @@ const FrameBackgroundPage = () => {
         const basicFrameId = localStorage.getItem("basicFrameId");
         if (blob !== null) {
           const response = await postFrame(blob, bgsrc, basicFrameId);
-          //프레임 아이디 확인
           localStorage.setItem("frameId", response.data.frame_id);
           localStorage.setItem("frameBg", bgsrc);
           navigate(RoutePath.FrameSticker);
@@ -63,6 +66,8 @@ const FrameBackgroundPage = () => {
       });
     } catch (err) {
       console.error(err);
+    } finally {
+      setIsLoading(false);
     }
   };
   const handleColorChange = (newColor) => {
@@ -86,7 +91,7 @@ const FrameBackgroundPage = () => {
     }
   };
   return (
-    <div className="flex h-real-screen flex-col pb-[50px] pt-[50px]">
+    <div className="relative flex h-real-screen flex-col pb-[50px] pt-[50px]">
       <header>
         <button onClick={() => navigate(-1)}>
           <img src={leftarrow} alt="뒤로가기" className="mb-[8px] px-[14px]" />
@@ -138,12 +143,12 @@ const FrameBackgroundPage = () => {
             )}
           </div>
         </div>
-        {/* {loading && (
-          <div className="flex justify-center items-center absolute top-0 left-0 right-0 bottom-0 bg-gray-600 bg-opacity-50 z-50">
-            <img src={frame1} alt="Loading..." />
-          </div>
-        )} */}
       </div>
+      {isLoading && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
+          <Loading title="로딩중..." subtitle="AI가 배경을 만들고 있어요!" />
+        </div>
+      )}
     </div>
   );
 };

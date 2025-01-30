@@ -23,12 +23,25 @@ const useGetLocationAndWeather = (googleMapsApiKey, openWeatherApiKey) => {
           const geocodeData = await geocodeResponse.json();
 
           if (geocodeResponse.ok && geocodeData.results.length > 0) {
-            const formattedAddress = geocodeData.results[0].formatted_address;
-            setLocation(formattedAddress);
+            const addressComponents = geocodeData.results[0].address_components;
+
+            const administrativeArea = addressComponents.find((comp) =>
+              comp.types.includes("administrative_area_level_1")
+            )?.long_name;
+
+            const locality = addressComponents.find((comp) =>
+              comp.types.includes("locality")
+            )?.long_name;
+
+            const formattedLocation =
+              `${administrativeArea || ""} ${locality || ""}`.trim();
+
+            localStorage.setItem("location", formattedLocation);
+            setLocation(formattedLocation);
+
+            console.log("저장된 위치:", formattedLocation);
           } else {
-            setError("주소 정보를 가져오는 데 실패했습니다.");
-            setLoading(false);
-            return;
+            throw new Error("주소 정보를 가져오는 데 실패했습니다.");
           }
 
           const weatherResponse = await fetch(
@@ -44,11 +57,13 @@ const useGetLocationAndWeather = (googleMapsApiKey, openWeatherApiKey) => {
               city: weatherData.name,
             });
           } else {
-            setError(weatherData.message || "날씨 정보를 가져오지 못했습니다.");
+            throw new Error(
+              weatherData.message || "날씨 정보를 가져오지 못했습니다."
+            );
           }
         } catch (error) {
           console.error("위치 또는 날씨 정보 가져오기 실패:", error);
-          setError("위치 또는 날씨 정보를 가져오는 데 실패했습니다.");
+          setError(error.message);
         } finally {
           setLoading(false);
         }

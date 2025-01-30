@@ -14,7 +14,6 @@ const RoutePath = {
   FrameDownload: "/frames/download",
   FrameCamera: "/frames/camera/:id",
   FrameCameraDownload: "/frames/camera/download",
-  FrameWeather: "/frames/weather",
 
   /* 보관함 페이지 */
   Storage: "/storages",

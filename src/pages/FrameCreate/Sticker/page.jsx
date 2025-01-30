@@ -134,8 +134,11 @@ const FrameStickerPage = () => {
         if (blob !== null) {
           //finishFrameBlob을 서버에 보내기
           const response = await postCustomFrameImg(blob);
-
-          localStorage.setItem("file_url", response.data.file_url);
+          const fileUrl =
+            "https://inframes3.s3.ap-northeast-2.amazonaws.com/uploads/uploaded_file_1738272577_blob";
+          localStorage.setItem("file_url", fileUrl);
+          console.log(response);
+          // localStorage.setItem("file_url", response.data.file_url);
           navigate(RoutePath.FrameDownload);
         }
       });

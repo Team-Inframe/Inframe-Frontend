@@ -64,8 +64,8 @@ const EditPage = ({ setSelectedSticker }) => {
 
   return (
     <div>
-      <div className="flex flex-1 items-center justify-center">
-        <div ref={frameRef}>{renderFrame()}</div>
+      <div className="flex flex-1 items-center justify-center" ref={frameRef}>
+        <div>{renderFrame()}</div>
       </div>
       {/* {console.log(selectedsticker)} */}
       {stickers.map((sticker, index) => (

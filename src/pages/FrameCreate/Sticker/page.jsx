@@ -128,6 +128,7 @@ const FrameStickerPage = () => {
         backgroundColor: null,
         useCORS: true,
         allowTaint: true,
+        logging: true,
       });
       canvas.toBlob(async (blob) => {
         if (blob !== null) {

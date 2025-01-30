@@ -61,10 +61,11 @@ export default function FrameCameraPage() {
 
       if (frameElement) {
         const canvas = await html2canvas(frameElement, {
-          scale: 2,
+          scale: window.devicePixelRatio,
           backgroundColor: null,
           useCORS: true,
           allowTaint: true,
+          logging: true,
         });
 
         const blob = await new Promise((resolve) => {

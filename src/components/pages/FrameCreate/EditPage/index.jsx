@@ -65,7 +65,7 @@ const EditPage = ({ setSelectedSticker }) => {
   return (
     <div className="relative">
       <div className="flex flex-1 items-center justify-center" ref={frameRef}>
-        <div>{renderFrame()}</div>
+        <div className="z-10">{renderFrame()}</div>
         {stickers.map((sticker, index) => (
           <Rnd
             key={index}
@@ -86,7 +86,7 @@ const EditPage = ({ setSelectedSticker }) => {
             onResizeStop={(e, direction, ref, delta, position) =>
               handleResizeStop(index, e, direction, ref, delta, position)
             }
-            style={{ zIndex: 10 }}
+            style={{ zIndex: 50 }}
           >
             <img src={sticker.src} alt="" />
           </Rnd>

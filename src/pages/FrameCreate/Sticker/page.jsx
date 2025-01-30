@@ -124,7 +124,7 @@ const FrameStickerPage = () => {
       const frame = frameRef.current;
       //완성프레임 사진찍기
       const canvas = await html2canvas(frame, {
-        scale: 2,
+        scale: window.devicePixelRatio,
         backgroundColor: null,
         useCORS: true,
         allowTaint: true,

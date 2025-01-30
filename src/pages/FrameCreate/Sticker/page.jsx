@@ -12,36 +12,65 @@ import EditPage from "@/components/pages/FrameCreate/EditPage";
 import html2canvas from "html2canvas";
 import { postCustomFrameImg } from "@/api/customframes";
 import { useStickerStore } from "@/libraries/store/storesticker";
+import deletebutton from "/src/assets/svgs/delete.svg";
 
 const FrameStickerPage = () => {
   const navigate = useNavigate();
   const list = ["스티커 페이지", "AI 스티커", "사진 스티커"];
   const [SelectedComp, setSelectComp] = useState(list[0]);
   const [istoggled, setIstoggled] = useState(false);
+
   const [prompt, setPrompt] = useState("");
   const [stickers, setStickers] = useState([]);
   const frameRef = useRef(null);
-  // const [isdeleted, setisdeleted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const removeSticker = useStickerStore((state) => state.removeSticker);
   const clearStickers = useStickerStore((state) => state.clearStickers);
   const [selectedsticker, setSelectedSticker] = useState(null);
+  const [uploadedImage, setUploadedImage] = useState(null);
 
   const handlePromptChange = (e) => {
     setPrompt(e.target.value);
   };
 
-  const handleAISticker = async () => {
-    // setIsLoading(true);
+  const handlePostSticker = async () => {
+    setIsLoading(true);
+    // userid 추가
+    const formData = new FormData();
+    formData.append("user_id", localStorage.getItem("userId"));
+    if (prompt) {
+      // 스티커 생성 프롬프트
+      formData.append("prompt", prompt);
+    }
+    if (uploadedImage) {
+      // 이미지 배경 제거
+      formData.append("uploaded_image", uploadedImage);
+    }
+
     try {
-      const response = await postSticker(prompt);
-      setStickers(response.data);
-      setSelectComp("스티커 페이지");
+      const response = await postSticker(formData);
+      console.log(response);
+      setStickers([response.data, ...stickers.slice(1)]);
     } catch (error) {
       console.error(error);
     } finally {
-      // setIsLoading(false);
+      setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (isLoading) {
+      setStickers([
+        {
+          sticker_id: 0,
+          sticker_url:
+            "https://cdn.pixabay.com/animation/2023/08/11/21/18/21-18-05-265_512.gif",
+        },
+        ...stickers,
+      ]);
+      setSelectComp("스티커 페이지");
+    }
+  }, [isLoading]);
 
   useEffect(() => {
     const getStickerlist = async () => {
@@ -53,11 +82,7 @@ const FrameStickerPage = () => {
       }
     };
     getStickerlist();
-  }, [SelectedComp]);
-
-  // useEffect(() => {
-  //   <Stickers />;
-  // }, [stickers]);
+  }, []);
 
   const handleTextButtonClick = (text) => {
     //아무버튼도 안눌렸을때
@@ -75,6 +100,17 @@ const FrameStickerPage = () => {
       }
     }
   };
+
+  const handleImgUpload = () => {
+    const image = localStorage.getItem("image");
+    setUploadedImage(image);
+  };
+
+  useEffect(() => {
+    if (uploadedImage) {
+      handlePostSticker();
+    }
+  }, [uploadedImage]);
 
   const handleBackClick = () => {
     clearStickers();
@@ -108,6 +144,7 @@ const FrameStickerPage = () => {
   };
 
   const handleremover = () => {
+    //삭제시 로그 확인
     console.log("click:", selectedsticker);
     removeSticker(selectedsticker);
   };
@@ -139,7 +176,9 @@ const FrameStickerPage = () => {
             />
           </div>
         </div>
-        <button onClick={() => handleremover()}>삭제</button>
+        <button className="self-center" onClick={() => handleremover()}>
+          <img src={deletebutton} alt="삭제" />
+        </button>
         <div className="mt-[40px] flex h-[150px] w-full flex-col gap-[30px]">
           <div className="flex w-full justify-between px-[100px]">
             <TextButton
@@ -156,26 +195,35 @@ const FrameStickerPage = () => {
 
           <div className="min-h-40 w-full">
             {SelectedComp == list[0] ? (
+              // 스티커 리스트 컴포넌트
               <div className="grid h-full w-full grid-cols-4 overflow-auto bg-slate-100">
-                {/* 스티커 리스트 컴포넌트 */}
-                {stickers.map((group) => (
-                  <Sticker
-                    key={group.sticker_id}
-                    stickerId={group.sticker_id}
-                    imgSrc={group.sticker_url}
-                  />
-                ))}
+                {stickers.map((group) =>
+                  group.sticker_id == 0 ? (
+                    <Sticker
+                      key={group.sticker_id}
+                      stickerId={group.sticker_id}
+                      imgSrc={group.sticker_url}
+                      disabled
+                    />
+                  ) : (
+                    <Sticker
+                      key={group.sticker_id}
+                      stickerId={group.sticker_id}
+                      imgSrc={group.sticker_url}
+                    />
+                  )
+                )}
               </div>
             ) : SelectedComp == list[1] ? (
               <div className="px-[60px]">
                 <AiUploader
-                  onClick={handleAISticker}
+                  onClick={handlePostSticker}
                   prompt={prompt}
                   onPromptChange={handlePromptChange}
                 />
               </div>
             ) : (
-              <PictureUploader uploadedImage={""} />
+              <PictureUploader uploadedImage={handleImgUpload} />
             )}
           </div>
         </div>

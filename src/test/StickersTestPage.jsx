@@ -16,7 +16,8 @@ const StickersTestPage = () => {
 
     if (prompt) {
       // 스티커 생성 프롬포트
-      formData.append("prompt", prompt);
+      await formData.append("prompt", prompt);
+      await console.log(formData);
     }
 
     if (uploadedImage) {

@@ -30,9 +30,11 @@ const LoginPage = () => {
       try {
         const response = await login(email, pw);
         if (response && response.data) {
-          const { user_id } = response.data; // 로그인 후 user_id를 추출
-          localStorage.setItem("userId", user_id); // user_id를 localStorage에 저장
-          navigate(RoutePath.Main); // 메인 페이지로 이동
+          const userId = response.data.user_id;
+          const username = response.data.username;
+          localStorage.setItem("userId", userId);
+          localStorage.setItem("username", username);
+          navigate(RoutePath.Main);
         } else {
           setLoginError("로그인에 실패했습니다. 다시 시도해 주세요.");
         }

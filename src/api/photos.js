@@ -2,11 +2,12 @@ import axios from "axios";
 
 const BASE_URL = `${import.meta.env.VITE_BASE_URL}`;
 
-export const postPhoto = async (userId, photoImg) => {
+export const postPhoto = async (userId, photoImg, location) => {
   try {
     const formData = new FormData();
     formData.append("user_id", userId);
     formData.append("photo_img", photoImg);
+    formData.append("location", location);
     const response = await axios.post(`${BASE_URL}/photos/`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",

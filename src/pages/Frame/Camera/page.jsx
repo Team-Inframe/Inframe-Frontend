@@ -74,9 +74,10 @@ export default function FrameCameraPage() {
         if (!blob) throw new Error("Blob 생성 실패");
 
         const userId = localStorage.getItem("userId");
+        const location = localStorage.getItem("location");
         const file = new File([blob], "MyPhoto.png", { type: "image/png" });
 
-        const response = await postPhoto(userId, file);
+        const response = await postPhoto(userId, file, location);
         localStorage.setItem("photoUrl", response.photo_url);
 
         navigate(RoutePath.FrameCameraDownload);

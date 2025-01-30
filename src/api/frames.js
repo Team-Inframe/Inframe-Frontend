@@ -25,7 +25,7 @@ export const postFrame = async (frameImg, frameBg, basicFrameId) => {
     formData.append("frame_url", frameImg);
     formData.append("frame_bg", frameBg);
     formData.append("basic_frame_id", basicFrameId);
-    const response = await axios.post(`${BASE_URL}/frames/`, formData, {
+    const response = await axios.post(`${BASE_URL}/frames`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },

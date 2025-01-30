@@ -12,6 +12,7 @@ import EditPage from "@/components/pages/FrameCreate/EditPage";
 import html2canvas from "html2canvas";
 import { postCustomFrameImg } from "@/api/customframes";
 import { useStickerStore } from "@/libraries/store/storesticker";
+import deletebutton from "/src/assets/svgs/delete.svg";
 
 const FrameStickerPage = () => {
   const navigate = useNavigate();
@@ -48,6 +49,7 @@ const FrameStickerPage = () => {
 
     try {
       const response = await postSticker(formData);
+      console.log(response);
       setStickers([response.data, ...stickers.slice(1)]);
     } catch (error) {
       console.error(error);
@@ -62,7 +64,7 @@ const FrameStickerPage = () => {
         {
           sticker_id: 0,
           sticker_url:
-            "https://previews.123rf.com/images/estherpoon/estherpoon1706/estherpoon170600035/80108153-%EB%A1%9C%EB%94%A9-%EC%95%84%EC%9D%B4%EC%BD%98.jpg",
+            "https://cdn.pixabay.com/animation/2023/08/11/21/18/21-18-05-265_512.gif",
         },
         ...stickers,
       ]);
@@ -98,6 +100,17 @@ const FrameStickerPage = () => {
       }
     }
   };
+
+  const handleImgUpload = () => {
+    const image = localStorage.getItem("image");
+    setUploadedImage(image);
+  };
+
+  useEffect(() => {
+    if (uploadedImage) {
+      handlePostSticker();
+    }
+  }, [uploadedImage]);
 
   const handleBackClick = () => {
     clearStickers();
@@ -163,7 +176,9 @@ const FrameStickerPage = () => {
             />
           </div>
         </div>
-        <button onClick={() => handleremover()}>삭제</button>
+        <button className="self-center" onClick={() => handleremover()}>
+          <img src={deletebutton} alt="삭제" />
+        </button>
         <div className="mt-[40px] flex h-[150px] w-full flex-col gap-[30px]">
           <div className="flex w-full justify-between px-[100px]">
             <TextButton
@@ -182,13 +197,22 @@ const FrameStickerPage = () => {
             {SelectedComp == list[0] ? (
               // 스티커 리스트 컴포넌트
               <div className="grid h-full w-full grid-cols-4 overflow-auto bg-slate-100">
-                {stickers.map((group) => (
-                  <Sticker
-                    key={group.sticker_id}
-                    stickerId={group.sticker_id}
-                    imgSrc={group.sticker_url}
-                  />
-                ))}
+                {stickers.map((group) =>
+                  group.sticker_id == 0 ? (
+                    <Sticker
+                      key={group.sticker_id}
+                      stickerId={group.sticker_id}
+                      imgSrc={group.sticker_url}
+                      disabled
+                    />
+                  ) : (
+                    <Sticker
+                      key={group.sticker_id}
+                      stickerId={group.sticker_id}
+                      imgSrc={group.sticker_url}
+                    />
+                  )
+                )}
               </div>
             ) : SelectedComp == list[1] ? (
               <div className="px-[60px]">
@@ -199,9 +223,7 @@ const FrameStickerPage = () => {
                 />
               </div>
             ) : (
-              <PictureUploader
-                uploadedImage={setUploadedImage(uploadedImage)}
-              />
+              <PictureUploader uploadedImage={handleImgUpload} />
             )}
           </div>
         </div>

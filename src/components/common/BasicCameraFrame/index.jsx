@@ -38,6 +38,7 @@ export const BasicCameraFrame1 = ({
               src={frames[index]}
               alt={`Frame ${index + 1}`}
               className="h-full w-full object-cover"
+              style={{ transform: "scaleX(-1)" }}
             />
           ) : (
             <video
@@ -111,6 +112,7 @@ export const BasicCameraFrame2 = ({
                 src={frames[0]}
                 alt="Frame 1"
                 className="h-[165px] w-[140px] object-cover"
+                style={{ transform: "scaleX(-1)" }}
               />
             ) : (
               <video
@@ -135,6 +137,7 @@ export const BasicCameraFrame2 = ({
                 src={frames[1]}
                 alt="Frame 2"
                 className="h-[165px] w-[140px] object-cover"
+                style={{ transform: "scaleX(-1)" }}
               />
             ) : (
               <video
@@ -161,6 +164,7 @@ export const BasicCameraFrame2 = ({
                 src={frames[2]}
                 alt="Frame 3"
                 className="h-[165px] w-[140px] object-cover"
+                style={{ transform: "scaleX(-1)" }}
               />
             ) : (
               <video
@@ -185,6 +189,7 @@ export const BasicCameraFrame2 = ({
                 src={frames[3]}
                 alt="Frame 4"
                 className="h-[165px] w-[140px] object-cover"
+                style={{ transform: "scaleX(-1)" }}
               />
             ) : (
               <video
@@ -255,6 +260,7 @@ export const BasicCameraFrame3 = ({
                 src={frames[index]}
                 alt={`Frame ${index + 1}`}
                 className="h-[119px] w-[170px] object-cover"
+                style={{ transform: "scaleX(-1)" }}
               />
             ) : (
               <video
@@ -277,6 +283,7 @@ export const BasicCameraFrame3 = ({
                 src={frames[index]}
                 alt={`Frame ${index + 1}`}
                 className="h-[119px] w-[170px] object-cover"
+                style={{ transform: "scaleX(-1)" }}
               />
             ) : (
               <video
@@ -347,6 +354,7 @@ export const BasicCameraFrame4 = ({
                 src={frames[index]}
                 alt={`Frame ${index + 1}`}
                 className="h-[115px] w-[170px] object-cover"
+                style={{ transform: "scaleX(-1)" }}
               />
             ) : (
               <video
@@ -369,6 +377,7 @@ export const BasicCameraFrame4 = ({
                 src={frames[index]}
                 alt={`Frame ${index + 1}`}
                 className="h-[115px] w-[170px] object-cover"
+                style={{ transform: "scaleX(-1)" }}
               />
             ) : (
               <video

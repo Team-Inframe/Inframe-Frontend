@@ -7,12 +7,16 @@ export const GalleryDetailPage = () => {
   const navigate = useNavigate();
   const { id: photoId } = useParams();
   const [photo, setPhoto] = useState("");
+  const [location, setLocation] = useState("");
+  const [createdAt, setCreatedAt] = useState("");
 
   useEffect(() => {
     const handleGetPhoto = async () => {
       try {
         const response = await getPhoto(photoId);
         setPhoto(response.data.photo_url);
+        setLocation(response.data.location);
+        setCreatedAt(response.data.created_at);
       } catch (error) {
         console.error(error);
       }
@@ -52,8 +56,8 @@ export const GalleryDetailPage = () => {
       </button>
       <div className="flex h-full flex-col justify-between px-[24px]">
         <div className="flex flex-col">
-          <span className="Label_M text-black">2025.02.01</span>
-          <span className="Label_L text-black">경기도 부천시에서의 추억</span>
+          <span className="Label_M font-bold text-black">{createdAt}</span>
+          <span className="Label_L text-black">{location}에서의 추억</span>
         </div>
 
         <img src={photo} className="max-h-[450px] max-w-[350px] self-center" />

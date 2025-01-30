@@ -1,6 +1,6 @@
 import { useStickerStore } from "@/libraries/store/storesticker";
 
-const Sticker = ({ stickerId, imgSrc }) => {
+const Sticker = ({ stickerId, imgSrc, isdisable }) => {
   const addsticker = useStickerStore((state) => state.addSticker);
 
   return (
@@ -15,6 +15,7 @@ const Sticker = ({ stickerId, imgSrc }) => {
           size: { width: 70, height: 70 },
         })
       }
+      disabled={isdisable}
     >
       <img src={imgSrc} alt="스티커 이미지" />
     </button>

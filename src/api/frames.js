@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+const BASE_URL = `${import.meta.env.VITE_BASE_URL}`;
 
 // ai 배경 생성 api
 export const postFrameBackground = async (prompt) => {

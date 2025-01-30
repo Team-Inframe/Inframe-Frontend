@@ -77,6 +77,8 @@ export default function FrameCameraPage() {
         const location = localStorage.getItem("location");
         const file = new File([blob], "MyPhoto.png", { type: "image/png" });
 
+        localStorage.setItem("bgsrc", customFrame.customFrameBg);
+
         const response = await postPhoto(userId, file, location);
         localStorage.setItem("photoUrl", response.photo_url);
 

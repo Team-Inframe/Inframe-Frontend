@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { login } from "@/api"; // 로그인 API 호출
 import { useNavigate } from "react-router-dom"; // 페이지 이동
 import RoutePath from "@/routes/routePath"; // 라우팅 경로

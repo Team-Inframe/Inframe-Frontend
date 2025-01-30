@@ -1,9 +1,9 @@
 export { login, signup } from "./users";
-export { createSticker } from "./stickers";
+export { postSticker, getStickers } from "./stickers";
 export { postFrameBackground, postFrame, viewFrame } from "./frames";
 export { postPhoto, getPhotosList } from "./photos";
 export {
-  createCustomFrame,
+  postCustomFrame,
   getCustomFrame,
   getCustomFrameList,
   getMyCustomFrames,

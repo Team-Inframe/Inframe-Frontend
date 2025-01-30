@@ -26,6 +26,7 @@ import { GalleryPage } from "@/pages/Storage/Gallery/page";
 import { FrameCameraDownloadPage } from "@/pages/Frame/Download/page";
 import { GalleryDetailPage } from "@/pages/Storage/Gallery/[id]/page";
 import FrameCameraPage from "@/pages/Frame/Camera/page";
+import { LatestFramePage } from "@/pages/LatestFrame/page";
 
 const routes = [
   {
@@ -37,11 +38,20 @@ const routes = [
     ],
   },
   {
+    path: RoutePath.HotFrame,
+    children: [{ index: true, element: <HotFramePage /> }],
+  },
+  {
+    path: RoutePath.GetFrame,
+    children: [{ index: true, element: <FrameDetailPage /> }],
+  },
+  {
     path: RoutePath.Frame,
     children: [
       { index: true, element: <FrameCreatePage /> },
       { path: RoutePath.FrameDetail, element: <FrameDetailPage /> },
       { path: RoutePath.FrameHot, element: <HotFramePage /> },
+      { path: RoutePath.FrameLatest, element: <LatestFramePage /> },
       { path: RoutePath.FrameBackground, element: <FrameBackgroundPage /> },
       { path: RoutePath.FrameSticker, element: <FrameStickerPage /> },
       { path: RoutePath.FrameDownload, element: <FrameDownloadPage /> },
@@ -62,7 +72,6 @@ const routes = [
       { path: RoutePath.GalleryDetail, element: <GalleryDetailPage /> },
     ],
   },
-
   {
     path: RoutePath.StickerTest,
     children: [{ index: true, element: <StickersTestPage /> }],

@@ -8,6 +8,7 @@ const RoutePath = {
   Frame: "/frames",
   FrameDetail: "/frames/:customFrameId",
   FrameHot: "/frames/hot",
+  FrameLatest: "/frames/latest",
   FrameBackground: "/frames/background",
   FrameSticker: "/frames/sticker",
   FrameDownload: "/frames/download",

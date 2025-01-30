@@ -66,33 +66,34 @@ const EditPage = ({ setSelectedSticker }) => {
     <div className="relative">
       <div className="flex flex-1 items-center justify-center" ref={frameRef}>
         <div>{renderFrame()}</div>
+        {stickers.map((sticker, index) => (
+          <Rnd
+            key={index}
+            //maxHeight={}
+            //maxWidth={width}
+            default={{
+              x: sticker.position.x,
+              y: sticker.position.y,
+              width: sticker.size.width,
+              height: sticker.size.height,
+            }}
+            lockAspectRatio={true}
+            onDragStop={(e, d) => {
+              handleDrag(e, d, index);
+              setSelectedSticker(index);
+            }}
+            //dragHandleClassName="handle"
+            onResizeStop={(e, direction, ref, delta, position) =>
+              handleResizeStop(index, e, direction, ref, delta, position)
+            }
+            style={{ zIndex: 10 }}
+          >
+            <img src={sticker.src} alt="" />
+          </Rnd>
+        ))}
       </div>
       {/* {console.log(selectedsticker)} */}
-      {stickers.map((sticker, index) => (
-        <Rnd
-          key={index}
-          //maxHeight={}
-          //maxWidth={width}
-          default={{
-            x: sticker.position.x,
-            y: sticker.position.y,
-            width: sticker.size.width,
-            height: sticker.size.height,
-          }}
-          lockAspectRatio={true}
-          onDragStop={(e, d) => {
-            handleDrag(e, d, index);
-            setSelectedSticker(index);
-          }}
-          //dragHandleClassName="handle"
-          onResizeStop={(e, direction, ref, delta, position) =>
-            handleResizeStop(index, e, direction, ref, delta, position)
-          }
-          style={{ zIndex: 10 }}
-        >
-          <img src={sticker.src} alt="" />
-        </Rnd>
-      ))}
+
       {/* <button onClick={handleremover}>삭제</button> */}
     </div>
   );

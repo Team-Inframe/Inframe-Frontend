@@ -26,7 +26,7 @@ export const postCustomFrame = async (
       })),
     };
 
-    const response = await axios.post(`${BASE_URL}/custom-frames/`, data, {
+    const response = await axios.post(`${BASE_URL}/custom-frames`, data, {
       headers: {
         "Content-Type": "application/json",
       },

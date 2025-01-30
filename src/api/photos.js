@@ -8,7 +8,7 @@ export const postPhoto = async (userId, photoImg, location) => {
     formData.append("user_id", userId);
     formData.append("photo_img", photoImg);
     formData.append("location", location);
-    const response = await axios.post(`${BASE_URL}/photos/`, formData, {
+    const response = await axios.post(`${BASE_URL}/photos`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },

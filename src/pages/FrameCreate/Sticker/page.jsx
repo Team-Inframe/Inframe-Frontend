@@ -18,30 +18,57 @@ const FrameStickerPage = () => {
   const list = ["스티커 페이지", "AI 스티커", "사진 스티커"];
   const [SelectedComp, setSelectComp] = useState(list[0]);
   const [istoggled, setIstoggled] = useState(false);
+
   const [prompt, setPrompt] = useState("");
   const [stickers, setStickers] = useState([]);
   const frameRef = useRef(null);
-  // const [isdeleted, setisdeleted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const removeSticker = useStickerStore((state) => state.removeSticker);
   const clearStickers = useStickerStore((state) => state.clearStickers);
   const [selectedsticker, setSelectedSticker] = useState(null);
+  const [uploadedImage, setUploadedImage] = useState(null);
 
   const handlePromptChange = (e) => {
     setPrompt(e.target.value);
   };
 
-  const handleAISticker = async () => {
-    // setIsLoading(true);
+  const handlePostSticker = async () => {
+    setIsLoading(true);
+    // userid 추가
+    const formData = new FormData();
+    formData.append("user_id", localStorage.getItem("userId"));
+    if (prompt) {
+      // 스티커 생성 프롬프트
+      formData.append("prompt", prompt);
+    }
+    if (uploadedImage) {
+      // 이미지 배경 제거
+      formData.append("uploaded_image", uploadedImage);
+    }
+
     try {
-      const response = await postSticker(prompt);
-      setStickers(response.data);
-      setSelectComp("스티커 페이지");
+      const response = await postSticker(formData);
+      setStickers([response.data, ...stickers.slice(1)]);
     } catch (error) {
       console.error(error);
     } finally {
-      // setIsLoading(false);
+      setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (isLoading) {
+      setStickers([
+        {
+          sticker_id: 0,
+          sticker_url:
+            "https://previews.123rf.com/images/estherpoon/estherpoon1706/estherpoon170600035/80108153-%EB%A1%9C%EB%94%A9-%EC%95%84%EC%9D%B4%EC%BD%98.jpg",
+        },
+        ...stickers,
+      ]);
+      setSelectComp("스티커 페이지");
+    }
+  }, [isLoading]);
 
   useEffect(() => {
     const getStickerlist = async () => {
@@ -54,11 +81,7 @@ const FrameStickerPage = () => {
       }
     };
     getStickerlist();
-  }, [SelectedComp]);
-
-  // useEffect(() => {
-  //   <Stickers />;
-  // }, [stickers]);
+  }, []);
 
   const handleTextButtonClick = (text) => {
     //아무버튼도 안눌렸을때
@@ -109,6 +132,7 @@ const FrameStickerPage = () => {
   };
 
   const handleremover = () => {
+    //삭제시 로그 확인
     console.log("click:", selectedsticker);
     removeSticker(selectedsticker);
   };
@@ -157,8 +181,8 @@ const FrameStickerPage = () => {
 
           <div className="min-h-40 w-full">
             {SelectedComp == list[0] ? (
+              // 스티커 리스트 컴포넌트
               <div className="grid h-full w-full grid-cols-4 overflow-auto bg-slate-100">
-                {/* 스티커 리스트 컴포넌트 */}
                 {stickers.map((group) => (
                   <Sticker
                     key={group.sticker_id}
@@ -170,13 +194,15 @@ const FrameStickerPage = () => {
             ) : SelectedComp == list[1] ? (
               <div className="px-[60px]">
                 <AiUploader
-                  onClick={handleAISticker}
+                  onClick={handlePostSticker}
                   prompt={prompt}
                   onPromptChange={handlePromptChange}
                 />
               </div>
             ) : (
-              <PictureUploader uploadedImage={""} />
+              <PictureUploader
+                uploadedImage={setUploadedImage(uploadedImage)}
+              />
             )}
           </div>
         </div>

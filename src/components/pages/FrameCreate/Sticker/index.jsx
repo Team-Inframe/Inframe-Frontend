@@ -17,7 +17,11 @@ const Sticker = ({ stickerId, imgSrc, isdisable }) => {
       }
       disabled={isdisable}
     >
-      <img src={imgSrc} alt="스티커 이미지" />
+      <img
+        src={imgSrc}
+        alt="스티커 이미지"
+        className="max-h-[70px] max-w-[70px]"
+      />
     </button>
   );
 };

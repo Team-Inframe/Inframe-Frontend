@@ -16,10 +16,7 @@ const queryClient = new QueryClient({
 
 export default function ReactQuerySetting({ children }) {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools />
-      {children}
-    </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   );
 }
 

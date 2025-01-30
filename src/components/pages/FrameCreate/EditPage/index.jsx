@@ -88,7 +88,7 @@ const EditPage = ({ setSelectedSticker }) => {
             }
             style={{ zIndex: 50 }}
           >
-            <img src={sticker.src} alt="" />
+            <img src={sticker.src} />
           </Rnd>
         ))}
       </div>

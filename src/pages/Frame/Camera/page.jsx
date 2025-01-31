@@ -153,7 +153,8 @@ export default function FrameCameraPage() {
   };
 
   const handleNextClick = () => {
-    const photoUrl = "";
+    const photoUrl =
+      "https://inframes3.s3.amazonaws.com/photos/20250201045146_MyPhoto.png";
     localStorage.setItem("photoUrl", photoUrl);
 
     navigate(RoutePath.FrameCameraDownload);

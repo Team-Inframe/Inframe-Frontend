@@ -64,7 +64,7 @@ export const FrameDetailPage = () => {
   if (isError) return <div>데이터를 불러오는데 실패했습니다.</div>;
 
   return (
-    <div className="flex flex-col">
+    <div className="flex h-real-screen flex-col">
       <div className="pt-[50px]">
         <img
           src={LeftArrow}
@@ -80,7 +80,7 @@ export const FrameDetailPage = () => {
         <div className="flex flex-col items-center justify-center">
           <img
             src={frameData.customFrameUrl}
-            className="mb-10 max-h-[300px] w-full px-[30px]"
+            className="mb-10 max-h-[450px] w-full max-w-[350px] self-center px-[30px]"
           />
           <div className="flex items-center justify-center gap-[5px] px-[6px]">
             <img src={Camera} className="mt-1" />

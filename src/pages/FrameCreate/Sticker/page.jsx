@@ -153,21 +153,26 @@ const FrameStickerPage = () => {
 
   const handleConfirmClick = async () => {
     if (!frameRef.current) return;
-    //스티커
+
     try {
       const frame = frameRef.current;
-      //완성프레임 사진찍기
+      const isMobile = window.innerWidth < 1024;
+      const scrollY = isMobile ? 0 : window.scrollY;
+
       const canvas = await html2canvas(frame, {
-        scale: window.devicePixelRatio,
+        scale: 2,
         backgroundColor: null,
         useCORS: true,
         allowTaint: true,
         logging: true,
+        scrollX: 0,
+        scrollY: -scrollY,
       });
+
       canvas.toBlob(async (blob) => {
         if (blob !== null) {
-          //finishFrameBlob을 서버에 보내기
           const response = await postCustomFrameImg(blob);
+
           localStorage.setItem("file_url", response.data.file_url);
           navigate(RoutePath.FrameDownload);
         }
@@ -178,7 +183,6 @@ const FrameStickerPage = () => {
   };
 
   const handleremover = () => {
-    //삭제시 로그 확인
     console.log("click:", selectedsticker);
     removeSticker(selectedsticker);
   };

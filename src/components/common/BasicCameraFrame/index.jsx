@@ -101,7 +101,7 @@ export const BasicCameraFrame2 = ({
       }}
     >
       <div className="flex gap-[8px]">
-        <div className="h-[150px] w-[140px]">
+        <div className="h-[140px] w-[140px]">
           <div
             className={`relative h-full bg-white ${
               isCapturing && currentFrame === 0 ? "border-blue-500" : ""
@@ -126,7 +126,7 @@ export const BasicCameraFrame2 = ({
             <canvas ref={canvasRefs.current[0]} className="hidden"></canvas>
           </div>
         </div>
-        <div className="h-[150px] w-[140px]">
+        <div className="h-[140px] w-[140px]">
           <div
             className={`relative mt-[26px] h-full bg-white ${
               isCapturing && currentFrame === 1 ? "border-blue-500" : ""
@@ -153,7 +153,7 @@ export const BasicCameraFrame2 = ({
         </div>
       </div>
       <div className="mt-[26px] flex gap-[8px]">
-        <div className="h-[150px] w-[140px]">
+        <div className="h-[140px] w-[140px]">
           <div
             className={`relative h-full bg-white ${
               isCapturing && currentFrame === 2 ? "border-blue-500" : ""
@@ -178,7 +178,7 @@ export const BasicCameraFrame2 = ({
             <canvas ref={canvasRefs.current[2]} className="hidden"></canvas>
           </div>
         </div>
-        <div className="h-[150px] w-[140px]">
+        <div className="h-[140px] w-[140px]">
           <div
             className={`relative mt-[26px] h-full bg-white ${
               isCapturing && currentFrame === 3 ? "border-blue-500" : ""

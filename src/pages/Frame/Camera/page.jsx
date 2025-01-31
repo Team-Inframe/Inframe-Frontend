@@ -152,6 +152,13 @@ export default function FrameCameraPage() {
     }
   };
 
+  const handleNextClick = () => {
+    const photoUrl = "";
+    localStorage.setItem("photoUrl", photoUrl);
+
+    navigate(RoutePath.FrameCameraDownload);
+  };
+
   return (
     <div className="flex h-real-screen flex-col justify-between bg-white pb-[60px] pt-[40px]">
       <div className="mb-3 flex flex-col gap-[50px]">
@@ -178,7 +185,7 @@ export default function FrameCameraPage() {
       </div>
 
       <div className="mt-8 flex items-center justify-between px-[24px]">
-        <img src={Electronic} className="px-1" />
+        <img src={Electronic} onClick={handleNextClick} className="px-1" />
         <img
           src={CameraButton}
           onClick={startCaptureSequence}

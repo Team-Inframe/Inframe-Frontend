@@ -60,12 +60,17 @@ export default function FrameCameraPage() {
       const frameElement = frameRef.current;
 
       if (frameElement) {
+        const isMobile = window.innerWidth < 1024;
+        const scrollY = isMobile ? 0 : window.scrollY;
+
         const canvas = await html2canvas(frameElement, {
           scale: window.devicePixelRatio,
           backgroundColor: null,
           useCORS: true,
           allowTaint: true,
           logging: true,
+          scrollX: 0,
+          scrollY: -scrollY,
         });
 
         const blob = await new Promise((resolve) => {

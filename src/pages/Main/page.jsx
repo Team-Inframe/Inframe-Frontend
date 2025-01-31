@@ -35,6 +35,7 @@ export const MainPage = () => {
     Clear: 72,
     Snow: 73,
     Thunderstorm: 74,
+    Mist: 72,
     Rain: 74,
     Drizzle: 74,
     Clouds: 74,

@@ -3,11 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { getCustomFrameList, bookmarkCustomFrame } from "@/api";
 import LeftArrow from "@/assets/svgs/LeftArrow.svg";
+import { useEffect } from "react";
 
 export const HotFramePage = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const sort = "bookmarks";
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const {
     data: frames,

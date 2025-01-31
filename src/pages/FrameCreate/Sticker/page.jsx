@@ -172,11 +172,7 @@ const FrameStickerPage = () => {
       canvas.toBlob(async (blob) => {
         if (blob !== null) {
           const response = await postCustomFrameImg(blob);
-          const fileUrl =
-            "https://inframes3.s3.ap-northeast-2.amazonaws.com/uploads/uploaded_file_1738350110_blob";
-          localStorage.setItem("file_url", fileUrl);
-          console.log(response);
-          // localStorage.setItem("file_url", response.data.file_url);
+          localStorage.setItem("file_url", response.data.file_url);
           navigate(RoutePath.FrameDownload);
         }
       });

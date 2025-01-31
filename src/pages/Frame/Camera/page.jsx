@@ -92,14 +92,6 @@ export default function FrameCameraPage() {
     setIsCapturing(false);
   };
 
-  const handleNextClick = () => {
-    const photoUrl =
-      "https://inframes3.s3.amazonaws.com/photos/20250131080005_MyPhoto.png";
-    localStorage.setItem("photoUrl", photoUrl);
-
-    navigate(RoutePath.FrameCameraDownload);
-  };
-
   const renderBasicFrame = () => {
     if (!customFrame || !customFrame.basicFrameId) {
       return null;
@@ -181,7 +173,7 @@ export default function FrameCameraPage() {
       </div>
 
       <div className="mt-8 flex items-center justify-between px-[24px]">
-        <img src={Electronic} onClick={handleNextClick} className="px-1" />
+        <img src={Electronic} className="px-1" />
         <img
           src={CameraButton}
           onClick={startCaptureSequence}

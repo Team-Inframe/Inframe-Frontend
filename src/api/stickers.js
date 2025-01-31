@@ -21,7 +21,6 @@ export const getStickers = async (userId) => {
     const response = await axios.get(`${BASE_URL}/stickers/list`, {
       params: { user_id: userId }, // 쿼리 파라미터로 user_id 전달
     });
-    console.log(response.data);
     return response.data;
   } catch (error) {
     return error.response.data;

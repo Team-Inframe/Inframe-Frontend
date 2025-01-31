@@ -13,6 +13,7 @@ import html2canvas from "html2canvas";
 import { postCustomFrameImg } from "@/api/customframes";
 import { useStickerStore } from "@/libraries/store/storesticker";
 import deletebutton from "/src/assets/svgs/delete.svg";
+//import { Promise } from "core-js";
 
 const FrameStickerPage = () => {
   const navigate = useNavigate();
@@ -21,13 +22,13 @@ const FrameStickerPage = () => {
   const [istoggled, setIstoggled] = useState(false);
 
   const [prompt, setPrompt] = useState("");
+  const [uploadedImage, setUploadedImage] = useState("");
   const [stickers, setStickers] = useState([]);
   const frameRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
   const removeSticker = useStickerStore((state) => state.removeSticker);
   const clearStickers = useStickerStore((state) => state.clearStickers);
   const [selectedsticker, setSelectedSticker] = useState(null);
-  const [uploadedImage, setUploadedImage] = useState(null);
 
   const handlePromptChange = (e) => {
     setPrompt(e.target.value);
@@ -49,12 +50,14 @@ const FrameStickerPage = () => {
 
     try {
       const response = await postSticker(formData);
-      console.log(response);
-      setStickers([response.data, ...stickers.slice(1)]);
+      setStickers([response.data, ...stickers]);
     } catch (error) {
       console.error(error);
     } finally {
+      setPrompt("");
+      //setUploadedImage("");
       setIsLoading(false);
+      console.log(stickers);
     }
   };
 
@@ -68,6 +71,7 @@ const FrameStickerPage = () => {
         },
         ...stickers,
       ]);
+      console.log(stickers);
       setSelectComp("스티커 페이지");
     }
   }, [isLoading]);
@@ -101,16 +105,46 @@ const FrameStickerPage = () => {
     }
   };
 
-  const handleImgUpload = () => {
-    const image = localStorage.getItem("image");
-    setUploadedImage(image);
+  //   const picpromise = (image) => {
+  //     return new Promise((resolve) => {
+  //     setUploadedImage(image);
+  //     resolve();
+  //   });
+  // };
+  //   const handleImgUpload = (image) => {
+  //     picpromise(image)
+  //     .then(() => {
+  //     handlePostSticker();
+  //   });
+  // };
+
+  async function imgsetup(image) {
+    await setUploadedImage(image);
+  }
+
+  async function startpoststicker() {
+    if (uploadedImage) {
+      await handlePostSticker();
+    }
+  }
+
+  const handleImgUpload = async (img) => {
+    await imgsetup(img);
+
+    if (uploadedImage) {
+      try {
+        await startpoststicker();
+      } catch (error) {
+        console.error(error);
+      }
+    }
   };
 
-  useEffect(() => {
-    if (uploadedImage) {
-      handlePostSticker();
-    }
-  }, [uploadedImage]);
+  // useEffect(() => {
+  //   if (uploadedImage) {
+  //     handlePostSticker();
+  //   }
+  // }, [uploadedImage]);
 
   const handleBackClick = () => {
     clearStickers();
@@ -201,22 +235,13 @@ const FrameStickerPage = () => {
             {SelectedComp == list[0] ? (
               // 스티커 리스트 컴포넌트
               <div className="grid h-full w-full grid-cols-4 overflow-auto bg-slate-100">
-                {stickers.map((group) =>
-                  group.sticker_id == 0 ? (
-                    <Sticker
-                      key={group.sticker_id}
-                      stickerId={group.sticker_id}
-                      imgSrc={group.sticker_url}
-                      disabled
-                    />
-                  ) : (
-                    <Sticker
-                      key={group.sticker_id}
-                      stickerId={group.sticker_id}
-                      imgSrc={group.sticker_url}
-                    />
-                  )
-                )}
+                {stickers.map((group, index) => (
+                  <Sticker
+                    key={index}
+                    stickerId={group.sticker_id}
+                    imgSrc={group.sticker_url}
+                  />
+                ))}
               </div>
             ) : SelectedComp == list[1] ? (
               <div className="px-[60px]">

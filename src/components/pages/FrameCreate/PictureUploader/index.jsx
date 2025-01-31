@@ -25,7 +25,7 @@ const PictureUploader = ({ uploadedImage }) => {
       const s3ImageUrl = response.data.file_url;
 
       if (s3ImageUrl) {
-        uploadedImage(s3ImageUrl);
+        await uploadedImage(s3ImageUrl); // handleImgUpload 호출
         localStorage.setItem("image", s3ImageUrl);
         console.log("S3에 업로드된 이미지 URL:", s3ImageUrl);
       } else {
